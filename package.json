@@ -10,6 +10,13 @@
   "author": "",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "hapi": "~6.9.0"
+    "hapi": "~6.9.0",
+    "joi": "~4.7.0",
+    "mongoose": "~3.8.16"
+  },
+  "devDependencies": {
+    "chai": "~1.9.1",
+    "sinon": "~1.10.3",
+    "mocha": "~1.21.4"
   }
 }
