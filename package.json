@@ -12,7 +12,8 @@
   "dependencies": {
     "hapi": "~6.9.0",
     "joi": "~4.7.0",
-    "mongoose": "~3.8.16"
+    "mongoose": "~3.8.17",
+    "jbuilder": "0.0.4"
   },
   "devDependencies": {
     "chai": "~1.9.1",
