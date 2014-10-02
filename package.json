@@ -10,10 +10,11 @@
   "author": "",
   "license": "BSD-2-Clause",
   "dependencies": {
+    "boom": "^2.5.1",
     "hapi": "~6.9.0",
+    "jbuilder": "0.0.4",
     "joi": "~4.7.0",
-    "mongoose": "~3.8.17",
-    "jbuilder": "0.0.4"
+    "mongoose": "~3.8.17"
   },
   "devDependencies": {
     "chai": "~1.9.1",
