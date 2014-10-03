@@ -34,3 +34,30 @@ exports.create = {
         }
     }
 };
+
+exports.show = {
+    handler: function (request, reply) {
+
+    }
+};
+
+exports.update = {
+    handler: function (request, reply) {
+
+    }
+};
+
+exports.delete = {
+    handler: function (request, reply) {
+        var safeId = encodeURIComponent(request.params.post_id);
+
+        Post.remove({ _id: safeId }, function (err) {
+            if(err) {
+                reply(Boom.notFound());
+            }
+
+            reply().hold().code(204).send();
+
+        });
+    }
+};
