@@ -1,4 +1,5 @@
 var Joi = require('joi');
+Joi.objectId = require('joi-objectid');
 var Boom = require('boom');
 var Post = require('./models/post');
 
@@ -37,27 +38,47 @@ exports.create = {
 
 exports.show = {
     handler: function (request, reply) {
+        var safeId = encodeURIComponent(request.params.post_id);
 
+        Post.findById()
+    },
+    validate: {
+        params: {
+            post_id: Joi.objectId()
+        }
     }
 };
 
 exports.update = {
     handler: function (request, reply) {
 
+    },
+    validate: {
+        params: {
+            post_id: Joi.objectId()
+        }
     }
 };
 
 exports.delete = {
     handler: function (request, reply) {
         var safeId = encodeURIComponent(request.params.post_id);
-
-        Post.remove({ _id: safeId }, function (err) {
+        Post.findByIdAndRemove(safeId, function (err, model) {
             if(err) {
-                reply(Boom.notFound());
+               return reply(Boom.badImplementation());
+            }
+
+            if(!model) {
+                return reply(Boom.notFound());
             }
 
             reply().hold().code(204).send();
 
         });
+    },
+    validate: {
+        params: {
+            post_id: Joi.objectId()
+        }
     }
 };
