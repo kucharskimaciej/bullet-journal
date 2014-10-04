@@ -6,7 +6,11 @@ module.exports = {
                 host: 'localhost',
                 port: 3000,
                 options: {
-                    labels: ["api"]
+                    labels: ["api"],
+                    validation: {
+                        abortEarly: false,
+                        presence: 'optional'
+                    }
                 }
             }
         ],

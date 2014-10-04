@@ -28,10 +28,11 @@ exports.create = {
     },
 
     validate: {
-        query: {
+        payload: {
             title: Joi.string().required(),
-            type: Joi.string().allow('regular', 'daily').default('regular'),
-            config: Joi.string().required()
+            content: Joi.string().required(),
+            tags: Joi.array(),
+            type: Joi.string().allow('regular', 'daily').default('regular')
         }
     }
 };
