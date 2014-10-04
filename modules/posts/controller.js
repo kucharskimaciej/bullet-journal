@@ -40,7 +40,13 @@ exports.show = {
     handler: function (request, reply) {
         var safeId = encodeURIComponent(request.params.post_id);
 
-        Post.findById()
+        Post.findById(safeId, function (err, post) {
+            if(err) {
+                return reply(Boom.badImplementation());
+            }
+
+            reply(post);
+        });
     },
     validate: {
         params: {
@@ -51,7 +57,21 @@ exports.show = {
 
 exports.update = {
     handler: function (request, reply) {
+        var safeId = encodeURIComponent(request.params.post_id);
 
+        Post.findByIdAndUpdate(safeId, {
+            $set: request.payload
+        }, function (err, post) {
+            if(err) {
+                return reply(Boom.badImplementation());
+            }
+
+            if(!post) {
+                return reply(Boom.notFound());
+            }
+
+            reply(post);
+        });
     },
     validate: {
         params: {
