@@ -9,7 +9,7 @@ module.exports = {
                     labels: ["api"],
                     validation: {
                         abortEarly: false,
-                        presence: 'optional'
+                        presence: 'required'
                     }
                 }
             }

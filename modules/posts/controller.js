@@ -6,13 +6,19 @@ var Post = require('./models/post');
 
 exports.index = {
     handler: function (request, reply) {
-        Post.find(function (err, posts) {
+        Post.find(request.query, function (err, posts) {
             if(err) {
                 console.log(err);
             }
 
             reply(posts);
         });
+    },
+    validate: {
+        query: {
+            type: Joi.string().optional(),
+            tags: Joi.string().optional()
+        }
     }
 };
 
@@ -29,9 +35,9 @@ exports.create = {
 
     validate: {
         payload: {
-            title: Joi.string().required(),
-            content: Joi.string().required(),
-            tags: Joi.array(),
+            title: Joi.string(),
+            content: Joi.string(),
+            tags: Joi.array().optional(),
             type: Joi.string().allow('regular', 'daily').default('regular')
         }
     }
