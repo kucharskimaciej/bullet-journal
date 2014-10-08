@@ -19,10 +19,20 @@ module.exports = {
         }
     },
     database: {
-        host: '127.0.0.1',
-        port: 27017,
-        db: 'dailyjournal',
-        username: '',
-        password: ''
+        development: {
+            host: '127.0.0.1',
+            port: 27017,
+            db: 'dailyjournal',
+            username: '',
+            password: ''
+        },
+        test: {
+            host: '127.0.0.1',
+            port: 27017,
+            db: 'dailyjournal-test',
+            username: '',
+            password: ''
+        }
+
     }
 };

@@ -4,12 +4,13 @@ var Hapi = require('hapi');
 var Path = require('path');
 var mongoose = require('mongoose');
 
+var env = process.env.NODE_ENV || "development";
 // Configs
 var config = require('./config.js');
 
-mongoose.connect(config.database.host + ':' + config.database.port + '/' + config.database.db, {
-    user: config.database.username,
-    pass: config.database.password
+mongoose.connect(config.database[env].host + ':' + config.database[env].port + '/' + config.database[env].db, {
+    user: config.database[env].username,
+    pass: config.database[env].password
 });
 
 Hapi.Pack.compose(config.manifest, { relativeTo: Path.join(__dirname, 'modules') }, function (err, pack) {
@@ -21,5 +22,3 @@ Hapi.Pack.compose(config.manifest, { relativeTo: Path.join(__dirname, 'modules')
         });
     }
 });
-
-

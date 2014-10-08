@@ -8,7 +8,7 @@ var before = lab.before;
 var after = lab.after;
 var expect = Lab.expect;
 
-var pack = require('../');
+var pack = require('../server');
 var apiServer = pack._byId[ pack._byLabel["api"][0] ];
 
 var _exports = {
