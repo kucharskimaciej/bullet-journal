@@ -8,7 +8,7 @@ var Post = require('./models/post');
 exports.index = {
     handler: function (request, reply) {
         var helper = requestHelper({ request: request, reply: reply });
-        Post.find(request.query, helper.replyIndex);
+        Post.find(request.query, { '__v': 0 }).sort({ 'created_at': -1 }).exec(helper.replyIndex);
     },
     validate: {
         query: {
@@ -27,7 +27,8 @@ exports.create = {
     validate: {
         payload: {
             title: Joi.string(),
-            content: Joi.string(),
+            original_content: Joi.string(),
+            content: Joi.string().optional(),
             tags: Joi.array().optional(),
             type: Joi.string().allow('regular', 'daily').default('regular')
         }

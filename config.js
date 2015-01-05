@@ -6,6 +6,7 @@ module.exports = {
                 host: 'localhost',
                 port: 3000,
                 options: {
+                    cors: true,
                     labels: ["api"],
                     validation: {
                         abortEarly: false,

@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var createdAt = require('../../../lib/created_at');
+var markdown = require('../../../lib/markdown');
 
 
 
@@ -16,14 +17,18 @@ var schema = mongoose.Schema({
         type: String,
         required: true
     },
-    content: {
+    original_content: {
         type: String,
         required: true
+    },
+    content: {
+        type: String
     },
     tags: { type: Array, default: [] }
 });
 
 schema.plugin(createdAt);
+schema.plugin( markdown('original_content', 'content') );
 
 var Post = mongoose.model('Post', schema);
 
