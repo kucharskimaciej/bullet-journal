@@ -1,4 +1,5 @@
 var Boom = require('boom');
+var _ = require('lodash-node');
 
 var constructor = function (spec) {
     var request = spec.request, reply = spec.reply;
@@ -45,7 +46,16 @@ var constructor = function (spec) {
             return reply(Boom.notFound());
         }
 
-        reply(data);
+        data = _.extend(data, request.payload);
+
+        data.save(function (err, saveData) {
+            if (null !== err) {
+                return reply(Boom.badImplementation());
+            }
+
+            reply(saveData);
+        });
+
     }
 
     function replyCreate (err, data) {

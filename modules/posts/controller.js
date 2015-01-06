@@ -54,9 +54,7 @@ exports.update = {
         var safeId = encodeURIComponent(request.params.post_id);
         var helper = requestHelper({ request: request, reply: reply });
 
-        Post.findByIdAndUpdate(safeId, {
-            $set: request.payload
-        }, helper.replyUpdate);
+        Post.findById(safeId, helper.replyUpdate);
     },
     validate: {
         params: {
