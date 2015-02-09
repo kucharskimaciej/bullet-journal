@@ -1,0 +1,24 @@
+[server]
+host = localhost
+port = 3000
+
+[development_db]
+host = 127.0.0.1
+port = 27017
+db = dailyjournal
+username =
+password =
+
+[test_db]
+host = 127.0.0.1
+port = 27017
+db = dailyjournal-test
+username =
+password =
+
+[production_db]
+host = 127.0.0.1
+port = 27017
+db = dailyjournal
+username =
+password =

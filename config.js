@@ -1,10 +1,15 @@
+var fs = require('fs');
+var ini = require('ini');
+
+config = ini.parse(fs.readFileSync('./config.ini', 'utf-8'));
+
 module.exports = {
     manifest: {
         pack: {},
         servers: [
             {
-                host: 'localhost',
-                port: 3000,
+                host: config.server.host,
+                port: config.server.port,
                 options: {
                     cors: true,
                     labels: ["api"],
@@ -20,20 +25,9 @@ module.exports = {
         }
     },
     database: {
-        development: {
-            host: '127.0.0.1',
-            port: 27017,
-            db: 'dailyjournal',
-            username: '',
-            password: ''
-        },
-        test: {
-            host: '127.0.0.1',
-            port: 27017,
-            db: 'dailyjournal-test',
-            username: '',
-            password: ''
-        }
+        development: config.development_db,
+        test: config.test_db,
+        production: config.production_db
 
     }
 };
