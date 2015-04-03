@@ -107,6 +107,7 @@ lab.experiment("Posts", function () {
                 payload: {
                     title: 'example',
                     content: 'some content',
+                    original_content: 'some content',
                     tags: ['a tag'],
                     type: 'regular'
                 }
@@ -131,9 +132,9 @@ lab.experiment("Posts", function () {
 
         });
 
-        lab.it("validates presence of content", function (done) {
+        lab.it("validates presence of original_content", function (done) {
             var opts = getOpts();
-            opts.payload.content = undefined;
+            opts.payload.original_content = undefined;
 
             api.inject(opts, function (res) {
                 Lab.expect(res.statusCode).to.equal(400);

@@ -148,8 +148,12 @@ lab.experiment("reply helper", function () {
         });
 
         lab.it("replies with passed data otherwise", function (done) {
-            var data = 42;
-            var helper = replyHelper({ reply: function (res) {
+            var data = {
+                save: function (cb) {
+                    return cb(null, data)
+                }
+            };
+            var helper = replyHelper({ request: {}, reply: function (res) {
                 Lab.expect(res).to.be.equal(data);
                 done();
             }});
