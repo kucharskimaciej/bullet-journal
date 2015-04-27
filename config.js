@@ -10,12 +10,14 @@ module.exports = {
             {
                 host: config.server.host,
                 port: config.server.port,
-                options: {
+                labels: ["api"],
+                routes: {
                     cors: true,
-                    labels: ["api"],
-                    validation: {
-                        abortEarly: false,
-                        presence: 'required'
+                    validate: {
+                        options: {
+                            abortEarly: false,
+                            presence: 'required'
+                        }
                     }
                 }
             }
@@ -28,6 +30,5 @@ module.exports = {
         development: config.development_db,
         test: config.test_db,
         production: config.production_db
-
     }
 };

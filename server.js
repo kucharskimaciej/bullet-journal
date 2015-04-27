@@ -13,12 +13,19 @@ mongoose.connect(config.database[env].host + ':' + config.database[env].port + '
     pass: config.database[env].password
 });
 
-Hapi.Pack.compose(config.manifest, { relativeTo: Path.join(__dirname, 'modules') }, function (err, pack) {
-    module.exports = pack;
-    if (!module.parent) {
-        pack.start(function () {
-            console.log("Server started.");
 
-        });
-    }
+var server = new Hapi.Server();
+
+config.manifest.servers.forEach(function (options) {
+    server.connection(options)
 });
+
+//Hapi.Pack.compose(config.manifest, { relativeTo: Path.join(__dirname, 'modules') }, function (err, pack) {
+//    module.exports = pack;
+//    if (!module.parent) {
+//        pack.start(function () {
+//            console.log("Server started.");
+//
+//        });
+//    }
+//});
