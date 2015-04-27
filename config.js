@@ -1,11 +1,10 @@
-var fs = require('fs');
-var ini = require('ini');
+var fs = require("fs");
+var ini = require("ini");
 
-config = ini.parse(fs.readFileSync('./config.ini', 'utf-8'));
+config = ini.parse(fs.readFileSync("./config.ini", "utf-8"));
 
 module.exports = {
     manifest: {
-        pack: {},
         servers: [
             {
                 host: config.server.host,
@@ -16,14 +15,14 @@ module.exports = {
                     validate: {
                         options: {
                             abortEarly: false,
-                            presence: 'required'
+                            presence: "required"
                         }
                     }
                 }
             }
         ],
         plugins: {
-            './posts' : [{ select: 'api' }]
+            "posts" : { labels: ["api"] }
         }
     },
     database: {

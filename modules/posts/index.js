@@ -1,9 +1,10 @@
 var postRoutes = require('./routes');
-exports.register = function (plugin, options, next ) {
-    plugin.route(postRoutes);
-    plugin.ext('onRequest', function (request, next) {
+exports.register = function (server, options, next ) {
+    var postServer = server.select(options.labels);
+    postServer.route(postRoutes);
+    postServer.ext('onRequest', function (request, reply) {
         request.path = request.path.replace(/\/$/, '');
-        next();
+        return reply.continue();
     });
     next();
 };
