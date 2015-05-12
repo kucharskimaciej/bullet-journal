@@ -23,14 +23,14 @@ lab.experiment("Posts", function () {
             var opts = getOpts();
 
             api.inject(opts, function (res) {
-                Lab.expect(res.statusCode).to.equal(200);
+                H.expect(res.statusCode).to.equal(200);
                 done();
             });
         });
 
         lab.it("returns array of posts when called without any params", function (done){
             api.inject(getOpts(), function (res){
-                Lab.expect(res.result).to.be.instanceof(Array);
+                H.expect(res.result).to.be.instanceof(Array);
                 done();
             });
         });
@@ -40,7 +40,7 @@ lab.experiment("Posts", function () {
             opts.url += "?tags=sometag";
 
             api.inject(opts, function (res) {
-                Lab.expect(res.statusCode).to.equal(200);
+                H.expect(res.statusCode).to.equal(200);
                 done();
             });
 
@@ -51,7 +51,7 @@ lab.experiment("Posts", function () {
             opts.url += "?tags=sometag&tags=othertag";
 
             api.inject(opts, function (res) {
-                Lab.expect(res.statusCode).to.equal(200);
+                H.expect(res.statusCode).to.equal(200);
                 done();
             });
 
@@ -62,7 +62,7 @@ lab.experiment("Posts", function () {
             opts.url += "?tags=sometag&tags=othertag";
 
             api.inject(opts, function (res) {
-                Lab.expect(res.result).to.be.instanceOf(Array);
+                H.expect(res.result).to.be.instanceOf(Array);
                 done();
             });
 
@@ -82,7 +82,7 @@ lab.experiment("Posts", function () {
             var opts = getOpts();
             api.inject(opts, function (res) {
                 // 404 errors means mongoose callback failed, but route params validation passed
-                Lab.expect(res.statusCode).to.equal(404);
+                H.expect(res.statusCode).to.equal(404);
                 done();
             });
         });
@@ -91,7 +91,7 @@ lab.experiment("Posts", function () {
             var opts = getOpts();
             opts.url = "/posts/badID";
             api.inject(opts, function (res) {
-                Lab.expect(res.statusCode).to.equal(400);
+                H.expect(res.statusCode).to.equal(400);
                 done();
             }) ;
         });
@@ -116,7 +116,7 @@ lab.experiment("Posts", function () {
 
         lab.it("creates a post", function (done) {
             api.inject(getOpts(), function (res) {
-                Lab.expect(res.statusCode).to.equal(200);
+                H.expect(res.statusCode).to.equal(200);
                 done();
             });
         });
@@ -126,7 +126,7 @@ lab.experiment("Posts", function () {
             opts.payload.title = undefined;
 
             api.inject(opts, function (res) {
-                Lab.expect(res.statusCode).to.equal(400);
+                H.expect(res.statusCode).to.equal(400);
                 done();
             });
 
@@ -137,7 +137,7 @@ lab.experiment("Posts", function () {
             opts.payload.original_content = undefined;
 
             api.inject(opts, function (res) {
-                Lab.expect(res.statusCode).to.equal(400);
+                H.expect(res.statusCode).to.equal(400);
                 done();
             });
 
@@ -148,7 +148,7 @@ lab.experiment("Posts", function () {
             opts.payload.type = 'notasupportedtype';
 
             api.inject(opts, function (res) {
-                Lab.expect(res.statusCode).to.equal(422);
+                H.expect(res.statusCode).to.equal(422);
                 done();
             });
 
@@ -162,7 +162,7 @@ lab.experiment("Posts", function () {
             };
 
             api.inject(opts, function (res) {
-                Lab.expect(res.statusCode).to.equal(400);
+                H.expect(res.statusCode).to.equal(400);
                 done();
             });
         });
@@ -183,7 +183,7 @@ lab.experiment("Posts", function () {
             var opts = getOpts();
             api.inject(opts, function (res) {
                 // 404 errors means mongoose callback failed, but route params validation passed
-                Lab.expect(res.statusCode).to.equal(404);
+                H.expect(res.statusCode).to.equal(404);
                 done();
             });
         });
@@ -192,7 +192,7 @@ lab.experiment("Posts", function () {
             var opts = getOpts();
             opts.url = "/posts/badID";
             api.inject(opts, function (res) {
-                Lab.expect(res.statusCode).to.equal(400);
+                H.expect(res.statusCode).to.equal(400);
                 done();
             }) ;
         });
@@ -216,7 +216,7 @@ lab.experiment("Posts", function () {
             var opts = getOpts();
             api.inject(opts, function (res) {
                 // 404 errors means mongoose callback failed, but route params validation passed
-                Lab.expect(res.statusCode).to.equal(404);
+                H.expect(res.statusCode).to.equal(404);
                 done();
             });
         });
@@ -225,7 +225,7 @@ lab.experiment("Posts", function () {
             var opts = getOpts();
             opts.url = "/posts/badID";
             api.inject(opts, function (res) {
-                Lab.expect(res.statusCode).to.equal(400);
+                H.expect(res.statusCode).to.equal(400);
                 done();
             }) ;
         });

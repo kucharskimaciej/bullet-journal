@@ -1,12 +1,14 @@
 var _ = require('lodash-node');
+var Code = require('code');
 
-var pack = require('../server');
-var apiServer = pack._byId[ pack._byLabel["api"][0] ];
+var apiServer = require('../server');
+
 
 var _exports = {
     apiServer: apiServer,
-    pack: pack,
-    _: _
+    _: _,
+    Code: Code,
+    expect: Code.expect
 };
 
 module.exports = _exports;

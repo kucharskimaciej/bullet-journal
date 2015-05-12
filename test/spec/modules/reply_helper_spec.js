@@ -12,7 +12,7 @@ lab.experiment("reply helper", function () {
 
         lab.it("replies with 500 if error isnt null", function (done) {
             var helper = replyHelper({ reply: function (res) {
-                Lab.expect(res.output.statusCode).to.be.equal(500);
+                H.expect(res.output.statusCode).to.be.equal(500);
                 done();
             }});
 
@@ -22,7 +22,7 @@ lab.experiment("reply helper", function () {
         lab.it("replies with passed data otherwise", function (done) {
             var data = [1,2,3];
             var helper = replyHelper({ reply: function (res) {
-                Lab.expect(res).to.be.equal(data);
+                H.expect(res).to.be.equal(data);
                 done();
             }});
 
@@ -35,7 +35,7 @@ lab.experiment("reply helper", function () {
 
         lab.it("replies with 500 if error isnt null", function (done) {
             var helper = replyHelper({ reply: function (res) {
-                Lab.expect(res.output.statusCode).to.be.equal(422);
+                H.expect(res.output.statusCode).to.be.equal(422);
                 done();
             }});
 
@@ -45,7 +45,7 @@ lab.experiment("reply helper", function () {
         lab.it("replies with passed data otherwise", function (done) {
             var data = [1,2,3];
             var helper = replyHelper({ reply: function (res) {
-                Lab.expect(res).to.be.equal(data);
+                H.expect(res).to.be.equal(data);
                 done();
             }});
 
@@ -58,7 +58,7 @@ lab.experiment("reply helper", function () {
 
         lab.it("replies with 500 if error isnt null", function (done) {
             var helper = replyHelper({ reply: function (res) {
-                Lab.expect(res.output.statusCode).to.be.equal(500);
+                H.expect(res.output.statusCode).to.be.equal(500);
                 done();
             }});
 
@@ -67,7 +67,7 @@ lab.experiment("reply helper", function () {
 
         lab.it("replies with 404 if data is null", function (done) {
             var helper = replyHelper({ reply: function (res) {
-                Lab.expect(res.output.statusCode).to.be.equal(404);
+                H.expect(res.output.statusCode).to.be.equal(404);
                 done();
             }});
 
@@ -77,7 +77,7 @@ lab.experiment("reply helper", function () {
         lab.it("replies with passed data otherwise", function (done) {
             var data = 42;
             var helper = replyHelper({ reply: function (res) {
-                Lab.expect(res).to.be.equal(data);
+                H.expect(res).to.be.equal(data);
                 done();
             }});
 
@@ -90,7 +90,7 @@ lab.experiment("reply helper", function () {
 
         lab.it("replies with 500 if error isnt null", function (done) {
             var helper = replyHelper({ reply: function (res) {
-                Lab.expect(res.output.statusCode).to.be.equal(500);
+                H.expect(res.output.statusCode).to.be.equal(500);
                 done();
             }});
 
@@ -99,7 +99,7 @@ lab.experiment("reply helper", function () {
 
         lab.it("replies with 404 if data is null", function (done) {
             var helper = replyHelper({ reply: function (res) {
-                Lab.expect(res.output.statusCode).to.be.equal(404);
+                H.expect(res.output.statusCode).to.be.equal(404);
                 done();
             }});
 
@@ -109,7 +109,7 @@ lab.experiment("reply helper", function () {
         lab.it("replies with passed data otherwise", function (done) {
             var data = 42;
             var helper = replyHelper({ reply: function (res) {
-                Lab.expect(res).to.be.equal(undefined);
+                H.expect(res).to.be.equal(undefined);
                 // mock expected call path
                 return {
                     hold: function () {
@@ -131,7 +131,7 @@ lab.experiment("reply helper", function () {
 
         lab.it("replies with 500 if error isnt null", function (done) {
             var helper = replyHelper({ reply: function (res) {
-                Lab.expect(res.output.statusCode).to.be.equal(500);
+                H.expect(res.output.statusCode).to.be.equal(500);
                 done();
             }});
 
@@ -140,7 +140,7 @@ lab.experiment("reply helper", function () {
 
         lab.it("replies with 404 if data is null", function (done) {
             var helper = replyHelper({ reply: function (res) {
-                Lab.expect(res.output.statusCode).to.be.equal(404);
+                H.expect(res.output.statusCode).to.be.equal(404);
                 done();
             }});
 
@@ -154,7 +154,7 @@ lab.experiment("reply helper", function () {
                 }
             };
             var helper = replyHelper({ request: {}, reply: function (res) {
-                Lab.expect(res).to.be.equal(data);
+                H.expect(res).to.be.equal(data);
                 done();
             }});
 

@@ -11,7 +11,7 @@ lab.suite("Post model", function () {
     lab.describe("creation date", function () {
         lab.it("is set to current date by default", function (done) {
             var post = new Post();
-            Lab.expect(post.created_at).to.be.instanceof(Date);
+            H.expect(post.created_at).to.be.instanceof(Date);
             done();
         });
 
@@ -20,7 +20,7 @@ lab.suite("Post model", function () {
             var post = new Post({
                 created_at: postDate
             });
-            Lab.expect(post.created_at).to.be.equal(postDate);
+            H.expect(post.created_at).to.be.equal(postDate);
             done();
         })
     });
