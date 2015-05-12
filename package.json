@@ -4,8 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "make test-cov",
-    "start": "node server.js"
+    "test": "lab -t 90",
+    "start": "node server.js",
+    "coverage": "lab -t 90 -r html -o coverage.html"
   },
   "author": "",
   "license": "BSD-2-Clause",
