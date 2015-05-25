@@ -22,7 +22,8 @@ module.exports = {
             }
         ],
         plugins: {
-            "posts" : { labels: ["api"] }
+            "posts" : { labels: ["api"] },
+            "users" : { labels: ["api", "auth"] }
         }
     },
     database: {
