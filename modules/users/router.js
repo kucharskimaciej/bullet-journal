@@ -1,0 +1,1 @@
+var Ctrl = require('./controller')
