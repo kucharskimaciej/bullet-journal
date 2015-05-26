@@ -19,6 +19,7 @@
     "joi-objectid": "^1.1.0",
     "lodash-node": "^3.6.0",
     "marked": "^0.3.3",
+    "mongo-relation": "^0.5.4",
     "mongoose": "^4.0.1",
     "rfr": "^1.2.2"
   },

@@ -13,7 +13,7 @@ var ProviderSchema = mongoose.Schema({
         required: true
     }
 });
-
+ProviderSchema.belongsTo('User', { through: 'user' });
 var Provider = mongoose.Model("Provider", ProviderSchema);
 
-module.exports = Provider;
+exports = Provider;
