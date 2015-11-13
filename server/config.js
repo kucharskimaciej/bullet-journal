@@ -1,7 +1,7 @@
 var fs = require("fs");
 var ini = require("ini");
 
-var config = ini.parse(fs.readFileSync("./config.ini", "utf-8"));
+var config = ini.parse(fs.readFileSync("../config.ini", "utf-8"));
 
 module.exports = {
     manifest: {
