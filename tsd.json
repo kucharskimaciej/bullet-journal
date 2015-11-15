@@ -5,7 +5,19 @@
   "path": "typings",
   "bundle": "typings/tsd.d.ts",
   "installed": {
+    "hapi/hapi.d.ts": {
+      "commit": "fc341765ebbb04b7109981a25dced01f488f4d94"
+    },
+    "bluebird/bluebird.d.ts": {
+      "commit": "fc341765ebbb04b7109981a25dced01f488f4d94"
+    },
+    "node/node.d.ts": {
+      "commit": "fc341765ebbb04b7109981a25dced01f488f4d94"
+    },
     "joi/joi.d.ts": {
+      "commit": "fc341765ebbb04b7109981a25dced01f488f4d94"
+    },
+    "boom/boom.d.ts": {
       "commit": "fc341765ebbb04b7109981a25dced01f488f4d94"
     }
   }

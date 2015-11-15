@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "lab -t 90",
-    "start": "node server.js",
+    "start": "ts-node --project server server/server.ts",
     "coverage": "lab -t 90 -r html -o coverage.html"
   },
   "author": "",
@@ -17,7 +17,9 @@
     "jbuilder": "0.0.4",
     "joi": "^7.0.0",
     "joi-objectid": "^2.0.0",
-    "marked": "^0.3.5"
+    "marked": "^0.3.5",
+    "ts-node": "^0.5.3",
+    "typescript": "^1.6.2"
   },
   "devDependencies": {
     "code": "^2.0.1",
