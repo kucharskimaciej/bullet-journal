@@ -1,8 +1,16 @@
-# API for the *bullet-journal*
+# BulletJournal
 
-Proof of concept for the backend for a multiplatform journaling application.
+Bullet journal is a short-and-sweet memo type of journal.
 
 ## Version history
+
+### `TODO:` v. 1.2
+
+* merged `bullet-journal` and `bullet-journal-api` repos
+* upgraded to Hapi 11
+* complete rewrite of functionality to `typescript`
+* added user accounts
+
 
 ### v. 1.1
 
