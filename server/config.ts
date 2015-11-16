@@ -5,26 +5,16 @@ var {parse} = require("ini");
 const config = parse(readFileSync(join(__dirname, "../config.ini"), "utf-8"));
 
 export const manifest = {
-    servers: [
+    connections: [
         {
-            host: config.server.host,
             port: config.server.port,
-            labels: ["api"],
-            routes: {
-                cors: true,
-                validate: {
-                    options: {
-                        abortEarly: false,
-                        presence: "required"
-                    }
-                }
-            }
+            labels: ["api"]
+        },
+        {
+            port: config.client.port,
+            labels: ["client"]
         }
-    ],
-    plugins: {
-        "posts" : { labels: ["api"] },
-        "users" : { labels: ["api", "auth"] }
-    }
+    ]
 };
 export const database = {
     development: config.development_db,
