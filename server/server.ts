@@ -1,6 +1,6 @@
 /// <reference path="../typings/tsd.d.ts" />
 
-const {Server} = require('hapi');
+import {Server} from "hapi";
 const Good = require('good');
 
 // Configs
@@ -11,22 +11,30 @@ const {
 } = require('./config.ts');
 
 
-const server = new Server();
+const server: Server = new Server();
 connections.forEach((connection) => server.connection(connection));
 
+const goodOptions = {
+    reporters: [{
+        reporter: require('good-console'),
+        events: {
+            response: '*',
+            log: '*'
+        }
+    }]
+};
+
 // start server
-server.register([{
-    register: Good,
-    options: {
-        reporters: [{
-            reporter: require('good-console'),
-            events: {
-                response: '*',
-                log: '*'
-            }
-        }]
+server.register([
+    {
+        register: Good,
+        options: goodOptions
+    },
+    {
+        register: require('hapi-mongodb'),
+        options: database[env]
     }
-}], (err: Error) => {
+], (err: Error) => {
     if (err) {
         throw err; // something bad happened loading the plugin
     }
