@@ -1,18 +1,19 @@
-/// <reference path="../typings/tsd.d.ts" />
+/// <reference path='../typings/tsd.d.ts' />
 
-import {Server} from "hapi";
-const Good = require('good');
+import {Server} from 'hapi';
+import {Good} from 'good';
+import {IServerConnectionOptions} from 'hapi';
 
 // Configs
-const env = process.env.NODE_ENV || "development";
-const {
-    manifest: {connections = []},
+const env = process.env.NODE_ENV || 'development';
+import {
+    manifest,
     database
-} = require('./config.ts');
+} from './config.ts';
 
 
 const server: Server = new Server();
-connections.forEach((connection) => server.connection(connection));
+connections.forEach((connection: IServerConnectionOptions) => server.connection(connection));
 
 const goodOptions = {
     reporters: [{
@@ -29,10 +30,6 @@ server.register([
     {
         register: Good,
         options: goodOptions
-    },
-    {
-        register: require('hapi-mongodb'),
-        options: database[env]
     }
 ], (err: Error) => {
     if (err) {
