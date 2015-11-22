@@ -1,7 +1,7 @@
 /// <reference path='../typings/tsd.d.ts' />
 
 import {Server} from 'hapi';
-import {Good} from 'good';
+/* tslint:disable */ const Good = require('good');
 import {IServerConnectionOptions} from 'hapi';
 
 // Configs
@@ -9,11 +9,12 @@ const env = process.env.NODE_ENV || 'development';
 import {
     manifest,
     database
-} from './config.ts';
+} from './config';
 
 
 const server: Server = new Server();
-connections.forEach((connection: IServerConnectionOptions) => server.connection(connection));
+(manifest.connections || [])
+    .forEach((connection: IServerConnectionOptions) => server.connection(connection));
 
 const goodOptions = {
     reporters: [{

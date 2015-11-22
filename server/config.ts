@@ -2,7 +2,7 @@ import {readFileSync} from 'fs';
 import {join} from 'path';
 import {parse} from 'ini';
 import {defaultsDeep} from 'lodash';
-import {IServerConnectionOptions} from "hapi";
+import {IServerConnectionOptions} from 'hapi';
 
 const config = parse(readFileSync(join(__dirname, '../config.ini'), 'utf-8'));
 
@@ -29,7 +29,7 @@ const defaultDatabaseSettings = {
     settings: {}
 };
 
-export const db = Object.keys(_database).reduce(($, key: string) => {
-    $[key] = defaultsDeep(_database[key], defaultDatabaseSettings);
+export const database = Object.keys(db).reduce(($, key: string) => {
+    $[key] = defaultsDeep(db[key], defaultDatabaseSettings);
     return $;
 }, {});
