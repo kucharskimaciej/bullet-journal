@@ -2,14 +2,19 @@
 
 Bullet journal is a short-and-sweet memo type of journal.
 
-## Version history
+## TODO
 
-### `TODO:` v. 1.2
+###  v. 1.3
 
-* merged `bullet-journal` and `bullet-journal-api` repos
-* upgraded to Hapi 11
+* post statistics (longest streak, current streak, total posts in a year, etc)
+* "remind me about this in..."
+* share/post to twitter/facebook/etc
+
+###  v. 1.2
+
+* merge `bullet-journal` and `bullet-journal-api` repos
 * complete rewrite of functionality to `typescript`
-* added user accounts
+* add user accounts
 
 
 ### v. 1.1
