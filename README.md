@@ -16,6 +16,7 @@ Bullet journal is a short-and-sweet memo type of journal.
 * complete rewrite of functionality to `typescript`
 * add user accounts
 
+## Version history
 
 ### v. 1.1
 
