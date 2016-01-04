@@ -10,4 +10,4 @@ client/*.js
 client/*.js.map
 lib/*.js
 lib/*.js.map
-packages
+packages/**/*
