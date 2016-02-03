@@ -4,7 +4,7 @@ declare module Collections {
     }
 
     class PostsCollection extends BaseCollection {
-        constructor(name: string);
+        constructor(name?: string);
     }
 
     const Posts: PostsCollection;
