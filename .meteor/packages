@@ -8,7 +8,7 @@ maximum:computed-fields
 meteorhacks:npm
 
 
-npm-container
+
 accounts-facebook
 accounts-github
 mikael:accounts-merge
@@ -19,3 +19,6 @@ audit-argument-checks
 themeteorchef:commonmark
 ongoworks:speakingurl
 momentjs:moment
+
+
+npm-container

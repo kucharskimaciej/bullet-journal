@@ -1,4 +1,3 @@
-import getSlug = OngoworksSpeakingurl.getSlug;
 import IPost = Collections.IPost;
 
 @Namespace('Collections')
@@ -7,9 +6,8 @@ class PostsCollection extends Collections.BaseCollection {
         super(name);
     }
 }
-
 Namespace('Collections', function() {
-    const Posts = new this.PostsCollection();
+    Collections.Posts = new this.PostsCollection();
 
     Meteor.methods({
         createPost({ title, body }: IPost) {
@@ -27,15 +25,16 @@ Namespace('Collections', function() {
                 slug: getSlug(title)
             };
 
-            return Posts.insert(document);
+            return Collections.Posts.insert(document);
         },
         updatePost({ _id, title, body }: IPost) {
             let $set: { title?: string, body?: string, slug?: string };
+
             if (!this.userId) {
                 throw new Meteor.Error(403, 'Unauthenticated');
             }
 
-            const post = Posts.findOne({ _id });
+            const post = this.Posts.findOne({ _id });
 
             if (!post) {
                 throw new Meteor.Error(404, 'Post not found');
@@ -44,6 +43,9 @@ Namespace('Collections', function() {
             if (post.author !== this.userId) {
                 throw new Meteor.Error(401, 'Unauthorized');
             }
+
+            check(title, String);
+            check(body, String);
 
             if (post.title !== title) {
                 $set.title = title;
@@ -54,14 +56,14 @@ Namespace('Collections', function() {
                 $set.body = body;
             }
 
-            return Posts.update({ _id }, { $set }, { multi: false });
+            return Collections.Posts.update({ _id }, { $set }, { multi: false });
         },
         removePost({ _id }: IPost) {
             if (!this.userId) {
                 throw new Meteor.Error(403, 'Unauthenticated');
             }
 
-            const post = Posts.findOne({ _id });
+            const post = Collections.Posts.findOne({ _id }) as IPost;
 
             if (!post) {
                 throw new Meteor.Error(404, 'Post not found');
@@ -71,13 +73,13 @@ Namespace('Collections', function() {
                 throw new Meteor.Error(401, 'Unauthorized');
             }
 
-            return Posts.remove({ _id });
+            return Collections.Posts.remove({ _id });
         }
     });
 
-    Meteor.publish('posts', () => {
-        return Posts.find({
-            author: Meteor.userId(),
+    Meteor.publish('posts', function() {
+        return Collections.Posts.find({
+            author: this.userId(),
             sort: {
                 created_at: -1
             }

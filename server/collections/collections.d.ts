@@ -7,11 +7,12 @@ declare module Collections {
         constructor(name?: string);
     }
 
-    const Posts: PostsCollection;
+    var Posts: PostsCollection;
 
     interface IPost {
         title: string;
         body: string;
+        author: string;
         slug?: string;
         _id?: string;
         created_at?: number;
