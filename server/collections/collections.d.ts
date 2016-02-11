@@ -1,14 +1,4 @@
 declare module Collections {
-    class BaseCollection extends Mongo.Collection<Object> {
-        constructor(name: string);
-    }
-
-    class PostsCollection extends BaseCollection {
-        constructor(name?: string);
-    }
-
-    var Posts: PostsCollection;
-
     interface IPost {
         title: string;
         body: string;
@@ -18,4 +8,6 @@ declare module Collections {
         created_at?: number;
         edited_at?: number;
     }
+
+    var Posts: Mongo.Collection<IPost>;
 }
