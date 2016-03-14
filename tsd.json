@@ -5,11 +5,11 @@
   "path": "typings",
   "bundle": "typings/tsd.d.ts",
   "installed": {
-    "lodash/lodash.d.ts": {
-      "commit": "fa04c80f4a889613b96cb4f283848c61a9f64233"
-    },
     "meteor/meteor.d.ts": {
       "commit": "fe563dff3428bac1260d1794e2c2ecf8f097535a"
+    },
+    "react/react.d.ts": {
+      "commit": "0cd5f0a1482dc3149f5446b1d885ef6ac7c57720"
     }
   }
 }

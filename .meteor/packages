@@ -3,22 +3,16 @@ mongo                   # The database Meteor supports right now
 session                 # Client-side reactive dictionary for your app
 tracker                 # Meteor's client-side reactive programming library
 standard-minifiers      # JS/CSS minifiers run for production mode
-kucharskimaciej:typescript-namespace
 maximum:computed-fields
-meteorhacks:npm
-
 
 
 accounts-facebook
 accounts-github
 mikael:accounts-merge
-dotansimha:accounts-ui-angular
-angular
 check
 audit-argument-checks
 themeteorchef:commonmark
 ongoworks:speakingurl
-momentjs:moment
-
-
-npm-container
+webpack:webpack
+webpack:react
+webpack:typescript
