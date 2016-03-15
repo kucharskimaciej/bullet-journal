@@ -9,7 +9,9 @@
     "marked": "^0.3.5",
     "react": "~0.14.1",
     "react-dom": "^0.14.7",
-    "speakingurl": "^9.0.0"
+    "react-komposer": "^1.3.3",
+    "speakingurl": "^9.0.0",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "babel": "^6.3.26",

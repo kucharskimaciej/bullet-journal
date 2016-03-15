@@ -12,7 +12,7 @@ function configureService(service, settings) {
 
     ServiceConfiguration.configurations.insert({
         service: service,
-        clientId: settings.clientId,
+        appId: settings.appId,
         secret: settings.secret
     });
 }
