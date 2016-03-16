@@ -1,27 +1,20 @@
 import {Component, PropTypes} from 'react';
-const {composeWithTracker} = require('react-komposer');
 
-import LoginService from '../services/login';
-console.log(LoginService);
+import {withFacebook} from '../services/auth';
 
-class LoginComponent extends Component {
+export class Login extends Component {
     static propTypes = {
-        userId: PropTypes.string,
         service: PropTypes.string.isRequired
     };
 
-    login = (e:Event) => {
+    login = (e: Event) => {
         e.preventDefault();
-        switch(this.props.service) {
-            case 'facebook': return LoginService.withFacebook();
+        switch (this.props.service) {
+            case 'facebook': return withFacebook();
         }
     };
 
     render() {
-        return <a onClick={this.login}>facebook</a>
+        return <a onClick={this.login}>facebook</a>;
     }
 }
-
-export const Login = composeWithTracker((props, onData) => {
-    onData(null, {service: props.service, userId: Meteor.userId()});
-})(LoginComponent);

@@ -10,22 +10,20 @@ export interface IUser {
             email: string;
             first_name: string;
         }
-    }
+    };
 }
 
-export default {
-    fullName(user: IUser) {
-        return user.profile.name;
-    },
 
-    firstName(user: IUser) {
-        if(user.services.facebook.first_name) {
-            return user.services.facebook.first_name;
-        }
+export function fullName(user: IUser) {
+    return user.profile.name;
+}
 
-        const [firstName, ...rest] = user.profile.name.split(' ');
-
-        return firstName;
+export function firstName(user: IUser) {
+    if (user.services.facebook.first_name) {
+        return user.services.facebook.first_name;
     }
-};
 
+    const [firstName, ...rest] = user.profile.name.split(' ');
+
+    return firstName;
+}

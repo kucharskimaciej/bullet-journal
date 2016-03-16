@@ -92,7 +92,7 @@
     "typedef": [true,
       "callSignature",
       "indexSignature",
-      "parameter",
+
       "propertySignature",
       "variableDeclarator",
       "memberVariableDeclarator"],
@@ -102,8 +102,7 @@
       "check-branch",
       "check-decl",
       "check-operator",
-      "check-separator",
-      "check-type"
+      "check-separator"
     ]
   }
 }
