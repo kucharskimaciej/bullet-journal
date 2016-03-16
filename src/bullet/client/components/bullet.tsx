@@ -11,6 +11,8 @@ import {firstName} from '../services/users';
 import {UserName} from './user_name';
 import {Login} from './login';
 
+import {Posts} from '../../collections/posts/posts';
+
 class BulletComponent extends Component {
     static propTypes = {
         user: PropTypes.object,
@@ -18,6 +20,8 @@ class BulletComponent extends Component {
     };
 
     render() {
+        console.log(this.props.posts);
+
         const {user, loggedIn} = this.props;
         let userFragment, loginFragment;
 
@@ -38,14 +42,16 @@ class BulletComponent extends Component {
 
 export const Bullet = composeWithTracker((_, onData) => {
     const sub = Meteor.subscribe('currentUser');
+    const postSub = Meteor.subscribe('posts');
 
-    if (!sub.ready()) {
+    if (!sub.ready() || !postSub.ready()) {
         return;
     }
 
     const user = Meteor.users.findOne(Meteor.userId());
+    const posts = Posts.find({ author: Meteor.userId() }).fetch();
     if (user) {
-        onData(null, {user, loggedIn: true});
+        onData(null, {user, loggedIn: true, posts});
     } else {
         onData(null, {loggedIn: false});
     }

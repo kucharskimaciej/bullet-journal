@@ -10,7 +10,6 @@ accounts-facebook
 accounts-github
 mikael:accounts-merge
 check
-audit-argument-checks
 themeteorchef:commonmark
 ongoworks:speakingurl
 webpack:webpack
@@ -18,3 +17,5 @@ webpack:react
 webpack:typescript
 service-configuration
 blaze-html-templates
+meteorhacks:flow-router
+kadira:react-layout

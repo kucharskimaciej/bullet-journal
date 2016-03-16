@@ -1,32 +1,11 @@
-/// <reference path="../../../typings/tsd.d.ts" />
-/// <reference path="../../../lib/meteor.d.ts" />
-
+import {Posts, IPost} from './posts';
 import getSlug = require('speakingurl');
 import {
     Methods,
     registerMethods,
     findById,
     authenticate
-} from '../lib/method_utils';
-
-export interface IPost {
-    title: string;
-    body: string;
-    created_at: number;
-    slug: string;
-    author: string;
-}
-
-export const Posts = new Mongo.Collection<IPost>('posts');
-
-Meteor.publish('posts', () => {
-    return Posts.find({
-        author: Meteor.userId(),
-        sort: {
-            created_at: -1
-        }
-    });
-});
+} from '../../lib/method_utils';
 
 @registerMethods({
     collection: Posts,
@@ -83,7 +62,3 @@ class PostMethods extends Methods<Mongo.Collection<IPost>> {
         return Posts.remove({_id});
     }
 }
-
-
-
-

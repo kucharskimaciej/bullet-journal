@@ -1,5 +1,5 @@
 Meteor.publish("currentUser", function() {
-    console.log('subscribing...', this.userId);
+    console.log('publishing...', this.userId);
     return Meteor.users.find(this.userId, {
         fields: {
             'services.github.email': 1,
