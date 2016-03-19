@@ -6,7 +6,8 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "sourceMap": true
   },
   "exclude": [
     "node_modules",

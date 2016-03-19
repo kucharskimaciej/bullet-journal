@@ -1,8 +1,9 @@
 /// <reference path="../../../typings/browser.d.ts" />
-import ReactDOM = require('react-dom');
-import {Bullet} from './components/bullet';
+/// <reference path='../../../lib/react-komposer.d.ts' />
+import {render} from 'react-dom';
+import {Bullet} from './components/bullet/component';
 
 Meteor.startup(() => {
-    ReactDOM.render(<Bullet />, document.getElementById('app'));
+    render(<Bullet />, document.getElementById('app'));
 });
 
