@@ -1,7 +1,7 @@
-/// <reference path="../../../typings/tsd.d.ts" />
+/// <reference path="../../../typings/main.d.ts" />
 require('./fixtures/posts');
 
-require('../collections/users');
+require('../collections/users/users');
 
 require('../collections/posts/methods');
-require('../collections/posts/publication');
+require('../collections/posts/publish');

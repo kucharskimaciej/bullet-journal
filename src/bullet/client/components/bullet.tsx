@@ -1,9 +1,7 @@
-/// <reference path='../../../../typings/tsd.d.ts' />
 /// <reference path='../../../../lib/react-komposer.d.ts' />
 import {Component, PropTypes} from 'react';
 
 
-//const {composeWithTracker} = require('react-komposer');
 import {composeWithTracker} from 'react-komposer';
 import {firstName} from '../services/users';
 
@@ -11,17 +9,19 @@ import {firstName} from '../services/users';
 import {UserName} from './user_name';
 import {Login} from './login';
 
-import {Posts} from '../../collections/posts/posts';
+import {Posts, IPost} from '../../collections/posts/posts';
 
-class BulletComponent extends Component {
+export interface IBulletProps {
+    posts: IPost[];
+}
+
+class BulletComponent extends Component<IBulletProps> {
     static propTypes = {
         user: PropTypes.object,
         loggedIn: PropTypes.bool.isRequired
     };
 
     render() {
-        console.log(this.props.posts);
-
         const {user, loggedIn} = this.props;
         let userFragment, loginFragment;
 

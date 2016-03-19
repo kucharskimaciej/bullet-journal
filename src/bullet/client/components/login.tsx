@@ -2,7 +2,8 @@ import {Component, PropTypes} from 'react';
 
 import {withFacebook} from '../services/auth';
 
-export class Login extends Component {
+
+export class Login extends Component<{service: string}> {
     static propTypes = {
         service: PropTypes.string.isRequired
     };
