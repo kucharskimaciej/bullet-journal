@@ -10,3 +10,9 @@ export interface IUser {
         }
     };
 }
+
+Meteor.users.deny({
+    update() {
+        return true;
+    }
+});
