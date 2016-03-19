@@ -1,8 +1,7 @@
 /// <reference path="../../../typings/main.d.ts" />
-declare var require: any;
-require('./fixtures/posts');
+import './fixtures/posts';
 
-require('../collections/users/publish');
+import '../collections/users/publish';
 
-require('../collections/posts/methods');
-require('../collections/posts/publish');
+import '../collections/posts/methods';
+import '../collections/posts/publish';
