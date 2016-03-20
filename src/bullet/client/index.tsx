@@ -1,9 +1,9 @@
 /// <reference path="../../../typings/browser.d.ts" />
 /// <reference path='../../../lib/react-komposer.d.ts' />
-import {render} from 'react-dom';
-import {Bullet} from './components/bullet/component';
+/// <reference path='../../../lib/flow-router.d.ts' />
+import {FlowRouter} from 'meteor/meteorhacks:flow-router';
+import './routes';
 
-Meteor.startup(() => {
-    render(<Bullet />, document.getElementById('app'));
+Meteor.startup(function() {
+    FlowRouter.initialize();
 });
-

@@ -16,3 +16,6 @@ function configureService(service, settings) {
         secret: settings.secret
     });
 }
+
+
+FlowRouter.wait();
