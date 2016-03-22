@@ -17,5 +17,6 @@ webpack:react
 webpack:typescript
 service-configuration
 blaze-html-templates
-meteorhacks:flow-router
 
+
+kadira:flow-router
