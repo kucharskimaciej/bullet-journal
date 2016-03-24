@@ -21,7 +21,7 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'babel?presets[]=react&presets[]=es2015!awesome-typescript-loader'
+                loader: 'awesome-typescript-loader'
             }
         ]
     }
