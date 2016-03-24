@@ -4,10 +4,9 @@ node_modules
 coverage.html
 config.ini
 typings
-server/**/*.js
-server/**/*.js.map
-client/*.js
-client/*.js.map
-lib/*.js
-lib/*.js.map
-packages/**/*
+app/server/**/*.js
+app/server/**/*.js.map
+app/client/*.js
+app/client/*.js.map
+app/private/*.json
+app/packages/**/*

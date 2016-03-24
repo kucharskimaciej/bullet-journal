@@ -1,0 +1,6 @@
+{
+  "facebook": {
+    "appId": "APP_ID",
+    "secret": "APP_SECRET"
+  }
+}
