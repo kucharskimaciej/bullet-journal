@@ -1,6 +1,6 @@
 import {Posts} from './posts';
 
-Meteor.publish('posts', function () {
+Meteor.publish('posts.last', function () {
     const sort = {
         created_at: -1
     };

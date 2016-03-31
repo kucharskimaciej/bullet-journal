@@ -1,4 +1,4 @@
-Meteor.publish('currentUser', function() {
+Meteor.publish('users.current', function() {
     if (!this.userId) {
         return this.ready();
     }
