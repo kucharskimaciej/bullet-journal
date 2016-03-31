@@ -10,13 +10,14 @@ if (Meteor.settings['github']) {
     configureService('github', Meteor.settings['github']);
 }
 
-function configureService(service: string, {appId, secret}: ISerivceConfiguration) {
+function configureService(service: string, {appId, clientId, secret}: ISerivceConfiguration) {
     console.log('configuring ', service);
     ServiceConfiguration.configurations.remove({service});
 
     ServiceConfiguration.configurations.insert({
         service,
         appId,
+        clientId,
         secret
     });
 }

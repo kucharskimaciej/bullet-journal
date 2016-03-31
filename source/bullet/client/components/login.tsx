@@ -2,6 +2,7 @@ import {Component, PropTypes} from 'react';
 import * as React from 'react';
 
 import {withFacebook} from '../services/auth';
+import {withGithub} from "../services/auth";
 
 
 export class Login extends Component<{service: string}, {}> {
@@ -13,6 +14,7 @@ export class Login extends Component<{service: string}, {}> {
         e.preventDefault();
         switch (this.props.service) {
             case 'facebook': return withFacebook();
+            case 'github': return withGithub();
         }
     };
 

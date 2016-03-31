@@ -1,7 +1,8 @@
 declare namespace ServiceConfiguration {
     export interface ISerivceConfiguration {
         service: string;
-        appId: string;
+        appId?: string;
+        clientId?: string;
         secret: string;
     }
 
