@@ -1,14 +1,19 @@
 import * as React from 'react';
 import {Component, PropTypes} from 'react';
 
-export class BulletLayout extends Component<any, any> {
+import {BulletHeader} from './bullet_header';
+
+export interface IBulletLayoutProps {
+    headerSize?: string;
+}
+
+export class BulletLayout extends Component<IBulletLayoutProps, {}> {
     render() {
-        let {children, logoSize} = this.props;
+        const {children, headerSize} = this.props;
+
         return (
             <div>
-                <header>
-                    <h1 className={logoSize}>.bullet</h1>
-                </header>
+                <BulletHeader size={headerSize}/>
                 <section role='main'>{children}</section>
             </div>
         );

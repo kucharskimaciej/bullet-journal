@@ -14,3 +14,7 @@ export function firstName(user: IUser) {
 
     return firstName;
 }
+
+export function avatarUrl(user: IUser) {
+
+}

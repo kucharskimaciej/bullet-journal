@@ -2,11 +2,11 @@ import {Component, PropTypes} from 'react';
 import * as React from 'react';
 
 import {compose} from './compose';
-import {firstName} from '../../services/users';
 import {IPost} from '../../../collections/posts/posts';
 import {IUser} from '../../../collections/users/users';
 
 import {RecentPosts} from '../posts/recent_posts';
+import {Sidebar} from '../sidebar/sidebar';
 
 export interface IBulletProps {
     posts: IPost[];
@@ -24,10 +24,16 @@ class BulletComponent extends Component<IBulletProps, any> {
     };
 
     render() {
-        const {posts} = this.props;
+        const {posts, isLoggedIn, user} = this.props;
+
+        let renderSidebar;
+        if (isLoggedIn) {
+            renderSidebar = <Sidebar profile={user} />;
+        }
 
         return (
             <section>
+                {renderSidebar}
                 <RecentPosts posts={posts} />
             </section>
         );

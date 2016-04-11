@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {render} from 'react-dom';
 
-import {BulletLayout} from './components/layout/bullet.tsx';
-import {Bullet} from './components/bullet/component.tsx';
-import {LoginPage} from './components/login_page/page';
+import {BulletLayout} from './components/layout/bullet';
+import {Bullet} from './components/bullet/component';
+import {LoginPage} from './components/auth/login_page';
 
 const APPLICATION_ROOT_ID = 'app';
 
@@ -32,7 +32,7 @@ const publicRoutes = FlowRouter.group({});
 publicRoutes.route('/login', {
     name: 'login',
     action() {
-        renderRoot(<BulletLayout logoSize="large">
+        renderRoot(<BulletLayout headerSize="large">
             <LoginPage></LoginPage>
         </BulletLayout>);
     }
@@ -48,7 +48,7 @@ protectedRoutes.route('/', {
 protectedRoutes.route('/home', {
     name: 'home',
     action() {
-        renderRoot(<BulletLayout logoSize="small">
+        renderRoot(<BulletLayout headerSize="small">
             <Bullet></Bullet>
         </BulletLayout>);
     }

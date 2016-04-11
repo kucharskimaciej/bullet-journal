@@ -1,5 +1,11 @@
+import {
+    FACEBOOK_SCOPE, GITHUB_SCOPE
+} from '../constants';
+
 export function withFacebook() {
-    Meteor.loginWithFacebook({}, (err: Error) => {
+    Meteor.loginWithFacebook({
+        requestPermissions: FACEBOOK_SCOPE
+    }, (err: Error) => {
         if (err) {
             console.error(err);
         }
@@ -7,7 +13,9 @@ export function withFacebook() {
 }
 
 export function withGithub() {
-    Meteor.loginWithGithub({}, (err:Error) => {
+    Meteor.loginWithGithub({
+        requestPermissions: GITHUB_SCOPE
+    }, (err:Error) => {
         if (err) {
             console.error(err);
         }
