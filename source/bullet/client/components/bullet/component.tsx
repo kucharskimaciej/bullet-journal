@@ -3,7 +3,6 @@ import * as React from 'react';
 
 import {compose} from './compose';
 import {firstName} from '../../services/users';
-import {Login} from '../login';
 import {IPost} from '../../../collections/posts/posts';
 import {IUser} from '../../../collections/users/users';
 
@@ -27,11 +26,8 @@ class BulletComponent extends Component<IBulletProps, any> {
 
         if (isLoggedIn) {
             userFragment = <span>, {firstName(user)}!</span>;
-        } else {
-            loginFragment = <Login service='facebook'/>;
         }
 
-        console.log(this.props.posts);
         return <section>
             <h1>
                 Hello{userFragment}

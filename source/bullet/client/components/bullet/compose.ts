@@ -5,8 +5,8 @@ import {IBulletProps} from './component';
 
 function composeFn(_, onData) {
     const subs = [
-        Meteor.subscribe('currentUser'),
-        Meteor.subscribe('posts')
+        Meteor.subscribe('users.me'),
+        Meteor.subscribe('posts.recent')
     ];
 
 
