@@ -3,6 +3,7 @@ import {render} from 'react-dom';
 
 import {BulletLayout} from './components/layout/bullet.tsx';
 import {Bullet} from './components/bullet/component.tsx';
+import {LoginPage} from './components/login_page/page';
 
 const APPLICATION_ROOT_ID = 'app';
 
@@ -31,7 +32,9 @@ const publicRoutes = FlowRouter.group({});
 publicRoutes.route('/login', {
     name: 'login',
     action() {
-        renderRoot(<h1>LOGIN</h1>);
+        renderRoot(<BulletLayout logoSize="large">
+            <LoginPage></LoginPage>
+        </BulletLayout>);
     }
 });
 
@@ -45,7 +48,9 @@ protectedRoutes.route('/', {
 protectedRoutes.route('/home', {
     name: 'home',
     action() {
-        renderRoot(<h1>HOME</h1>);
+        renderRoot(<BulletLayout logoSize="small">
+            <Bullet></Bullet>
+        </BulletLayout>);
     }
 });
 
@@ -67,7 +72,10 @@ FlowRouter.notFound = {
 
 Accounts.onLogin(() => {
     const redirect = Session.get('redirect');
+    console.log(redirect);
     if (!!redirect && redirect !== '/login') {
         FlowRouter.go(redirect);
+    } else {
+        FlowRouter.go('home');
     }
 });
