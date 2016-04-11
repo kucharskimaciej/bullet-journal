@@ -6,6 +6,8 @@ import {firstName} from '../../services/users';
 import {IPost} from '../../../collections/posts/posts';
 import {IUser} from '../../../collections/users/users';
 
+import {RecentPosts} from '../posts/recent_posts';
+
 export interface IBulletProps {
     posts: IPost[];
     user?: IUser;
@@ -17,23 +19,18 @@ interface IStateless {}
 class BulletComponent extends Component<IBulletProps, any> {
     static propTypes = {
         user: PropTypes.object,
+        posts: PropTypes.array.isRequired,
         isLoggedIn: PropTypes.bool.isRequired
     };
 
     render() {
-        const {user, isLoggedIn} = this.props;
-        let userFragment, loginFragment;
+        const {posts} = this.props;
 
-        if (isLoggedIn) {
-            userFragment = <span>, {firstName(user)}!</span>;
-        }
-
-        return <section>
-            <h1>
-                Hello{userFragment}
-        </h1>
-        {loginFragment}
-        </section>;
+        return (
+            <section>
+                <RecentPosts posts={posts} />
+            </section>
+        );
     }
 }
 
