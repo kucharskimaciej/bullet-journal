@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {render} from 'react-dom';
 
-import {BulletLayout} from './components/layout/bullet';
+import {BulletLayout} from './components/layout/bullet.tsx';
 import {Bullet} from './components/bullet/component';
 import {LoginPage} from './components/auth/login_page';
 
