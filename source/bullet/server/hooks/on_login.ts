@@ -9,17 +9,17 @@ Accounts.onLogin(({ user }) => {
     const SKIP_SERVICES = ['resume'];
     const WHITELIST_SERVICES = ['facebook'];
 
-    if(!user.services) {
+    if (!user.services) {
         return;
     }
 
     const verifiedEmails = [];
 
 
-    if(user.verified_emails) {
+    if (user.verified_emails) {
         user.verified_emails
             .filter(Boolean)
-            .forEach((email) => verifiedEmails.push(email))
+            .forEach((email) => verifiedEmails.push(email));
     }
 
     keys(user.services)
@@ -27,12 +27,12 @@ Accounts.onLogin(({ user }) => {
         .forEach((serviceName) => {
             const service = user.services[serviceName];
 
-            if(contains(WHITELIST_SERVICES, serviceName)) {
+            if (contains(WHITELIST_SERVICES, serviceName)) {
                 verifiedEmails.push(service.email);
             }
 
 
-            if(service.emails) {
+            if (service.emails) {
                 Object.keys(service.emails)
                     .map((email: string) => service.emails[email] as IServiceEmail)
                     .filter(({ verified }) => verified)
@@ -45,5 +45,4 @@ Accounts.onLogin(({ user }) => {
     Meteor.users.update(user._id, {
         $set: {verified_emails: unique(verifiedEmails) }
     });
-
 });

@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 const {first, keys, extend} = _;
 
-import {Posts} from '../../collections/posts/posts'
+import {Posts} from '../../collections/posts/posts';
 
 const REGISTERED_SERVICES = ['facebook', 'github'];
 
@@ -10,14 +10,14 @@ Accounts.onCreateUser((options, user) => {
 
     user.profile = extend({}, user.profile, options.profile);
 
-    if(user.services) {
+    if (user.services) {
         currentService = first(keys(user.services));
         loginEmail = user.services[currentService].email;
     }
 
     const originalUser = Meteor.users.findOne({'verified_emails': loginEmail});
 
-    if(!originalUser) {
+    if (!originalUser) {
         return user;
     }
 
@@ -41,9 +41,4 @@ Accounts.onCreateUser((options, user) => {
     user.profile = extend({}, originalUser.profile, user.profile, options.profile);
 
     return user;
-});
-
-Meteor.startup(function() {
-    let users = Meteor.users.find({}).fetch();
-    console.log(users);
 });
