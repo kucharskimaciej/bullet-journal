@@ -33,7 +33,7 @@ membris quod iussit. Quae consilium, prostravit, coronat **caeleste quos**.`
 Meteor.methods({
     seedPosts() {
         let userId = Meteor.userId();
-
+        console.log(userId);
         if (!userId) {
             return;
         }

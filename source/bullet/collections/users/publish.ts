@@ -9,6 +9,7 @@ Meteor.publish('users.me', function() {
             'services.facebook.email': 1,
             'services.facebook.first_name': 1,
             'profile': 1,
+            'verified_emails': 1,
             '_id': 1
         }
     });

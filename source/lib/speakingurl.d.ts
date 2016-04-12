@@ -1,3 +1,5 @@
 declare module 'speakingurl' {
-    export default function getSlug(url: string):string;
+    function getSlug(url: string):string;
+
+    export = getSlug;
 }

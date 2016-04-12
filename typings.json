@@ -1,11 +1,13 @@
 {
   "name": "bullet",
   "version": false,
-  "dependencies": {},
   "ambientDependencies": {
     "meteor": "registry:dt/meteor#1.2.0+20160317120654",
     "react": "registry:dt/react#0.14.0+20160319053454",
     "react-dom": "registry:dt/react-dom#0.14.0+20160316155526",
     "underscore": "registry:dt/underscore#1.7.0+20160316155526"
+  },
+  "dependencies": {
+    "lodash": "registry:dt/lodash#3.10.0+20160330154726"
   }
 }

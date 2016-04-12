@@ -9,3 +9,5 @@ import '../collections/users/publish';
 import '../collections/posts/methods';
 import '../collections/posts/publish';
 
+import './hooks/on_login';
+import './hooks/on_create_user';

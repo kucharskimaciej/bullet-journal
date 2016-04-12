@@ -1,11 +1,11 @@
 import {Posts, IPost} from './posts';
-import getSlug from 'speakingurl';
 import {
     Methods,
     registerMethods,
     findById,
     authenticate
 } from '../../lib/method_utils';
+import getSlug = require("speakingurl");
 
 @registerMethods({
     collection: Posts,
