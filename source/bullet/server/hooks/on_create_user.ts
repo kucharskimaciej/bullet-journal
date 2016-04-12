@@ -1,6 +1,7 @@
-import {Posts} from '../../collections/posts/posts'
 import * as _ from 'lodash';
 const {first, keys, extend} = _;
+
+import {Posts} from '../../collections/posts/posts'
 
 const REGISTERED_SERVICES = ['facebook', 'github'];
 
@@ -14,28 +15,30 @@ Accounts.onCreateUser((options, user) => {
         loginEmail = user.services[currentService].email;
     }
 
-    let originalUser = Meteor.users.findOne({'verified_emails': loginEmail});
+    const originalUser = Meteor.users.findOne({'verified_emails': loginEmail});
 
-    if(originalUser) {
-        // remove old account
-        try {
-            Meteor.users.remove(originalUser._id);
-        } catch (e:Error) {
-            throw new Meteor.Error(500, e.toString());
-        }
-
-
-        // add the services to the new account
-        for (let service of REGISTERED_SERVICES) {
-            if (originalUser.services[service]) {
-                user.services[service] = originalUser.services[service];
-            }
-        }
-
-        // update posts
-        Posts.update({ author: originalUser._id }, { $set: { author: user._id }}, { multi: true });
-        user.profile = extend({}, originalUser.profile, user.profile, options.profile);
+    if(!originalUser) {
+        return user;
     }
+
+    // remove old account
+    try {
+        Meteor.users.remove(originalUser._id);
+    } catch (e:Error) {
+        throw new Meteor.Error(500, e.toString());
+    }
+
+
+    // add the services to the new account
+    for (let service of REGISTERED_SERVICES) {
+        if (originalUser.services[service]) {
+            user.services[service] = originalUser.services[service];
+        }
+    }
+
+    // update posts
+    Posts.update({ author: originalUser._id }, { $set: { author: user._id }}, { multi: true });
+    user.profile = extend({}, originalUser.profile, user.profile, options.profile);
 
     return user;
 });
