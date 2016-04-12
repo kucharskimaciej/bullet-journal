@@ -1,15 +1,13 @@
 import {Posts} from '../../collections/posts/posts'
 import * as _ from 'lodash';
-const {first, keys} = _;
+const {first, keys, extend} = _;
 
 const REGISTERED_SERVICES = ['facebook', 'github'];
 
 Accounts.onCreateUser((options, user) => {
     let currentService, loginEmail;
 
-    if(options.profile) {
-        user.profile = options.profile;
-    }
+    user.profile = extend({}, user.profile, options.profile);
 
     if(user.services) {
         currentService = first(keys(user.services));
@@ -36,7 +34,7 @@ Accounts.onCreateUser((options, user) => {
 
         // update posts
         Posts.update({ author: originalUser._id }, { $set: { author: user._id }}, { multi: true });
-        user.profile = Object.assign({}, originalUser.profile, user.profile, options.profile);
+        user.profile = extend({}, originalUser.profile, user.profile, options.profile);
     }
 
     return user;
