@@ -6,7 +6,7 @@ export interface IBulletHeaderProps {
 
 export function BulletHeader({ size }: IBulletHeaderProps) {
     return (
-        <header class={size}>
+        <header className={size}>
             <h1>.Bullet</h1>
         </header>
     );

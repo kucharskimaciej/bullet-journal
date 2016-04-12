@@ -16,7 +16,6 @@ export class RecentPosts extends Component<IRecentPostsProps, {}> {
 
     render() {
         const {posts} = this.props;
-
         if(posts.length) {
             let postsPartial = posts.map((post: IPost) => <Post key={post._id} {...post} />);
 
@@ -25,6 +24,8 @@ export class RecentPosts extends Component<IRecentPostsProps, {}> {
                     {postsPartial}
                 </section>
             );
+        } else {
+            return <section>No posts yet</section>;
         }
     }
 }
