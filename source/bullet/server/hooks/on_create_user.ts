@@ -24,7 +24,7 @@ Accounts.onCreateUser((options, user) => {
     // remove old account
     try {
         Meteor.users.remove(originalUser._id);
-    } catch (e:Error) {
+    } catch (e) {
         throw new Meteor.Error(500, e.toString());
     }
 
