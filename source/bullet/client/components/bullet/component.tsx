@@ -6,6 +6,7 @@ import {IPost} from '../../../collections/posts/posts';
 import {IUser} from '../../../collections/users/users';
 
 import {RecentPosts} from '../posts/recent_posts';
+import {PostEditor} from '../posts/editor/post_editor';
 import {Sidebar} from '../sidebar/sidebar';
 
 export interface IBulletProps {
@@ -20,7 +21,7 @@ class BulletComponent extends Component<IBulletProps, any> {
     static propTypes = {
         user: PropTypes.object,
         posts: PropTypes.array.isRequired,
-        isLoggedIn: PropTypes.bool.isRequired
+        isLoggedIn: PropTypes.bool.isRequired,
     };
 
     render() {
@@ -34,7 +35,10 @@ class BulletComponent extends Component<IBulletProps, any> {
         return (
             <section>
                 {renderSidebar}
-                <RecentPosts posts={posts} />
+                <div>
+                    <PostEditor author={user._id} />
+                    <RecentPosts posts={posts} />
+                </div>
             </section>
         );
     }

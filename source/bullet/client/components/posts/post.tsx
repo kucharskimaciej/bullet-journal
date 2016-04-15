@@ -18,11 +18,22 @@ marked.setOptions({
     smartypants: true
 });
 
-export class Post extends Component<IPost, {}> {
+export interface IPostProps {
+    title: string;
+    body: string;
+    created_at: number;
+    isPreview?: boolean;
+    author?: string;
+    _id?: string;
+    slug?: string;
+}
+
+export class Post extends Component<IPostProps, {}> {
     static propTypes = {
-        _id: PropTypes.string.isRequired,
+        _id: PropTypes.string,
         body: PropTypes.string.isRequired,
         title: PropTypes.string,
+        isPreview: PropTypes.bool
     };
 
     render() {
