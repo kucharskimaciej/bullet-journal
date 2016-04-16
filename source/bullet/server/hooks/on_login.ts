@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import * as _ from 'underscore';
 const {contains, keys, unique} = _;
 
 interface IServiceEmail {

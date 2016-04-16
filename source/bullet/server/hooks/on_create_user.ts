@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import * as _ from 'underscore';
 const {first, keys, extend} = _;
 
 import {Posts} from '../../collections/posts/posts';
