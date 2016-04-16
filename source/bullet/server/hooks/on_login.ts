@@ -43,6 +43,6 @@ Accounts.onLogin(({ user }) => {
         });
 
     Meteor.users.update(user._id, {
-        $set: {verified_emails: unique(verifiedEmails) }
+        $set: { verified_emails: unique(verifiedEmails) }
     });
 });

@@ -25,7 +25,7 @@ export class PostEditor extends Component<IPostEditorProps, IPostEditorState> {
     onChange = (name: string) => {
         return (event: SyntheticEvent) => {
             const target = event.target as HTMLInputElement;
-            if(name in this.state) {
+            if (name in this.state) {
                 const newState = Object.assign({}, this.state, {
                     [name]: target.value
                 });
