@@ -14,12 +14,16 @@ export interface IPostEditorProps {
 }
 
 export class PostEditor extends Component<IPostEditorProps, IPostEditorState> {
-    constructor() {
-        super();
-        this.state = {
+    private get initialState() {
+        return {
             title: '',
             body: ''
         };
+    }
+
+    constructor() {
+        super();
+        this.state = this.initialState;
     }
 
     onChange = (name: string) => {
@@ -37,7 +41,13 @@ export class PostEditor extends Component<IPostEditorProps, IPostEditorState> {
 
     onSubmit = (event: SyntheticEvent) => {
         event.preventDefault();
+        this.reset();
     };
+
+    private reset() {
+        this.setState(this.initialState);
+    }
+
 
     render() {
         const {author} = this.props;
