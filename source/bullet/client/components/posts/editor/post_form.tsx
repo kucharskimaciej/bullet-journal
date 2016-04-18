@@ -13,22 +13,25 @@ export class PostForm extends Form {
     };
 
     render() {
-        const {onChange, onSubmit, fields} = this.props;
-
-        const errors = {
-            "type": true,
-            "required": undefined
-        } as IValidationErrors;
+        const {onSubmit, fields} = this.props;
 
         const isRequired = (value: string) => {
-            if(value && !!value.trim()) {
+            if (value && !!value.trim()) {
                 return;
             }
 
             return { required: true };
         };
 
-        console.log('title', this.state.fields['title']);
+        const minLength = (constraint: number) => {
+            return (value: string) => {
+                if (value && value.length > 5) {
+                    return;
+                }
+
+                return { minLength: true };
+            };
+        };
 
         return (
             <form onSubmit={onSubmit} noValidate>
@@ -36,12 +39,11 @@ export class PostForm extends Form {
                     type="text"
                     value={fields['title']}
                     name="title"
-                    validators={[isRequired]}
                     {...this.fieldMethods('title')}/>
 
-                <ValidationMessages errors={errors} multi={true}>
-                    <ValidationMessage error="type">Type error</ValidationMessage>
+                <ValidationMessages errors={this.getErrorsFor('title')}>
                     <ValidationMessage error="required">Field is not optional</ValidationMessage>
+                    <ValidationMessage error="minLength">Longer!</ValidationMessage>
                 </ValidationMessages>
 
                 <button type="submit">Submit</button>

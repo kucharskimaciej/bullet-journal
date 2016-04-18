@@ -10,8 +10,8 @@ export interface IValidationErrors {
 }
 
 export interface IValidationMessages {
-    errors?: IValidationErrors,
-    multi?: boolean
+    errors?: IValidationErrors;
+    multi?: boolean;
 }
 
 export class ValidationMessages extends Component<IValidationMessages, any> {
@@ -25,11 +25,13 @@ export class ValidationMessages extends Component<IValidationMessages, any> {
     }
 
     private get matchingChild() {
-        return _.find(this.children, (child:ValidationMessage) => this.props.errors[child.props.error]);
+        return _.find(this.children,
+            (child:ValidationMessage) => this.props.errors && this.props.errors[child.props.error]);
     }
 
     private get matchingChildren() {
-        return _.filter(this.children, (child:ValidationMessage) => this.props.errors[child.props.error]);
+        return _.filter(this.children,
+            (child:ValidationMessage) => this.props.errors && this.props.errors[child.props.error]);
     }
 
     render() {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Component, PropTypes,SyntheticEvent} from 'react';
+import {Component, PropTypes, SyntheticEvent} from 'react';
 
 import * as _ from 'underscore';
 
@@ -12,9 +12,9 @@ export interface IValidator {
 
 export interface IValidatedInputProps {
     type: string;
-    validators?: IValidator[],
-    onValidate?: (valid: boolean, errors: IValidationErrors) => any;
-    onChange?: (e: SyntheticEvent, value: any) => any;
+    registerField: (inputComponent: ValidatedInput, fieldState) => any;
+    validators?: IValidator[];
+    onChange?: (e: SyntheticEvent, value: any, inputComponent: ValidatedInput) => any;
     onFocus?: (e:SyntheticEvent) => any;
 
     value?: any;
@@ -31,15 +31,31 @@ export class ValidatedInput extends Component<IValidatedInputProps, {}> {
         validators: PropTypes.arrayOf(PropTypes.func)
     };
 
-    private validate(value) {
-        const {validators, onValidate} = this.props;
+    constructor(props) {
+        super(props);
+    }
 
-        if (!validators || validators.length === 0) {
-            return true;
+    componentDidMount() {
+        let fieldState = {
+            dirty: false,
+            touched: false,
+            valid: true,
+            errors: null
+        };
+        if (this.props.value) {
+            let [valid, errors] = this.validate(this.props.value);
+            fieldState.valid = valid;
+            fieldState.errors = errors;
         }
 
-        if (!onValidate) {
-            return true;
+        this.props.registerField(this, fieldState);
+    }
+
+    private validate(value): [boolean, IValidationErrors] {
+        const {validators} = this.props;
+
+        if (!validators || validators.length === 0) {
+            return [true, null];
         }
 
         const errors = validators.reduce(($, validator: IValidator) => {
@@ -48,17 +64,14 @@ export class ValidatedInput extends Component<IValidatedInputProps, {}> {
 
         const valid = !Object.keys(errors).length;
 
-        onValidate(valid, errors);
-
-        return valid;
+        return [valid, errors];
     }
 
     onChange = (e: SyntheticEvent) => {
         const target = e.target as HTMLInputElement;
-        this.validate(target.value);
 
-        if(this.props.onChange) {
-            this.props.onChange(e, target.value);
+        if (this.props.onChange) {
+            this.props.onChange(e, target.value, this);
         }
     };
 
