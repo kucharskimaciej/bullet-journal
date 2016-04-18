@@ -3,6 +3,8 @@ import {Component, PropTypes} from 'react';
 
 import * as _ from 'underscore';
 
+import {ValidationMessage} from "./validation_message";
+
 export interface IValidationErrors {
     [errorType: string]: boolean;
 }
@@ -31,8 +33,7 @@ export class ValidationMessages extends Component<IValidationMessages, any> {
     }
 
     render() {
-        console.log('this.props.children', this.props.children);
-        if(!this.props.multi) {
+        if (!this.props.multi) {
             return <span>{this.matchingChild}</span>;
         } else {
             return <span>{this.matchingChildren}</span>;
@@ -40,18 +41,3 @@ export class ValidationMessages extends Component<IValidationMessages, any> {
     }
 }
 
-export interface IValidationMessage {
-    error: string;
-}
-
-export class ValidationMessage extends Component<IValidationMessage, {}> {
-    static propTypes = {
-        error: PropTypes.string.isRequired
-    };
-
-
-    render() {
-        return <span>{this.props.children}</span>;
-    }
-
-}

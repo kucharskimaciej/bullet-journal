@@ -1,7 +1,8 @@
 import * as React from 'react';
 import {Component, PropTypes} from 'react';
 
-import {ValidationMessages, ValidationMessage, IValidationErrors} from '../../forms/validation_messages';
+import {ValidationMessages, IValidationErrors} from '../../forms/validation_messages';
+import {ValidationMessage} from '../../forms/validation_message';
 
 export interface IPostFormProps {
     onChange: any;
