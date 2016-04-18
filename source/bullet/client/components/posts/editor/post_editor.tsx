@@ -3,6 +3,7 @@ import {Component, PropTypes, SyntheticEvent} from 'react';
 
 import {Post} from '../post';
 import {PostForm} from './post_form';
+import {fromJS} from 'immutable';
 
 export interface IPostEditorState {
     title?: string;
@@ -26,20 +27,11 @@ export class PostEditor extends Component<IPostEditorProps, IPostEditorState> {
         this.state = this.initialState;
     }
 
-    onChange = (name: string) => {
-        return (event: SyntheticEvent) => {
-            const target = event.target as HTMLInputElement;
-            if (name in this.state) {
-                const newState = Object.assign({}, this.state, {
-                    [name]: target.value
-                });
-
-                this.setState(newState);
-            }
-        };
+    onChange = (data: {[fieldName: string]: any}) => {
+        this.setState(data);
     };
 
-    onSubmit = (event: SyntheticEvent) => {
+    onSubmit = (form: any, event: SyntheticEvent) => {
         event.preventDefault();
         this.reset();
     };
@@ -54,7 +46,7 @@ export class PostEditor extends Component<IPostEditorProps, IPostEditorState> {
 
         return (
             <section>
-                <PostForm {...this.state} onSubmit={this.onSubmit} onChange={this.onChange} />
+                <PostForm fields={this.state} onSubmit={this.onSubmit} onChange={this.onChange} />
                 <Post {...this.state} created_at={Date.now()} isPreview={true} author={author} />
             </section>
         );
