@@ -21,7 +21,11 @@ export class ValidationMessages extends Component<IValidationMessages, any> {
     };
 
     private get children() {
-        return this.props.children as ValidationMessage[];
+        if (_.isArray(this.props.children)) {
+            return this.props.children as ValidationMessage[];
+        }
+
+        return [this.props.children] as ValidationMessage[];
     }
 
     private get matchingChild() {
