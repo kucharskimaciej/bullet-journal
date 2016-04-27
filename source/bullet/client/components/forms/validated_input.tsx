@@ -25,9 +25,11 @@ export interface IValidatedInputProps {
     className?: string;
 }
 
+export const inputTypes = ['text', 'textarea'];
+
 export class ValidatedInput extends Component<IValidatedInputProps, {}> {
     static propTypes = {
-        type: PropTypes.oneOf(['text', 'textarea']).isRequired,
+        type: PropTypes.oneOf(inputTypes).isRequired,
         validators: PropTypes.arrayOf(PropTypes.func)
     };
 
