@@ -10,7 +10,7 @@ export interface IFormProps {
     onInvalid?(form:Form, errors:IValidationErrors): any;
     onValid?(form:Form): any;
     onChange?(values: any): any;
-    onSubmit?(form: Form, event: SyntheticEvent): any;
+    onSubmit?(form: Form): any;
     fields: {
         [fieldName: string]: any;
     };
@@ -27,6 +27,7 @@ interface IFormState {
     };
     touched: boolean;
     dirty: boolean;
+    valid: boolean;
 }
 
 export class Form extends Component<IFormProps, IFormState> {
@@ -40,12 +41,12 @@ export class Form extends Component<IFormProps, IFormState> {
         } as IFormState;
     }
 
-    private initialFields = {};
+    private registeredFields = {};
 
     componentDidMount() {
         this.update({
-            fields: this.initialFields,
-            valid: this.checkFormValidity(this.initialFields)
+            fields: this.registeredFields,
+            valid: this.checkFormValidity(this.registeredFields)
         });
     }
 
@@ -54,7 +55,11 @@ export class Form extends Component<IFormProps, IFormState> {
         this.state = this.initialState;
     };
 
-    private update(diff) {
+    get isValid() {
+        return this.state.valid;
+    }
+
+    private update(diff, cb?: Function) {
         // shallow props are merged
         // fields are merged (new object is returned)
         // state.fields[field].errors is replaced by new value
@@ -63,13 +68,13 @@ export class Form extends Component<IFormProps, IFormState> {
 
         newState.fields = newFields;
 
-        this.setState(newState);
+        this.setState(newState, cb);
     }
 
     protected fieldMethods(fieldName: string) {
         return {
             registerField: (inputComponent:ValidatedInput, initialState) => {
-                this.initialFields[fieldName] = initialState;
+                this.registeredFields[fieldName] = initialState;
             },
             onChange: (e:SyntheticEvent, newValue, inputComponent) => {
                 const [valid, errors] = inputComponent.validate(newValue);
@@ -94,6 +99,18 @@ export class Form extends Component<IFormProps, IFormState> {
             }
         };
     }
+
+    protected onSubmit = (event:SyntheticEvent) => {
+        event.preventDefault();
+        this.update({
+            touched: true,
+            dirty: true
+        }, () => {
+            if (this.props.onSubmit) {
+                this.props.onSubmit(this);
+            }
+        });
+    };
 
     protected checkFormValidity(fields = {}) {
         return Object.keys(fields)

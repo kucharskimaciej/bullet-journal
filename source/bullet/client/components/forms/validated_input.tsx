@@ -44,11 +44,10 @@ export class ValidatedInput extends Component<IValidatedInputProps, {}> {
             valid: true,
             errors: null
         };
-        if (this.props.value) {
-            let [valid, errors] = this.validate(this.props.value);
-            fieldState.valid = valid;
-            fieldState.errors = errors;
-        }
+
+        let [valid, errors] = this.validate(this.props.value);
+        fieldState.valid = valid;
+        fieldState.errors = errors;
 
         this.props.registerField(this, fieldState);
     }

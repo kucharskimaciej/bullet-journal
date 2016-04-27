@@ -14,10 +14,10 @@ export class PostForm extends Form {
     };
 
     render() {
-        const {onSubmit, fields} = this.props;
+        const {fields} = this.props;
 
         return (
-            <form onSubmit={onSubmit} noValidate="true">
+            <form onSubmit={this.onSubmit} noValidate="true">
                 <div>
                     <label htmlFor="title">Title</label>
                     <ValidatedInput
@@ -25,13 +25,14 @@ export class PostForm extends Form {
                         value={fields['title']}
                         validators={[emptyOrMinLength(3)]}
                         name="title"
+                        ref="title"
                         {...this.fieldMethods('title')}/>
 
+                    {(this.state.touched || fields['title'].touched) &&
                     <ValidationMessages errors={this.getErrorsFor('title')}>
                         <ValidationMessage error="emptyOrMinLength">This title is too short!</ValidationMessage>
-                    </ValidationMessages>
+                    </ValidationMessages>}
                 </div>
-
 
                 <div>
                     <label htmlFor="body">Body</label>
@@ -41,10 +42,12 @@ export class PostForm extends Form {
                         validators={[isRequired, minLength(140)]}
                         name="body"
                         {...this.fieldMethods('body')}/>
+
+                    {(this.state.touched || fields['body'].touched) &&
                     <ValidationMessages errors={this.getErrorsFor('body')}>
                         <ValidationMessage error="required">The body is required</ValidationMessage>
                         <ValidationMessage error="minLength">The body has to be at least 140 characters long</ValidationMessage>
-                    </ValidationMessages>
+                    </ValidationMessages>}
                 </div>
 
 

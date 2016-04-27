@@ -31,9 +31,10 @@ export class PostEditor extends Component<IPostEditorProps, IPostEditorState> {
         this.setState(data);
     };
 
-    onSubmit = (form: any, event: SyntheticEvent) => {
-        event.preventDefault();
-        this.reset();
+    onSubmit = (form: any) => {
+        if (form.isValid) {
+            this.reset();
+        }
     };
 
     private reset() {
