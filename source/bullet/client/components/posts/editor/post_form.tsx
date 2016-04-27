@@ -4,6 +4,7 @@ import {Component, PropTypes} from 'react';
 import {ValidationMessages, IValidationErrors} from '../../forms/validation_messages';
 import {ValidationMessage} from '../../forms/validation_message';
 import {ValidatedInput} from '../../forms/validated_input';
+import {isRequired, minLength, emptyOrMinLength} from '../../forms/validators';
 import {Form} from "../../forms/form";
 
 export class PostForm extends Form {
@@ -15,36 +16,38 @@ export class PostForm extends Form {
     render() {
         const {onSubmit, fields} = this.props;
 
-        const isRequired = (value: string) => {
-            if (value && !!value.trim()) {
-                return;
-            }
-
-            return { required: true };
-        };
-
-        const minLength = (constraint: number) => {
-            return (value: string) => {
-                if (value && value.length > 5) {
-                    return;
-                }
-
-                return { minLength: true };
-            };
-        };
-
         return (
-            <form onSubmit={onSubmit} noValidate>
-                <ValidatedInput
-                    type="text"
-                    value={fields['title']}
-                    name="title"
-                    {...this.fieldMethods('title')}/>
+            <form onSubmit={onSubmit} noValidate="true">
+                <div>
+                    <label htmlFor="title">Title</label>
+                    <ValidatedInput
+                        type="text"
+                        value={fields['title']}
+                        validators={[emptyOrMinLength(3)]}
+                        name="title"
+                        {...this.fieldMethods('title')}/>
 
-                <ValidationMessages errors={this.getErrorsFor('title')}>
-                    <ValidationMessage error="required">Field is not optional</ValidationMessage>
-                    <ValidationMessage error="minLength">Longer!</ValidationMessage>
-                </ValidationMessages>
+                    <ValidationMessages errors={this.getErrorsFor('title')}>
+                        <ValidationMessage error="emptyOrMinLength">This title is too short!</ValidationMessage>
+                    </ValidationMessages>
+                </div>
+
+
+                <div>
+                    <label htmlFor="body">Body</label>
+                    <ValidatedInput
+                        type="textarea"
+                        value={fields['body']}
+                        validators={[isRequired, minLength(140)]}
+                        name="body"
+                        {...this.fieldMethods('body')}/>
+                    <ValidationMessages errors={this.getErrorsFor('body')}>
+                        <ValidationMessage error="required">The body is required</ValidationMessage>
+                        <ValidationMessage error="minLength">The body has to be at least 140 characters long</ValidationMessage>
+                    </ValidationMessages>
+                </div>
+
+
 
                 <button type="submit">Submit</button>
             </form>
