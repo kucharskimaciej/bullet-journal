@@ -1,46 +1,72 @@
 import * as React from 'react';
 import {Component, PropTypes} from 'react';
-import * as marked from 'marked';
 
 import {IPost} from '../../../collections/posts/posts';
-
 import {PostDate} from './post_date';
 
-
-marked.setOptions({
-    renderer: new marked.Renderer(),
-    gfm: true,
-    tables: false,
-    breaks: false,
-    pedantic: false,
-    sanitize: true,
-    smartLists: true,
-    smartypants: true
-});
+import {marked} from '../../services/markdown';
+import * as _ from 'underscore';
 
 export interface IPostProps {
     title: string;
     body: string;
-    created_at: number;
-    isPreview?: boolean;
+    created_at?: number;
     author?: string;
     _id?: string;
     slug?: string;
 }
 
-export class Post extends Component<IPostProps, {}> {
+export interface IPostState {
+    body: string;
+}
+
+export class Post extends Component<IPostProps, IPostState> {
     static propTypes = {
         _id: PropTypes.string,
         body: PropTypes.string.isRequired,
         title: PropTypes.string,
-        isPreview: PropTypes.bool
+        author: PropTypes.string,
+        created_at: PropTypes.number,
+        slug: PropTypes.string
     };
 
-    render() {
-        const {body, title, created_at} = this.props;
-        const renderedBody = {
-            __html: marked(body)
+    get initialState():IPostState {
+        return {
+            body: marked(this.props.body || '')
         };
+    }
+
+    constructor(props) {
+        super(props);
+        this.state = this.initialState;
+    }
+
+    renderMarkdown = _.throttle((content) => {
+        this.setState({
+            body: marked(content)
+        });
+    }, 300);
+
+    componentWillReceiveProps(nextProps) {
+        if(this.props.body !== nextProps.body) {
+            this.renderMarkdown(nextProps.body);
+        }
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextProps.title !== this.props.title || nextState.body !== this.state.body;
+    }
+
+    get data() {
+        const {title, created_at} = this.props;
+
+        return { body: {
+            __html: this.state.body
+        }, title, created_at };
+    }
+
+    render() {
+        const {body, title, created_at} = this.data;
 
         return (
             <article>
@@ -48,7 +74,7 @@ export class Post extends Component<IPostProps, {}> {
                     <PostDate createdAt={created_at} />
                     { title ? <h2>{title}</h2> : null }
                 </header>
-                <div dangerouslySetInnerHTML={renderedBody}></div>
+                <div dangerouslySetInnerHTML={body}></div>
             </article>
         );
     }

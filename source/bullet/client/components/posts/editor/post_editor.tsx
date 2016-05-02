@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Component, PropTypes, SyntheticEvent} from 'react';
 
-import {Post} from '../post';
+import {PostPreview} from './preview';
 import {PostForm} from './post_form';
 import {fromJS} from 'immutable';
 
@@ -48,7 +48,7 @@ export class PostEditor extends Component<IPostEditorProps, IPostEditorState> {
         return (
             <section>
                 <PostForm fields={this.state} onSubmit={this.onSubmit} onChange={this.onChange} />
-                <Post {...this.state} created_at={Date.now()} isPreview={true} author={author} />
+                <PostPreview {...this.state} author={author} />
             </section>
         );
     }

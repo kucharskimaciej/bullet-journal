@@ -59,7 +59,7 @@ export class Form extends Component<IFormProps, IFormState> {
         return this.state.valid;
     }
 
-    private update(diff, cb?: Function) {
+    private update(diff, cb?: () => any) {
         // shallow props are merged
         // fields are merged (new object is returned)
         // state.fields[field].errors is replaced by new value
