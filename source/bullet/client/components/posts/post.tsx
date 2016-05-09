@@ -45,10 +45,10 @@ export class Post extends Component<IPostProps, IPostState> {
         this.setState({
             body: marked(content)
         });
-    }, 300);
+    }, 250);
 
     componentWillReceiveProps(nextProps) {
-        if(this.props.body !== nextProps.body) {
+        if (this.props.body !== nextProps.body) {
             this.renderMarkdown(nextProps.body);
         }
     }
@@ -67,6 +67,10 @@ export class Post extends Component<IPostProps, IPostState> {
 
     render() {
         const {body, title, created_at} = this.data;
+
+        if (!title && !body.__html) {
+            return null;
+        }
 
         return (
             <article>

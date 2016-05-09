@@ -33,7 +33,9 @@ export class PostEditor extends Component<IPostEditorProps, IPostEditorState> {
 
     onSubmit = (form: any) => {
         if (form.isValid) {
-            this.reset();
+            Meteor.call('createPost', this.state, () => {
+                this.reset();
+            });
         }
     };
 

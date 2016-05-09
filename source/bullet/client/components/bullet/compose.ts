@@ -15,7 +15,11 @@ function composeFn(_, onData) {
     }
 
     const user = Meteor.users.findOne(Meteor.userId());
-    const posts = Posts.find({ author: Meteor.userId() }).fetch();
+    const posts = Posts.find({ author: Meteor.userId() }, {
+        sort: {
+            created_at: -1
+        }
+    }).fetch();
 
     onData(null, { posts, user, isLoggedIn: !!user });
 }
