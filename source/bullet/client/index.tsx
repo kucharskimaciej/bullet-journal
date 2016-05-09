@@ -3,9 +3,9 @@
 //import FlowRouter = __FlowRouter.FlowRouter;
 FlowRouter.wait();
 
+import './global.styl';
 import './routes';
 
 Meteor.startup(function() {
-    console.log('startup');
     FlowRouter.initialize();
 });

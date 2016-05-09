@@ -3,7 +3,7 @@ declare namespace komposer {
     interface IContainerFn {
         (childComponent: new () => __React.Component<any, any>,
          LoadingComponent?: new () => __React.Component<any, any>,
-         ErrorComponent?: new () =>  __React.Component<any, any>): __React.Component<any, any>;
+         ErrorComponent?: new () =>  __React.Component<any, any>): new () => __React.Component<any, any>;
     }
 
     interface IOnData {

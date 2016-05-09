@@ -1,4 +1,6 @@
 var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 module.exports = {
     entry: {
         client: './source/bullet/client/index.tsx',
@@ -13,15 +15,21 @@ module.exports = {
         extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
     },
     //// Add minification
-    //plugins: [
-    //    new webpack.optimize.UglifyJsPlugin()
-    //],
+    plugins: [
+        //new webpack.optimize.UglifyJsPlugin()
+        new ExtractTextPlugin("app/public/bundle.css", { allChunks: true })
+    ],
     module: {
         loaders: [
             {
                 test: /\.tsx?$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: 'awesome-typescript-loader'
+            },
+            {
+                test: /\.styl$/,
+                loader: ExtractTextPlugin.extract('style-loader',
+                    'css-loader?&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!stylus-loader')
             }
         ]
     }

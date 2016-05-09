@@ -17,7 +17,7 @@ export interface IBulletProps {
 
 interface IStateless {}
 
-class BulletComponent extends Component<IBulletProps, any> {
+export class BulletComponent extends Component<IBulletProps, any> {
     static propTypes = {
         user: PropTypes.object,
         posts: PropTypes.array.isRequired,

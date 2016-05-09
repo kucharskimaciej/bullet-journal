@@ -9,4 +9,5 @@ app/server/**/*.js.map
 app/client/*.js
 app/client/*.js.map
 app/private/*.json
+app/public/bundle.css
 app/packages/**/*
