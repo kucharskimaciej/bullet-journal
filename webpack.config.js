@@ -14,9 +14,7 @@ module.exports = {
     resolve: {
         extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
     },
-    //// Add minification
     plugins: [
-        //new webpack.optimize.UglifyJsPlugin()
         new ExtractTextPlugin("app/public/bundle.css", { allChunks: true })
     ],
     module: {
@@ -24,12 +22,12 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'awesome-typescript-loader'
+                loader: 'ts-loader'
             },
             {
                 test: /\.styl$/,
                 loader: ExtractTextPlugin.extract('style-loader',
-                    'css-loader?&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!stylus-loader')
+                    'css-loader?&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!stylus-loader!stylus-loader')
             }
         ]
     }
