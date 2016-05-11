@@ -1,6 +1,7 @@
 import {Component, PropTypes} from 'react';
 import * as React from 'react';
 
+const styles = require('./login_button.styl');
 
 export interface ILoginButtonProps {
     onBtnClick: (e: Event) => void;
@@ -12,6 +13,10 @@ export class LoginButton extends Component<ILoginButtonProps, {}> {
     };
 
     render() {
-        return <button onClick={this.props.onBtnClick}>{this.props.children}</button>;
+        return (
+            <span className={styles.buttonWrapper}>
+                <a className={styles.button} onClick={this.props.onBtnClick}>{this.props.children}</a>
+            </span>
+        );
     }
 }

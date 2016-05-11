@@ -27,8 +27,8 @@ export class LoginPage extends Component<{}, {}> {
         return (
           <section className={styles.page}>
               <h1>Nice to see you...</h1>
-              <LoginButton onBtnClick={this.onLogin('facebook')}>Facebook</LoginButton>
-              <LoginButton onBtnClick={this.onLogin('github')}>Github</LoginButton>
+              <LoginButton onBtnClick={this.onLogin('facebook')}>continue with facebook</LoginButton>
+              <LoginButton onBtnClick={this.onLogin('github')}>continue with github</LoginButton>
           </section>
         );
     }

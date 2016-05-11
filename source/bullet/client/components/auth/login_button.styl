@@ -1,0 +1,23 @@
+@import '../../config.styl'
+
+.buttonWrapper
+  display: block
+
+.button
+  display inline-block
+  background-color color-page-background
+  color color-primary
+
+  padding rem(.7*unit) rem(unit) rem(.65 * unit)
+  margin-bottom rem(unit)
+
+  border-radius 2*rem(unit)
+  border 1px solid black(.05)
+  box-shadow: 1px 1px 2px black(0.05)
+
+  cursor: pointer
+
+  transition: border-color 0.2s ease-in
+
+  &:hover
+    border-color color-secondary

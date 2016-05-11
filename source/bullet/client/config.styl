@@ -1,4 +1,28 @@
-page-background = #fff
+// fontfaces
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,300,700&subset=latin,latin-ext')
 
-primary = #ed5565
-primary-dark = #da4453
+color-page-background = #fff
+
+color-primary = #232323
+
+color-secondary = #ed5565
+color-secondary-dark = #da4453
+
+color-facebook-blue = #3b5998
+
+unit = 20px
+
+// font
+font-base = 14px
+line-height-base = 1.4
+font-family-primary = 'Roboto', sans-serif
+
+
+rem(size, base = font-base)
+  (size/base)rem
+
+black($opactiy = 1)
+  rgba(0,0,0, $opactiy)
+
+white($opactiy = 1)
+  rgba(255,255,255, $opactiy)
