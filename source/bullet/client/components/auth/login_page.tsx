@@ -26,9 +26,17 @@ export class LoginPage extends Component<{}, {}> {
     render() {
         return (
           <section className={styles.page}>
-              <h1>Nice to see you...</h1>
-              <LoginButton onBtnClick={this.onLogin('facebook')}>continue with facebook</LoginButton>
-              <LoginButton onBtnClick={this.onLogin('github')}>continue with github</LoginButton>
+              <div className={styles.container}>
+                  <h1 className={styles.prompt}>
+                      Hello.
+                      <small>What's new today?</small>
+                  </h1>
+
+                  <div className={styles.actions}>
+                      <LoginButton onBtnClick={this.onLogin('facebook')}>continue with facebook</LoginButton>
+                      <LoginButton onBtnClick={this.onLogin('github')}>continue with github</LoginButton>
+                  </div>
+              </div>
           </section>
         );
     }

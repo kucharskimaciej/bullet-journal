@@ -5,6 +5,9 @@ button-border-width = 2px
 .buttonWrapper
   display: block
 
+  &:last-child .button
+    margin-bottom 0
+
 .button
   display inline-block
   background-color color-page-background
@@ -20,6 +23,8 @@ button-border-width = 2px
   transition: background-color 0.2s ease-out, box-shadow 0.2s ease-out
 
   box-shadow: 0 0 0 3px white(1)
+
+
 
   &:before
     content ''

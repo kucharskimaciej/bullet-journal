@@ -1,4 +1,59 @@
 @import '../../config.styl'
 
+bg-tint = shade(color-secondary-dark, 60%)
+
 .page
-  background-color primary
+  height 100vh
+  width 100vw
+
+  position fixed
+  top 0
+  bottom 0
+  left 0
+  right 0
+
+  background-image: url('/images/login_bg.jpg')
+
+  background-size cover
+  
+  &:after
+    content ''
+    position fixed
+    top 0
+    bottom 0
+    left 0
+    right 0
+
+    background-color rgba(bg-tint, .25)
+    z-index -1
+
+.container
+  position relative
+  z-index 10
+
+  width 100%
+  height 100%
+
+  display flex
+  justify-content center
+  align-items center
+
+.prompt, .actions
+  width 50%
+  margin 0
+  padding rem(unit)
+
+
+.prompt
+  color color-page-background
+  font-size rem(60px)
+  text-align right
+  line-height 1
+
+  small
+    display block
+    font-size 0.5em
+
+.actions
+  text-align left
+
