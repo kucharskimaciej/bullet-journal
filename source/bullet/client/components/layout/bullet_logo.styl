@@ -4,13 +4,33 @@
   display inline-block
   width 0.2em
   height 0.2em
-  margin-right 0.05em
+  border-radius 50%
 
   background linear-gradient(to bottom right, color-secondary 0%, color-secondary-dark 100%)
   overflow hidden
   text-indent -999px
   
 .logoLarge, .logoSmall
-  font-size rem(50px)
-  font-weight bold
-  color color-page-background
+  font-family font-family-logo
+  font-weight normal
+  line-height 1
+  color color-primary
+  text-decoration none
+
+  transition: font-size 0.3s ease-out
+
+.logoLarge
+  font-size rem(60px)
+
+  .dot
+    width 0.15em
+    height 0.15em
+    margin-right -6px
+    margin-bottom -2px
+
+.logoSmall
+  font-size rem(32px)
+
+  .dot
+    margin-right -3px
+    margin-bottom -1px

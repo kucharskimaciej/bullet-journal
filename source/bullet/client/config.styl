@@ -1,6 +1,4 @@
-// fontfaces
-
-
+// colors
 color-page-background = #fff
 
 color-primary = #434A54
@@ -8,19 +6,30 @@ color-primary = #434A54
 color-secondary = #FA7445
 color-secondary-dark = #C1173F
 
-unit = 20px
+base-unit = 20px
 
 // font
 font-base = 14px
 line-height-base = 1.4
 font-family-primary = 'Roboto', sans-serif
+font-family-logo = 'Kaushan Script'
 
+// measurements
+header-height = rem(72px)
 
 rem(size, base = font-base)
   (size/base)rem
 
-black($opactiy = 1)
+makeblack($opactiy = 1)
   rgba(0,0,0, $opactiy)
 
-white($opactiy = 1)
+makewhite($opactiy = 1)
   rgba(255,255,255, $opactiy)
+
+// @mixins
+fullscreen()
+  position fixed
+  top 0
+  bottom 0
+  left 0
+  right 0

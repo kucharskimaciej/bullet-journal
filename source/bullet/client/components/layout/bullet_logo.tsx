@@ -16,8 +16,8 @@ function logoClass(size) {
 
 export function BulletLogo({ size }: IBulletLogoProps) {
     return (
-        <span className={logoClass(size)}>
-            <span className={styles.dot}>.</span>Bullet
-        </span>
+        <a href="/home" className={logoClass(size)}>
+            <span className={styles.dot}>.</span>bullet
+        </a>
     );
 }

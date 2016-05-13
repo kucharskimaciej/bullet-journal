@@ -13,16 +13,16 @@ button-border-width = 2px
   background-color color-page-background
   color color-primary
 
-  padding rem(.7*unit) rem(unit) rem(.65 * unit)
-  margin-bottom rem(unit)
+  padding rem(.7*base-unit) rem(base-unit) rem(.65 * base-unit)
+  margin-bottom rem(base-unit)
 
-  border-radius 2*rem(unit)
+  border-radius 2*rem(base-unit)
   cursor: pointer
   position: relative
 
   transition: background-color 0.2s ease-out, box-shadow 0.2s ease-out
 
-  box-shadow: 0 0 0 3px white(1)
+  box-shadow: 0 0 0 3px makewhite(1)
 
 
 
@@ -39,12 +39,12 @@ button-border-width = 2px
     background-position: 0 0, 0 100%;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    border-radius 2 * rem(unit)
+    border-radius 2 * rem(base-unit)
 
     z-index -1
-    box-shadow: 1px 1px 2px black(0.1)
+    box-shadow: 1px 1px 2px makeblack(0.1)
 
   &:hover
     //background-color white(0.35)
     //color color-page-background
-    box-shadow: 0 0 0 0 white(1)
+    box-shadow: 0 0 0 0 makewhite(1)
