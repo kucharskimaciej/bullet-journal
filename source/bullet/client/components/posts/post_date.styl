@@ -1,0 +1,36 @@
+@require '../../config.styl'
+
+.root
+  display inline-block
+  font-family font-family-primary
+
+.details, .day
+  vertical-align baseline
+
+.day
+  color color-primary
+
+  display inline-block
+  text-transform uppercase
+  font-size rem(42px)
+
+  font-weight bold
+  letter-spacing -2px
+  margin-right 2px
+
+.details
+  display inline-block
+  font-size rem(18px)
+  color lighten(color-primary, 10%)
+
+.rest
+  font-size rem(12px)
+
+.weekday
+  color color-secondary-dark
+  display block
+  font-family font-family-logo
+  text-transform: lowercase
+
+  position relative
+  top 4px

@@ -29,11 +29,11 @@ export function weekday(date: Date, opts: IDateFilterOptions = weekdayFilterOpti
         return opts.values[date.getDay()] || opts.defaultValue;
 }
 export function dayInMonth(date: Date): number {
-        return date.getDate();
+        return date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
 }
-export function month(date: Date, opts: IDateFilterOptions = monthFilterOptions): string {
-        return opts.values[date.getMonth()] || opts.defaultValue;
+export function month(date: Date, opts: IDateFilterOptions = monthFilterOptions): number {
+        return date.getMonth() + 1;
 }
 export function year(date: Date): number {
-        return date.getFullYear();
+        return date.getFullYear() - 2000;
 }
