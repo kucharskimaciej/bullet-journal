@@ -5,8 +5,11 @@ import {IUser} from '../../../collections/users/users';
 
 import {Account} from '../user/account';
 
+const styles = require('./sidebar.styl');
+
 export interface ISidebarProps {
     profile: IUser;
+    className?: string;
 }
 
 export class Sidebar extends Component<ISidebarProps, {}> {
@@ -18,7 +21,7 @@ export class Sidebar extends Component<ISidebarProps, {}> {
         const {profile} = this.props;
 
         return (
-            <aside role="sidebar">
+            <aside className={styles.root} role="sidebar">
                 <Account profile={profile}/>
             </aside>
         );

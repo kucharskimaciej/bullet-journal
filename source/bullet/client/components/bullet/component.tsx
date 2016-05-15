@@ -9,6 +9,8 @@ import {RecentPosts} from '../posts/recent_posts';
 import {PostEditor} from '../posts/editor/post_editor';
 import {Sidebar} from '../sidebar/sidebar';
 
+const styles = require('./component.styl');
+
 export interface IBulletProps {
     posts: IPost[];
     user?: IUser;
@@ -24,18 +26,22 @@ export class BulletComponent extends Component<IBulletProps, any> {
         isLoggedIn: PropTypes.bool.isRequired,
     };
 
-    render() {
-        const {posts, isLoggedIn, user} = this.props;
+    renderSidebar() {
+        const {isLoggedIn, user} = this.props;
 
-        let renderSidebar;
-        if (isLoggedIn) {
-            renderSidebar = <Sidebar profile={user} />;
+        if (!isLoggedIn) {
+            return null;
         }
+        return <Sidebar profile={user} />;
+    }
+
+    render() {
+        const {posts, user} = this.props;
 
         return (
-            <section>
-                {renderSidebar}
-                <div>
+            <section className={styles.root}>
+                {this.renderSidebar()}
+                <div className={styles.main}>
                     <PostEditor author={user._id} />
                     <RecentPosts posts={posts} />
                 </div>
