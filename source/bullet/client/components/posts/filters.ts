@@ -28,8 +28,8 @@ const monthFilterOptions:IDateFilterOptions = {
 export function weekday(date: Date, opts: IDateFilterOptions = weekdayFilterOptions): string {
         return opts.values[date.getDay()] || opts.defaultValue;
 }
-export function dayInMonth(date: Date): number {
-        return date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+export function dayInMonth(date: Date): string {
+        return date.getDate() < 10 ? `0${date.getDate()}` : String(date.getDate());
 }
 export function month(date: Date, opts: IDateFilterOptions = monthFilterOptions): number {
         return date.getMonth() + 1;
