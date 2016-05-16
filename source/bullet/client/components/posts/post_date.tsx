@@ -18,7 +18,7 @@ export class PostDate extends Component<{ createdAt: number }, {}> {
                 <span className={styles.day}>{dayInMonth(date)}</span>
                 <span className={styles.details}>
                     <span className={styles.weekday}>{weekday(date)}</span>
-                    <span className={styles.rest}>{month(date)}/{year(date)}</span>
+                    <span className={styles.rest}>{month(date)} /{year(date)}</span>
                 </span>
             </span>
         );
