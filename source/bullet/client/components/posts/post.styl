@@ -4,6 +4,9 @@
   margin-bottom text-spacing
   border-bottom 1px solid lighten(color-primary, 90%)
 
+  &:last-child
+    border-bottom 0
+
 .header
   margin-bottom text-spacing
   text-align center
@@ -20,7 +23,59 @@
     font-size rem(14px)
     text-transform uppercase
     color color-secondary-dark
+    text-align left
 
 .date
   display inline-block
   margin-right text-spacing
+  flex-grow 0
+  flex-shrink 0
+
+.content
+  font-family font-family-text
+  font-size rem(14px)
+
+  p
+    text-indent text-spacing
+
+  a[href]
+    position relative
+
+    color color-secondary
+    text-decoration none
+
+    transition color 0.3s
+
+    &:hover
+      color color-secondary-dark
+
+    &::after
+      position absolute
+      top 100%
+      left 0
+      right 0
+      transform translateY(10px)
+      height rem(1px)
+
+      content ''
+      opacity 0
+      background-color color-secondary-dark
+
+      transition all 0.3s
+
+    &:hover::after
+      opacity 1
+      transform translateY(0px)
+
+
+  ul
+    margin-top 0
+    padding-left 2*text-spacing
+
+    margin-bottom text-spacing
+    list-style circle
+
+    ul
+      margin-bottom 0
+
+
