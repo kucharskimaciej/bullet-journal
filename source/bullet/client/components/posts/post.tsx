@@ -7,6 +7,8 @@ import {PostDate} from './post_date';
 import {marked} from '../../services/markdown';
 import * as _ from 'underscore';
 
+const styles = require('./post.styl');
+
 export interface IPostProps {
     title: string;
     body: string;
@@ -73,12 +75,14 @@ export class Post extends Component<IPostProps, IPostState> {
         }
 
         return (
-            <article>
-                <header>
-                    <PostDate createdAt={created_at} />
+            <article className={styles.root}>
+                <header className={styles.header}>
+                    <span className={styles.date}>
+                        <PostDate createdAt={created_at} />
+                    </span>
                     { title ? <h2>{title}</h2> : null }
                 </header>
-                <div dangerouslySetInnerHTML={body}></div>
+                <div className={styles.content} dangerouslySetInnerHTML={body}></div>
             </article>
         );
     }
