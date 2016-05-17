@@ -140,19 +140,17 @@ Header 2
     * Red
     * Green
     * Blue
-        \`\`\`
-
-
+\`\`\`
 
 1. Buy flour and salt
 1. Mix together with water
 1. Bake
 
 \`\`\`markdown
-        1. Buy flour and salt
+    1. Buy flour and salt
     1. Mix together with water
     1. Bake
-        \`\`\`
+\`\`\`
 
 
 
