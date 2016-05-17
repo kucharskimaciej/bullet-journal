@@ -5,6 +5,8 @@ import {PostPreview} from './preview';
 import {PostForm} from './post_form';
 import {fromJS} from 'immutable';
 
+const styles = require('./post_editor.styl');
+
 export interface IPostEditorState {
     title?: string;
     body?: string;
@@ -48,7 +50,7 @@ export class PostEditor extends Component<IPostEditorProps, IPostEditorState> {
         const {author} = this.props;
 
         return (
-            <section>
+            <section className={styles.root}>
                 <PostForm fields={this.state} onSubmit={this.onSubmit} onChange={this.onChange} />
                 <PostPreview {...this.state} author={author} />
             </section>
