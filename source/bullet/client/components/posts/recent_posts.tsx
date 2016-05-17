@@ -5,6 +5,8 @@ import {IPost} from '../../../collections/posts/posts';
 
 import {Post} from './post';
 
+const styles = require('./recent_posts.styl');
+
 export interface IRecentPostsProps {
     posts: IPost[];
 }
@@ -20,7 +22,7 @@ export class RecentPosts extends Component<IRecentPostsProps, {}> {
             let postsPartial = posts.map((post: IPost) => <Post key={post._id} {...post} />);
 
             return (
-                <section>
+                <section className={styles.root}>
                     {postsPartial}
                 </section>
             );
