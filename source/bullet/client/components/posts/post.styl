@@ -35,8 +35,11 @@
   font-family font-family-text
   font-size rem(14px)
 
-  p
-    text-indent text-spacing
+  em, i
+    font-style italic
+
+  strong, b
+    font-weight font-weight-bold
 
   a[href]
     position relative
@@ -79,3 +82,15 @@
       margin-bottom 0
 
 
+  code, pre
+    background-color lighten(color-primary, 95%)
+    color color-secondary-dark
+    font-family font-family-code
+
+  code
+    padding 0 rem(3px)
+    display inline-block
+
+  pre
+    padding (text-spacing/2) text-spacing
+    margin-bottom text-spacing
