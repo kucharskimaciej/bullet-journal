@@ -21,7 +21,7 @@ export class Avatar extends Component<IAvatarProps, {}> {
         const url = avatarUrl(user);
 
         return (
-            <figure className={styles.root} data-avatar={url}>
+            <figure className={styles.root}>
               <img className={styles.image} src={url} />
             </figure>
         );
