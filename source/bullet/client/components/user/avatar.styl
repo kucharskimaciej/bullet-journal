@@ -1,0 +1,27 @@
+@require '../../config.styl'
+fauxBorderWidth = rem(2px)
+
+.root
+  display block
+  border-radius 50%
+
+  width rem(3*base-unit)
+  height rem(3*base-unit)
+
+  overflow hidden
+
+  background-image: linear-gradient(to bottom right, color-secondary 0%, color-secondary-dark 100%)
+  background-position: 0 0, 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  padding fauxBorderWidth
+
+.image
+  display: block;
+  object-fit: cover;
+
+  border-radius 50%
+
+  width 100%
+  height 100%

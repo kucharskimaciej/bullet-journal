@@ -1,9 +1,11 @@
 import * as React from 'react';
 import {Component, PropTypes} from 'react';
 
-import {fullName, avatarUrl} from '../../services/users';
+import {fullName} from '../../services/users';
 
 import {IUser} from '../../../collections/users/users';
+
+import {Avatar} from './avatar';
 
 export interface IAccountProps {
     profile: IUser;
@@ -19,7 +21,10 @@ export class Account extends Component<IAccountProps, {}> {
 
         return (
             <div>
-                <h4>{fullName(profile)}</h4>
+                <span>
+                    <Avatar user={profile} />
+                </span>
+                {fullName(profile)}
                 <a href="/logout">Logout</a>
             </div>
         );

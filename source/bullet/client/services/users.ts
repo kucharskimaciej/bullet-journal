@@ -16,5 +16,5 @@ export function firstName(user: IUser) {
 }
 
 export function avatarUrl(user: IUser) {
-
+    return user.profile.picture; // or default...
 }
