@@ -3,17 +3,16 @@ export interface IUser {
     verified_emails?: string[];
     profile: {
         name: string;
+        picture?: string;
     };
     services: {
         facebook?: {
+            id: string;
             email: string;
             first_name: string;
+        },
+        github?: {
+            id: number;
         }
     };
 }
-
-Meteor.users.deny({
-    update() {
-        return true;
-    }
-});

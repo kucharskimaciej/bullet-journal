@@ -19,6 +19,7 @@ export class Sidebar extends Component<ISidebarProps, {}> {
 
     render() {
         const {profile} = this.props;
+        console.log(profile);
 
         return (
             <aside className={styles.root} role="sidebar">
