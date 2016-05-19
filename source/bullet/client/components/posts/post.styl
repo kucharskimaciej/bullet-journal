@@ -135,5 +135,11 @@
     margin-left 2*text-spacing
     margin-bottom text-spacing
     padding text-spacing
-    background-color lighten(color-primary, 98%)
+    padding-bottom 0
+    background-color lighten(color-secondary, 98%)
     border-left rem(4px) solid rgba(color-secondary, 0.3)
+
+    &::after
+      display table
+      content ''
+      clear both
