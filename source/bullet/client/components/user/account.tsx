@@ -28,7 +28,7 @@ export class Account extends Component<IAccountProps, {}> {
                 </span>
                 <span>
                     <span className={styles.username}>{fullName(profile)}</span>
-                    <a href="/logout">Logout</a>
+                    <a href="/logout"><i className={styles.icon} />Logout</a>
                 </span>
             </div>
         );
