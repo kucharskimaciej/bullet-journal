@@ -15,7 +15,9 @@ export class LoginButton extends Component<ILoginButtonProps, {}> {
     render() {
         return (
             <span className={styles.buttonWrapper}>
-                <a className={styles.button} onClick={this.props.onBtnClick}>{this.props.children}</a>
+                <a className={styles.button} onClick={this.props.onBtnClick}>
+                    <span>{this.props.children}</span>
+                </a>
             </span>
         );
     }

@@ -1,52 +1,14 @@
 @import '../../config.styl'
+@import '../../styles/buttons.styl'
 
-button-border-width = 2px
 
 .buttonWrapper
   display: block
+  position: relative
 
   &:last-child .button
     margin-bottom 0
 
+
 .button
-  display inline-block
-  background-color color-page-background
-
-  color color-primary
-  font-size rem(14px)
-
-  padding rem(.7*base-unit) rem(base-unit) rem(.65 * base-unit)
-  margin-bottom rem(base-unit)
-
-  border-radius 2*rem(base-unit)
-  cursor: pointer
-  position: relative
-
-  transition: background-color 0.2s ease-out, box-shadow 0.2s ease-out
-
-  box-shadow: 0 0 0 3px makewhite(1)
-
-
-
-  &:before
-    content ''
-    display: block
-    position absolute
-    top - button-border-width
-    left - button-border-width
-    right - button-border-width
-    bottom - button-border-width
-
-    background-image: linear-gradient(to bottom right, color-secondary 0%, color-secondary-dark 100%)
-    background-position: 0 0, 0 100%;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    border-radius 2 * rem(base-unit)
-
-    z-index -1
-    box-shadow: 1px 1px 2px makeblack(0.1)
-
-  &:hover
-    //background-color white(0.35)
-    //color color-page-background
-    box-shadow: 0 0 0 0 makewhite(1)
+  @extends $button

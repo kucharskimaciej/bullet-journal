@@ -1,0 +1,32 @@
+@require '../config.styl'
+
+button-border-width = 2px
+button-border-raduis = 1.5 * rem(base-unit)
+
+$button
+  display inline-block
+  padding rem(button-border-width)
+  margin-bottom text-spacing
+
+  background-clip padding-box
+  border-radius button-border-raduis
+  background-image: linear-gradient(to bottom right, color-secondary 0%, color-secondary-dark 100%)
+  box-shadow: 0 rem(2px) rem(1px) 0 makeblack(0.08)
+
+  &:hover > span
+    box-shadow: 0 0 0 0 makewhite(1)
+
+  & > span
+    display block
+
+    color color-primary
+    font-size rem(14px)
+    background-color color-page-background
+
+    padding rem(.7 * base-unit) rem(base-unit)
+
+    box-shadow: 0 0 0 rem(1px) makewhite(1)
+    border-radius button-border-raduis
+    cursor: pointer
+    background-clip padding-box
+    transition: box-shadow 0.2s ease-out
