@@ -67,6 +67,10 @@ export class Post extends Component<IPostProps, IPostState> {
         }, title, created_at };
     }
 
+    rootClass() {
+        return styles.root;
+    }
+
     render() {
         const {body, title, created_at} = this.data;
 
@@ -75,7 +79,7 @@ export class Post extends Component<IPostProps, IPostState> {
         }
 
         return (
-            <article className={styles.root}>
+            <article className={this.rootClass()}>
                 <header className={styles.header}>
                     <span className={styles.date}>
                         <PostDate createdAt={created_at} />
