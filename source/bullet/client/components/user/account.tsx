@@ -11,6 +11,8 @@ export interface IAccountProps {
     profile: IUser;
 }
 
+const styles = require('./account.styl');
+
 export class Account extends Component<IAccountProps, {}> {
     static propTypes = {
         profile: PropTypes.object.isRequired
@@ -20,12 +22,14 @@ export class Account extends Component<IAccountProps, {}> {
         const {profile} = this.props;
 
         return (
-            <div>
-                <span>
+            <div className={styles.root}>
+                <span className={styles.picture}>
                     <Avatar user={profile} />
                 </span>
-                {fullName(profile)}
-                <a href="/logout">Logout</a>
+                <span>
+                    <span className={styles.username}>{fullName(profile)}</span>
+                    <a href="/logout">Logout</a>
+                </span>
             </div>
         );
     }

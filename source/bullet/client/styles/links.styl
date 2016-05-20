@@ -1,0 +1,30 @@
+@require '../config.styl'
+
+$link
+  position relative
+
+  color color-secondary
+  text-decoration none
+
+  transition color 0.3s
+
+  &:hover
+    color color-secondary-dark
+
+  &::after
+    position absolute
+    top 100%
+    left 0
+    right 0
+    transform translateY(10px)
+    height rem(1px)
+
+    content ''
+    opacity 0
+    background-color color-secondary-dark
+
+    transition all 0.3s
+
+  &:hover::after
+    opacity 1
+    transform translateY(0px)

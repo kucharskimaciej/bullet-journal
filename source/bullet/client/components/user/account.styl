@@ -1,0 +1,23 @@
+@require '../../config.styl'
+@require '../../styles/links.styl'
+
+.root
+  margin-bottom text-spacing
+
+  display flex
+  justify-content flex-start
+  align-items center
+
+  a
+    @extends $link
+    font-size rem(12px)
+
+.username
+  display block
+
+.picture
+  display block
+  flex-shrink 0
+  flex-grow 0
+
+  margin-right text-spacing
