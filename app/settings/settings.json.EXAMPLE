@@ -1,0 +1,11 @@
+{
+    "private": {
+        "facebook": {
+            "appId": "APP_ID",
+            "secret": "APP_SECRET"
+        }
+    },
+    "public": {
+        "env": "APP_ENV"
+    }
+}

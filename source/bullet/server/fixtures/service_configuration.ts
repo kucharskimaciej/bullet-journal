@@ -2,12 +2,12 @@ import ISerivceConfiguration = ServiceConfiguration.ISerivceConfiguration;
 const {settings} = Meteor;
 
 
-if (Meteor.settings['facebook']) {
-    configureService('facebook', Meteor.settings['facebook']);
+if (settings['private']['facebook']) {
+    configureService('facebook', settings['private']['facebook']);
 }
 
-if (Meteor.settings['github']) {
-    configureService('github', Meteor.settings['github']);
+if (settings['private']['github']) {
+    configureService('github', settings['private']['github']);
 }
 
 function configureService(service: string, {appId, clientId, secret}: ISerivceConfiguration) {
