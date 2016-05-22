@@ -1,0 +1,27 @@
+@require '../config.styl'
+
+$formControl
+  display block
+  width 100%
+
+  border rem(1px) solid rgba(color-primary, 0.05)
+  padding (text-spacing/2) text-spacing
+
+  margin-bottom text-spacing
+
+  font-size rem(14px)
+  line-height line-height-text
+  color lighten(color-primary, 10%)
+
+  outline 0
+
+  &:focus
+    border rem(1px) solid rgba(color-primary, 0.1)
+
+$input
+  @extends $formControl
+  height 2*text-spacing
+
+$textarea
+  @extends $formControl
+  min-height text-spacing

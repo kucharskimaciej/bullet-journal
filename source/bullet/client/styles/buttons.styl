@@ -2,6 +2,7 @@
 
 button-border-width = 2px
 button-border-raduis = 1.5 * rem(base-unit)
+button-background = linear-gradient(to bottom right, color-secondary 0%, color-secondary-dark 100%)
 
 $button
   display inline-block
@@ -10,7 +11,7 @@ $button
 
   background-clip padding-box
   border-radius button-border-raduis
-  background-image: linear-gradient(to bottom right, color-secondary 0%, color-secondary-dark 100%)
+  background-image button-background
   box-shadow: 0 rem(2px) rem(1px) 0 makeblack(0.08)
 
   &:hover > span
@@ -30,3 +31,10 @@ $button
     cursor: pointer
     background-clip padding-box
     transition: box-shadow 0.2s ease-out
+
+$button-small
+  @extends $button
+
+  & > span
+    font-size rem(12px)
+    padding rem(.35 * base-unit) rem(.5 * base-unit)

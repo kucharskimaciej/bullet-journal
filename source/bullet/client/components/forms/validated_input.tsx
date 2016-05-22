@@ -10,7 +10,7 @@ export interface IValidator {
     (value: any): IValidationErrors|any;
 }
 
-export interface IValidatedInputProps {
+export interface IValidatedInputProps extends IComponentProps {
     type: string;
     registerField: (inputComponent: ValidatedInput, fieldState) => any;
     validators?: IValidator[];
@@ -21,12 +21,11 @@ export interface IValidatedInputProps {
     name?: string;
     id?: string;
     readonly?: string;
-    disabled?: string;
     className?: string;
 }
 
 export const inputTypes = ['text', 'textarea'];
-export const PASSTHROUGH_FIELDS = ['onFocus', 'name', 'id', 'readonly', 'disabled', 'value'];
+export const PASSTHROUGH_FIELDS = ['className', 'onFocus', 'name', 'id', 'readonly', 'disabled', 'value'];
 
 export class ValidatedInput extends Component<IValidatedInputProps, {}> {
     static propTypes = {

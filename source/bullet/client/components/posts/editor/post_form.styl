@@ -1,0 +1,39 @@
+@require '../../../config.styl'
+@require '../../../styles/forms.styl'
+@require '../../../styles/buttons.styl'
+
+.root
+  margin-bottom text-spacing
+
+.label
+  display none
+
+input.control
+  @extends $input
+
+textarea.control
+  @extends $textarea
+
+.validationMessages
+  display block
+  margin-bottom text-spacing
+
+.validationMessage
+  display block
+  min-height text-spacing
+  background-color: rgba(color-danger, .2)
+  border-left rem(4px) solid rgba(color-danger, 0.8)
+
+  padding (text-spacing/2) text-spacing
+  font-size rem(12px)
+  line-height line-height-text
+  color color-danger
+
+.formActions
+  display block
+  text-align right
+
+.submitButton
+  @extends $button-small
+  border 0
+  box-shadow 0

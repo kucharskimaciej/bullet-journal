@@ -7,6 +7,8 @@ import {ValidatedInput} from '../../forms/validated_input';
 import {isRequired, minLength, emptyOrMinLength} from '../../forms/validators';
 import {Form} from "../../forms/form";
 
+const styles = require('./post_form.styl');
+
 export class PostForm extends Form {
     static propTypes = {
         onChange: PropTypes.func.isRequired,
@@ -19,8 +21,9 @@ export class PostForm extends Form {
         return (
             <form onSubmit={this.onSubmit} noValidate="true">
                 <div>
-                    <label htmlFor="title">Title</label>
+                    <label className={styles.label} htmlFor="title">Title</label>
                     <ValidatedInput
+                        className={styles.control}
                         type="text"
                         value={fields['title']}
                         validators={[emptyOrMinLength(3)]}
@@ -29,14 +32,16 @@ export class PostForm extends Form {
                         {...this.fieldMethods('title')}/>
 
                     {(this.state.touched || fields['title'].touched) &&
-                    <ValidationMessages errors={this.getErrorsFor('title')}>
-                        <ValidationMessage error="emptyOrMinLength">This title is too short!</ValidationMessage>
+                    <ValidationMessages className={styles.validationMessages} errors={this.getErrorsFor('title')}>
+                        <ValidationMessage className={styles.validationMessage}
+                                           error="emptyOrMinLength">This title is too short!</ValidationMessage>
                     </ValidationMessages>}
                 </div>
 
                 <div>
-                    <label htmlFor="body">Body</label>
+                    <label className={styles.label} htmlFor="body">Body</label>
                     <ValidatedInput
+                        className={styles.control}
                         type="textarea"
                         value={fields['body']}
                         validators={[isRequired, minLength(140)]}
@@ -44,15 +49,20 @@ export class PostForm extends Form {
                         {...this.fieldMethods('body')}/>
 
                     {(this.state.touched || fields['body'].touched) &&
-                    <ValidationMessages errors={this.getErrorsFor('body')}>
-                        <ValidationMessage error="required">The body is required</ValidationMessage>
-                        <ValidationMessage error="minLength">The body has to be at least 140 characters long</ValidationMessage>
+                    <ValidationMessages className={styles.validationMessages} errors={this.getErrorsFor('body')}>
+                        <ValidationMessage className={styles.validationMessage}
+                                           error="required">The body is required</ValidationMessage>
+                        <ValidationMessage className={styles.validationMessage}
+                                           error="minLength">The body has to be at least 140 characters long</ValidationMessage>
                     </ValidationMessages>}
                 </div>
 
 
-
-                <button type="submit">Submit</button>
+                <span className={styles.formActions}>
+                    <button className={styles.submitButton} type="submit">
+                        <span>Submit</span>
+                    </button>
+                </span>
             </form>
         );
     }

@@ -9,7 +9,7 @@ export interface IValidationErrors {
     [errorType: string]: boolean;
 }
 
-export interface IValidationMessages {
+export interface IValidationMessages extends IComponentProps {
     errors?: IValidationErrors;
     multi?: boolean;
 }
@@ -39,10 +39,12 @@ export class ValidationMessages extends Component<IValidationMessages, any> {
     }
 
     render() {
+        const transfer = _.omit(this.props, 'errors', 'multi');
+
         if (!this.props.multi) {
-            return <span>{this.matchingChild}</span>;
+            return <span {...transfer}>{this.matchingChild}</span>;
         } else {
-            return <span>{this.matchingChildren}</span>;
+            return <span {...transfer}>{this.matchingChildren}</span>;
         }
     }
 }
