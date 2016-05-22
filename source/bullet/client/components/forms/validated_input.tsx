@@ -26,6 +26,7 @@ export interface IValidatedInputProps {
 }
 
 export const inputTypes = ['text', 'textarea'];
+export const PASSTHROUGH_FIELDS = ['onFocus', 'name', 'id', 'readonly', 'disabled', 'value'];
 
 export class ValidatedInput extends Component<IValidatedInputProps, {}> {
     static propTypes = {
@@ -50,6 +51,13 @@ export class ValidatedInput extends Component<IValidatedInputProps, {}> {
         fieldState.errors = errors;
 
         this.props.registerField(this, fieldState);
+    }
+
+    shouldComponentUpdate(nextProps: IValidatedInputProps) {
+        const passThrough = _.pick(this.props, ...PASSTHROUGH_FIELDS, 'type');
+        return Object.keys(passThrough).some((key: string) => {
+            return nextProps[key] !== this.props[key];
+        });
     }
 
     private validate(value): [boolean, IValidationErrors] {
@@ -77,7 +85,7 @@ export class ValidatedInput extends Component<IValidatedInputProps, {}> {
     };
 
     render() {
-        const passThrough = _.pick(this.props, 'onFocus', 'name', 'id', 'readonly', 'disabled', 'value');
+        const passThrough =  _.pick(this.props, ...PASSTHROUGH_FIELDS);
 
         switch (this.props.type) {
             case "text":
