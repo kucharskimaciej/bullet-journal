@@ -22,6 +22,18 @@ export function minLength(constraint: number) {
     };
 }
 
+export function maxLength(constraint: number) {
+    return (value: string): IValidationErrors|void => {
+        if (!value || value.length <= 200) {
+            return;
+        }
+
+        return {
+            maxLength: true
+        };
+    };
+}
+
 export function emptyOrMinLength(constraint: number) {
     return (value: string): IValidationErrors|void => {
         if (!value || value.length > constraint) {

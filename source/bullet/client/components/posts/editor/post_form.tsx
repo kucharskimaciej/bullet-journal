@@ -4,7 +4,7 @@ import {Component, PropTypes} from 'react';
 import {ValidationMessages, IValidationErrors} from '../../forms/validation_messages';
 import {ValidationMessage} from '../../forms/validation_message';
 import {ValidatedInput} from '../../forms/validated_input';
-import {isRequired, minLength, emptyOrMinLength} from '../../forms/validators';
+import {isRequired, minLength, maxLength, emptyOrMinLength} from '../../forms/validators';
 import {Form} from "../../forms/form";
 
 const styles = require('./post_form.styl');
@@ -44,7 +44,7 @@ export class PostForm extends Form {
                         className={styles.control}
                         type="textarea"
                         value={fields['body']}
-                        validators={[isRequired, minLength(140)]}
+                        validators={[isRequired, minLength(24), maxLength(140)]}
                         name="body"
                         {...this.fieldMethods('body')}/>
 
@@ -53,7 +53,9 @@ export class PostForm extends Form {
                         <ValidationMessage className={styles.validationMessage}
                                            error="required">The body is required</ValidationMessage>
                         <ValidationMessage className={styles.validationMessage}
-                                           error="minLength">The body has to be at least 140 characters long</ValidationMessage>
+                                           error="minLength">The body is too short</ValidationMessage>
+                        <ValidationMessage className={styles.validationMessage}
+                                           error="maxLength">Much too say, eh? Only 140 chars for you!</ValidationMessage>
                     </ValidationMessages>}
                 </div>
 
