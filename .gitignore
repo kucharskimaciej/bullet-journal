@@ -12,4 +12,4 @@ app/settings/*.json
 app/public/bundle.css
 app/packages/**/*
 
-app/settings/*.json
+build
