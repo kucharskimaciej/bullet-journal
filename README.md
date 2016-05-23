@@ -6,17 +6,31 @@ Bullet journal is a short-and-sweet memo type of journal.
 
 ###  v. 1.3
 
-* post statistics (longest streak, current streak, total posts in a year, etc)
-* "remind me about this in..."
-* share/post to twitter/facebook/etc
+* post actions (delete, update, etc)
+* UI/UX improvements
+
+###  v. 1.4
+
+* post statistics:
+  * longest streak,
+  * current streak, 
+  * total posts in a year, 
+  * etc
+
+### Even later
+
+* share post to twitter/facebook
+* infinite scrolling
+* favourite posts
+* post reminders
+
+## Version history
 
 ###  v. 1.2
 
 * merge `bullet-journal` and `bullet-journal-api` repos
 * complete rewrite of functionality to `typescript`
 * add user accounts
-
-## Version history
 
 ### v. 1.1
 
