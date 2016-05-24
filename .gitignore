@@ -13,3 +13,4 @@ app/public/bundle.css
 app/packages/**/*
 
 build
+.deploy/**/settings.json
