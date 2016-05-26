@@ -250,6 +250,15 @@ Meteor.methods({
             });
         }
     },
+    removeAllPosts() {
+        let userId = Meteor.userId();
+
+        if (!userId) {
+            return;
+        }
+
+        Posts.remove({author: userId});
+    },
     kitchenSink() {
         let userId = Meteor.userId();
 
