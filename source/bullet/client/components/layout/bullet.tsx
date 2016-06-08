@@ -2,6 +2,7 @@ import * as React from 'react';
 import {Component, PropTypes} from 'react';
 
 import {BulletHeader} from './bullet_header';
+import Modals from '../modals/container';
 
 export interface IBulletLayoutProps {
     headerSize?: string;
@@ -17,6 +18,7 @@ export class BulletLayout extends Component<IBulletLayoutProps, {}> {
             <div className={styles.container}>
                 <BulletHeader size={headerSize}/>
                 <section role='main'>{children}</section>
+                <Modals />
             </div>
         );
     }

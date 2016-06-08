@@ -71,6 +71,11 @@ export class Post extends Component<IPostProps, IPostState> {
         return styles.root;
     }
 
+    onEdit = () => {
+        Session.set('MODAL_DATA', this.props);
+        Session.set('MODAL_TYPE', 'UPDATE_POST');
+    };
+
     render() {
         const {body, title, created_at} = this.data;
 
@@ -86,6 +91,7 @@ export class Post extends Component<IPostProps, IPostState> {
                     </span>
                     { title ? <h2>{title}</h2> : null }
                 </header>
+                <a onClick={this.onEdit}>edit</a>
                 <div className={styles.content} dangerouslySetInnerHTML={body}></div>
             </article>
         );

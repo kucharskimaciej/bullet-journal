@@ -72,7 +72,6 @@ FlowRouter.notFound = {
 
 Accounts.onLogin(() => {
     const redirect = Session.get('redirect');
-    console.log(redirect);
     if (!!redirect && redirect !== '/login') {
         FlowRouter.go(redirect);
     } else {

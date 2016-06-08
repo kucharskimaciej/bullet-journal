@@ -1,0 +1,44 @@
+@require '../../config.styl'
+
+.overlay
+  fullscreen()
+  z-index z-modal
+  background-color makewhite(0.9)
+
+  display flex
+  align-items center
+  justify-content center
+
+.modal
+  display block
+  width 80%
+  height 90%
+  position: relative
+
+  padding 2*base-unit
+
+  background-color color-page-background
+
+.close
+  position: absolute
+  top 2*base-unit
+  right 2*base-unit
+
+  font-size rem(40px)
+  line-height rem(40px)
+  font-weight bold
+  color rgba(color-primary, 0.8)
+
+  cursor: pointer
+
+  transform: rotate(0deg)
+  transition color 0.3s, transform 0.3s ease-out
+
+  &:hover
+    color color-primary
+    transform: rotate(180deg)
+
+.title
+  font-size rem(2*font-base)
+  line-height rem(40px)
+  text-transform uppercase
