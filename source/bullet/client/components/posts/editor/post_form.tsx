@@ -21,24 +21,6 @@ export class PostForm extends Form {
         return (
             <form onSubmit={this.onSubmit} noValidate="true">
                 <div>
-                    <label className={styles.label} htmlFor="title">Title</label>
-                    <ValidatedInput
-                        className={styles.control}
-                        type="text"
-                        value={fields['title']}
-                        validators={[emptyOrMinLength(3)]}
-                        name="title"
-                        ref="title"
-                        {...this.fieldMethods('title')}/>
-
-                    {(this.state.touched || fields['title'].touched) &&
-                    <ValidationMessages className={styles.validationMessages} errors={this.getErrorsFor('title')}>
-                        <ValidationMessage className={styles.validationMessage}
-                                           error="emptyOrMinLength">This title is too short!</ValidationMessage>
-                    </ValidationMessages>}
-                </div>
-
-                <div>
                     <label className={styles.label} htmlFor="body">Body</label>
                     <ValidatedInput
                         className={styles.control}

@@ -14,15 +14,13 @@ import getSlug = require("speakingurl");
 class PostMethods extends Methods<Mongo.Collection<IPost>> {
 
     @authenticate
-    createPost({ title, body }: IPost) {
-        check(title, String);
+    createPost({ body }: IPost) {
         check(body, String);
 
         const document:any = {
-            title, body,
+            body,
             author: this.userId,
-            created_at: Date.now(),
-            slug: getSlug(title)
+            created_at: Date.now()
         };
 
         return Posts.insert(document);
@@ -30,20 +28,14 @@ class PostMethods extends Methods<Mongo.Collection<IPost>> {
 
     @authenticate
     @findById
-    updatePost(post:IPost, { _id, title, body }: IPost) {
-        let $set:{ title?: string, body?: string, slug?: string } = {};
+    updatePost(post:IPost, { _id, body }: IPost) {
+        let $set:{ body?: string, slug?: string } = {};
 
         if (post.author !== this.userId) {
             throw new Meteor.Error(401, 'Unauthorized');
         }
 
-        check(title, String);
         check(body, String);
-
-        if (post.title !== title) {
-            $set.title = title;
-            $set.slug = getSlug(title);
-        }
 
         if (post.body !== body) {
             $set.body = body;

@@ -10,7 +10,6 @@ import * as _ from 'underscore';
 const styles = require('./post.styl');
 
 export interface IPostProps {
-    title: string;
     body: string;
     created_at?: number;
     author?: string;
@@ -26,7 +25,6 @@ export class Post extends Component<IPostProps, IPostState> {
     static propTypes = {
         _id: PropTypes.string,
         body: PropTypes.string.isRequired,
-        title: PropTypes.string,
         author: PropTypes.string,
         created_at: PropTypes.number,
         slug: PropTypes.string
@@ -56,15 +54,15 @@ export class Post extends Component<IPostProps, IPostState> {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        return nextProps.title !== this.props.title || nextState.body !== this.state.body;
+        return nextState.body !== this.state.body;
     }
 
     get data() {
-        const {title, created_at} = this.props;
+        const {created_at} = this.props;
 
         return { body: {
             __html: this.state.body
-        }, title, created_at };
+        }, created_at };
     }
 
     rootClass() {
@@ -77,9 +75,9 @@ export class Post extends Component<IPostProps, IPostState> {
     };
 
     render() {
-        const {body, title, created_at} = this.data;
+        const {body, created_at} = this.data;
 
-        if (!title && !body.__html) {
+        if (!body.__html) {
             return null;
         }
 
@@ -89,13 +87,10 @@ export class Post extends Component<IPostProps, IPostState> {
                     <span className={styles.date}>
                         <PostDate createdAt={created_at} />
                     </span>
-                    { title ? <h2>{title}</h2> : null }
                 </header>
                 <a onClick={this.onEdit}>edit</a>
                 <div className={styles.content} dangerouslySetInnerHTML={body}></div>
             </article>
         );
     }
-
-
 }

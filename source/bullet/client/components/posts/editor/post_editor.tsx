@@ -8,7 +8,6 @@ import {fromJS} from 'immutable';
 const styles = require('./post_editor.styl');
 
 export interface IPostEditorState {
-    title?: string;
     body?: string;
 }
 
@@ -19,7 +18,6 @@ export interface IPostEditorProps {
 export class PostEditor extends Component<IPostEditorProps, IPostEditorState> {
     private get initialState() {
         return {
-            title: '',
             body: ''
         };
     }
