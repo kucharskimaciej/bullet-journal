@@ -44,7 +44,7 @@ export class PostForm extends Form {
                         className={styles.control}
                         type="textarea"
                         value={fields['body']}
-                        validators={[isRequired, minLength(24), maxLength(140)]}
+                        validators={[isRequired, minLength(32), maxLength(255)]}
                         name="body"
                         {...this.fieldMethods('body')}/>
 
