@@ -25,7 +25,8 @@
     "why-did-you-update": "0.0.8"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "(cd app && meteor --settings settings/settings-local.json)",
+    "postinstall": "webpack"
   },
   "repository": {
     "type": "git",
