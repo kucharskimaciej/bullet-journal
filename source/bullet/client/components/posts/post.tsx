@@ -3,6 +3,7 @@ import {Component, PropTypes} from 'react';
 
 import {IPost} from '../../../collections/posts/posts';
 import {PostDate} from './post_date';
+import {showUpdateModal} from '../../actions/modals';
 
 import {marked} from '../../services/markdown';
 import * as _ from 'underscore';
@@ -14,7 +15,6 @@ export interface IPostProps {
     created_at?: number;
     author?: string;
     _id?: string;
-    slug?: string;
 }
 
 export interface IPostState {
@@ -70,8 +70,7 @@ export class Post extends Component<IPostProps, IPostState> {
     }
 
     onEdit = () => {
-        Session.set('MODAL_DATA', this.props);
-        Session.set('MODAL_TYPE', 'UPDATE_POST');
+        showUpdateModal({ data: this.props as IPost });
     };
 
     render() {
