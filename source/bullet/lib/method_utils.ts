@@ -4,7 +4,7 @@ export function authenticate<T extends Function>(target: any,
     return <any> {
         value: function () {
             if (!Meteor.userId()) {
-                throw new Meteor.Error(403, 'Unauthenticated');
+                throw new Meteor.Error(401, 'Unauthorized');
             }
 
             return descriptor.value.apply(this, arguments);
