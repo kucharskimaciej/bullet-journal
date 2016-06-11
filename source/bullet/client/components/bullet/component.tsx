@@ -17,9 +17,7 @@ export interface IBulletProps {
     isLoggedIn: boolean;
 }
 
-interface IStateless {}
-
-export class BulletComponent extends Component<IBulletProps, any> {
+export class BulletComponent extends Component<IBulletProps, {}> {
     static propTypes = {
         user: PropTypes.object,
         posts: PropTypes.array.isRequired,

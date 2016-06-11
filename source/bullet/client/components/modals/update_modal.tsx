@@ -11,14 +11,14 @@ export interface IUpdateModalProps {
     post: IPost;
 }
 
-export class UpdateModal extends Component<IUpdateModalProps, {}> {
+export class UpdateModal extends Component<IUpdateModalProps, IPost> {
     constructor(props) {
         super(props);
         this.state = Object.assign({}, props.post);
     }
 
     onChange = (data: {[fieldName: string]: any}) => {
-        this.setState(data);
+        this.setState(data as IPost);
     };
 
     onSubmit = (form: any) => {

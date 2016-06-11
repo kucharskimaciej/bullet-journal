@@ -11,13 +11,15 @@ export interface IModalProps {
     data?: any;
 }
 
-const Container = (props) => {
-    if (!props.type) {
-        return null;
-    }
+class Container extends Component<IModalProps, any> {
+    render() {
+        if (!this.props.type) {
+            return null;
+        }
 
-    return <Modal {...props} />;
-};
+        return <Modal {...this.props} />;
+    }
+}
 
 class Modal extends Component<IModalProps, {}> {
     private _scrollFn;
@@ -71,3 +73,4 @@ export default composeWithTracker((_, onData) => {
 
     onData(null, { data, type });
 })(Container);
+
