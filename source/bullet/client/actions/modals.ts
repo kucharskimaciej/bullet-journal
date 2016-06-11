@@ -21,3 +21,8 @@ const showModal = <IActionHandler<IShowModalActionPayload>>createAction('SHOW_MO
 export const showUpdateModal = <IActionHandler<IUpdateModalActionPayload>>createAction('SHOW_UPDATE_MODAL', ({ data }) => {
     showModal({ type: 'UPDATE_POST', data });
 });
+
+export const closeModal = <IActionHandler<void>>createAction('CLOSE_MODAL', () => {
+    Session.set('MODAL_DATA', null);
+    Session.set('MODAL_TYPE', null);
+});

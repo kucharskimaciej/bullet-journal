@@ -5,6 +5,7 @@ import {composeWithTracker} from 'react-komposer';
 const styles = require('./modal.styl');
 
 import {UpdateModal} from './update_modal';
+import {closeModal} from '../../actions/modals';
 
 export interface IModalProps {
     type?: string;
@@ -25,8 +26,7 @@ class Modal extends Component<IModalProps, {}> {
     private _scrollFn;
 
     onClose() {
-        Session.set('MODAL_TYPE', null);
-        Session.set('MODAL_DATA', null);
+        closeModal(void 0);
     }
 
     lockScroll(x, y) {
