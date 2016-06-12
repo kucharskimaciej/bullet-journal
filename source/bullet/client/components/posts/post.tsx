@@ -73,6 +73,10 @@ export class Post extends Component<IPostProps, IPostState> {
         showUpdateModal({ data: this.props as IPost });
     };
 
+    onDelete = () => {
+          Meteor.call('removePost', this.props);
+    };
+
     render() {
         const {body, created_at} = this.data;
 
@@ -88,6 +92,7 @@ export class Post extends Component<IPostProps, IPostState> {
                     </span>
                 </header>
                 <a onClick={this.onEdit}>edit</a>
+                <a onClick={this.onDelete}>remove</a>
                 <div className={styles.content} dangerouslySetInnerHTML={body}></div>
             </article>
         );
