@@ -24,6 +24,12 @@ const monthFilterOptions:IDateFilterOptions = {
     defaultValue: ""
 };
 
+export function time(date: Date): string {
+    const hours = date.getHours() < 10 ?  `0${date.getHours()}` : String(date.getHours());
+    const minutes = date.getMinutes() < 10 ?  `0${date.getMinutes()}` : String(date.getMinutes());
+
+    return `${hours}:${minutes}`;
+}
 
 export function weekday(date: Date, opts: IDateFilterOptions = weekdayFilterOptions): string {
         return opts.values[date.getDay()] || opts.defaultValue;

@@ -1,0 +1,50 @@
+@require '../../../config.styl'
+
+arrow-height = 8px
+arrow-width = 6px
+
+tooltip-bg = makeblack(.75)
+tooltip-width = 80%
+
+.root
+  position relative
+  display inline-block
+
+.tooltip
+  display none
+  position absolute
+
+  background-color tooltip-bg
+  border-radius 3px
+
+  color white
+  font-size rem(12px)
+  line-height 1.4
+
+  padding 4px 6px
+
+  &:after
+    content ''
+    position absolute
+    margin-left -(arrow-width/2)
+
+    display block
+    width 0
+    height 0
+
+    border-color transparent
+    border-width arrow-height arrow-width
+    border-style solid
+
+.top .tooltip
+  bottom 100%
+  margin 0 ((100% - tooltip-width)/2) (arrow-height/2)
+  max-width tooltip-width
+
+  &:after
+    top 100%
+    left 50%
+    border-top-color tooltip-bg
+
+.show .tooltip
+    display block
