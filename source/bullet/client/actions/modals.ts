@@ -9,7 +9,7 @@ export interface IShowModalActionPayload {
     data: any;
 }
 
-export interface IUpdateModalActionPayload {
+export interface IPostModalActionPayload {
     data: IPost;
 }
 
@@ -18,8 +18,12 @@ const showModal = <IActionHandler<IShowModalActionPayload>>createAction('SHOW_MO
     Session.set('MODAL_TYPE', type);
 });
 
-export const showUpdateModal = <IActionHandler<IUpdateModalActionPayload>>createAction('SHOW_UPDATE_MODAL', ({ data }) => {
+export const showUpdateModal = <IActionHandler<IPostModalActionPayload>>createAction('SHOW_UPDATE_MODAL', ({ data }) => {
     showModal({ type: 'UPDATE_POST', data });
+});
+
+export const showRemoveModal = <IActionHandler<IPostModalActionPayload>>createAction('SHOW_REMOVE_MODAL', ({data}) => {
+    showModal({ type: 'REMOVE_POST', data });
 });
 
 export const closeModal = <IActionHandler<void>>createAction('CLOSE_MODAL', () => {

@@ -3,7 +3,7 @@ import {Component, PropTypes} from 'react';
 
 import {IPost} from '../../../collections/posts/posts';
 import {PostDate} from './post_date';
-import {showUpdateModal} from '../../actions/modals';
+import {showUpdateModal, showRemoveModal} from '../../actions/modals';
 
 import {marked} from '../../services/markdown';
 import * as _ from 'underscore';
@@ -74,7 +74,7 @@ export class Post extends Component<IPostProps, IPostState> {
     };
 
     onDelete = () => {
-          Meteor.call('removePost', this.props);
+        showRemoveModal({ data: this.props as IPost });
     };
 
     render() {

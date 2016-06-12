@@ -5,6 +5,7 @@ import {composeWithTracker} from 'react-komposer';
 const styles = require('./modal.styl');
 
 import {UpdateModal} from './update_modal';
+import {RemoveModal} from './remove_modal';
 import {closeModal} from '../../actions/modals';
 
 export interface IModalProps {
@@ -51,6 +52,9 @@ class Modal extends Component<IModalProps, {}> {
         switch (type) {
             case 'UPDATE_POST':
                 contentComponent = <UpdateModal close={this.onClose} post={data} />;
+                break;
+            case 'REMOVE_POST':
+                contentComponent = <RemoveModal close={this.onClose} post={data} />;
                 break;
             default:
                 contentComponent = null;
