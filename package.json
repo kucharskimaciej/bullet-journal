@@ -21,12 +21,13 @@
     "style-loader": "^0.13.1",
     "stylus-loader": "^2.0.0",
     "typescript": "^1.8.10",
+    "typings": "^1.2.0",
     "webpack": "^1.12.14",
     "why-did-you-update": "0.0.8"
   },
   "scripts": {
     "start": "(cd app && meteor --settings settings/settings-local.json)",
-    "postinstall": "webpack"
+    "postinstall": "typings i && webpack"
   },
   "repository": {
     "type": "git",
