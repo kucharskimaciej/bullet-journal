@@ -3,6 +3,11 @@
         "facebook": {
             "appId": "APP_ID",
             "secret": "APP_SECRET"
+        },
+
+        "github": {
+            "clientId": "CLIENT_ID",
+            "secret": "APP_SECRET"
         }
     },
     "public": {
