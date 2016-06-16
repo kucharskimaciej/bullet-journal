@@ -15,14 +15,15 @@
   height 90%
   position: relative
 
-  padding 2*base-unit
+  padding base-unit 1.5*base-unit
 
   background-color color-page-background
+  border 1px solid lighten(color-primary, 95%)
 
 .close
   position: absolute
-  top 2*base-unit
-  right 2*base-unit
+  top base-unit
+  right 1.5*base-unit
 
   font-size rem(40px)
   line-height rem(40px)
@@ -31,12 +32,12 @@
 
   cursor: pointer
 
-  transform: rotate(0deg)
+  transform: scale(1)
   transition color 0.3s, transform 0.3s ease-out
 
   &:hover
     color color-primary
-    transform: rotate(180deg)
+    transform: scale(1.2)
 
 .title
   font-size rem(2*font-base)
