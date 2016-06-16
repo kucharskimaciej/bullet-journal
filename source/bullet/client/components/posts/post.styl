@@ -16,7 +16,6 @@
   justify-content flex-start
   align-items center
 
-
   h2
     display inline-block
     margin 0
@@ -25,6 +24,23 @@
     text-transform uppercase
     color color-secondary-dark
     text-align left
+
+.actions
+  display inline-block
+  margin 0 negative(base-unit/2) 0 auto
+  opacity 0
+  visibility hidden
+  transition opacity .3s ease-in
+
+  a
+    @extends $link
+    font-size font-size-smaller
+    display inline-block
+    margin 0 (base-unit/2)
+
+.root:hover .actions
+  visibility visible
+  opacity: 1
 
 .date
   display inline-block

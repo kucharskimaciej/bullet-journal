@@ -90,9 +90,12 @@ export class Post extends Component<IPostProps, IPostState> {
                     <span className={styles.date}>
                         <PostDate createdAt={created_at} />
                     </span>
+                    <section className={styles.actions}>
+                        <a onClick={this.onEdit}>edit</a>
+                        <a onClick={this.onDelete}>remove</a>
+                    </section>
                 </header>
-                <a onClick={this.onEdit}>edit</a>
-                <a onClick={this.onDelete}>remove</a>
+                
                 <div className={styles.content} dangerouslySetInnerHTML={body}></div>
             </article>
         );
