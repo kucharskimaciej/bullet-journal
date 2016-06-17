@@ -26,7 +26,7 @@
   // ROOT_URL must be set to your correct domain (https or http)
   "env": {
     "PORT": 3000,
-    "ROOT_URL": "http://kcrm.fuewroclaw.com",
+    "ROOT_URL": "http://bullet.kucharskimaciej.pl",
     "MONGO_URL": "mongodb://localhost:27017/bullet"
   },
 
