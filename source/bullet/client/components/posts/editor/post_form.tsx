@@ -24,7 +24,7 @@ export class PostForm extends Form {
                     <label className={styles.label} htmlFor="body">Body</label>
                     <ValidatedInput
                         className={styles.control}
-                        type="textarea"
+                        type="textarea" minRows={3} maxRows={6}
                         value={fields['body']}
                         validators={[isRequired, minLength(32), maxLength(255)]}
                         name="body"

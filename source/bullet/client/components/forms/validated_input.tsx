@@ -1,6 +1,8 @@
 import * as React from 'react';
 import {Component, PropTypes, SyntheticEvent} from 'react';
 
+import Textarea from 'react-textarea-autosize';
+
 import * as _ from 'underscore';
 
 import {ValidationMessage} from './validation_message';
@@ -22,10 +24,13 @@ export interface IValidatedInputProps extends IComponentProps {
     id?: string;
     readonly?: string;
     className?: string;
+
+    minRows: number;
+    maxRows: number;
 }
 
 export const inputTypes = ['text', 'textarea'];
-export const PASSTHROUGH_FIELDS = ['className', 'onFocus', 'name', 'id', 'readonly', 'disabled', 'value'];
+export const PASSTHROUGH_FIELDS = ['className', 'onFocus', 'name', 'id', 'readonly', 'disabled', 'value', 'minRows', 'maxRows'];
 
 export class ValidatedInput extends Component<IValidatedInputProps, {}> {
     static propTypes = {
@@ -90,7 +95,7 @@ export class ValidatedInput extends Component<IValidatedInputProps, {}> {
             case "text":
                 return <input type="text" {...passThrough} onChange={this.onChange} />;
             case "textarea":
-                return <textarea {...passThrough} onChange={this.onChange}/>;
+                return <Textarea {...passThrough} onChange={this.onChange}/>;
         }
     }
 
