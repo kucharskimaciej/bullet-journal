@@ -7,8 +7,5 @@ export interface IActionCreator {
 }
 
 export const createAction: IActionCreator = (name, handler) => {
-    return (payload) => {
-        console.log('ACTION', name, payload);
-        handler(payload);
-    };
+    return (payload) => handler(payload);
 };

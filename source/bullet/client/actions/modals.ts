@@ -2,7 +2,10 @@ import {
     IActionHandler,
     createAction
 } from '../action_creators';
+import store from '../store';
 import {IPost} from "../../collections/posts/posts";
+import {IModalState} from "../reducers/modal";
+import {Action} from 'redux';
 
 export interface IShowModalActionPayload {
     type: string;
@@ -13,9 +16,8 @@ export interface IPostModalActionPayload {
     data: IPost;
 }
 
-const showModal = <IActionHandler<IShowModalActionPayload>>createAction('SHOW_MODAL', ({ type, data }) => {
-    Session.set('MODAL_DATA', data);
-    Session.set('MODAL_TYPE', type);
+const showModal = <IActionHandler<IShowModalActionPayload>>createAction('SHOW_MODAL', (payload: IShowModalActionPayload) => {
+    store.dispatch({ type: 'SHOW_MODAL', payload });
 });
 
 export const showUpdateModal = <IActionHandler<IPostModalActionPayload>>createAction('SHOW_UPDATE_MODAL', ({ data }) => {
@@ -27,6 +29,5 @@ export const showRemoveModal = <IActionHandler<IPostModalActionPayload>>createAc
 });
 
 export const closeModal = <IActionHandler<void>>createAction('CLOSE_MODAL', () => {
-    Session.set('MODAL_DATA', null);
-    Session.set('MODAL_TYPE', null);
+    store.dispatch({ type: 'HIDE_MODAL' });
 });

@@ -7,5 +7,7 @@
     "react-dom": "registry:dt/react-dom#0.14.0+20160316155526",
     "underscore": "registry:dt/underscore#1.7.0+20160412141459"
   },
-  "dependencies": {}
+  "dependencies": {
+    "react-redux": "registry:npm/react-redux#4.4.0+20160614222153"
+  }
 }

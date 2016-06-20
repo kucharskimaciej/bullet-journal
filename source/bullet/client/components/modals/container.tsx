@@ -1,6 +1,8 @@
 import * as React from 'react';
 import {Component, PropTypes} from 'react';
-import {composeWithTracker} from 'react-komposer';
+import {compose} from 'react-komposer';
+import {IAppState} from "../../reducers/index";
+import store from "../../store";
 
 const styles = require('./modal.styl');
 
@@ -71,10 +73,13 @@ class Modal extends Component<IModalProps, {}> {
     }
 }
 
-export default composeWithTracker((_, onData) => {
-    const data = Session.get('MODAL_DATA');
-    const type = Session.get('MODAL_TYPE');
 
-    onData(null, { data, type });
+export default compose((_, onData) => {
+    onData(null, {});
+
+    store.subscribe(() => {
+        const state: IAppState = store.getState();
+        onData(null, state.modal);
+    });
 })(Container);
 
