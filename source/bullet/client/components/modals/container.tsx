@@ -3,6 +3,7 @@ import {Component, PropTypes} from 'react';
 import {compose} from 'react-komposer';
 import {IAppState} from "../../reducers/index";
 import store from "../../store";
+import {modal} from '../../constants';
 
 const styles = require('./modal.styl');
 
@@ -29,7 +30,7 @@ class Modal extends Component<IModalProps, {}> {
     private _scrollFn;
 
     onClose() {
-        closeModal();
+        store.dispatch(closeModal());
     }
 
     lockScroll(x, y) {
