@@ -12,5 +12,8 @@ app/settings/*.json
 app/public/bundle.css
 app/packages/**/*
 
+source/**/*.js
+source/**/*.js.map
+
 build
 .deploy/**/settings.json
