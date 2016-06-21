@@ -4,6 +4,7 @@ import {Component, PropTypes} from 'react';
 import {IPost} from '../../../collections/posts/posts';
 import {PostDate} from './post_date';
 import {showUpdateModal, showRemoveModal} from '../../actions/modals';
+import store from '../../store';
 
 import {marked} from '../../services/markdown';
 import * as _ from 'underscore';
@@ -70,11 +71,11 @@ export class Post extends Component<IPostProps, IPostState> {
     }
 
     onEdit = () => {
-        showUpdateModal({ data: this.props as IPost });
+        store.dispatch(showUpdateModal(this.props as IPost));
     };
 
     onDelete = () => {
-        showRemoveModal({ data: this.props as IPost });
+        store.dispatch(showRemoveModal(this.props as IPost));
     };
 
     render() {

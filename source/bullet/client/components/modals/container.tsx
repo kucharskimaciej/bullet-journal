@@ -29,7 +29,7 @@ class Modal extends Component<IModalProps, {}> {
     private _scrollFn;
 
     onClose() {
-        closeModal(void 0);
+        closeModal();
     }
 
     lockScroll(x, y) {
