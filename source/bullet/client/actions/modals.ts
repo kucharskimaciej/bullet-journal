@@ -1,15 +1,20 @@
 import {IPost} from "../../collections/posts/posts";
+import * as actions from './constants';
+import {modal} from '../constants';
 
 const showModal = (type: string) => data => ({
-    type: 'SHOW_MODAL' ,
+    type: actions.SHOW_MODAL,
     payload: {
         type, data
     }
 });
 
-export const showUpdateModal = (post: IPost) => showModal('UPDATE_MODAL')(post);
-export const showRemoveModal = (post: IPost) => showModal('REMOVE_MODAL')(post);
+export const showUpdateModal = (post: IPost) => 
+    showModal(modal.UPDATE_POST)(post);
+
+export const showRemoveModal = (post: IPost) => 
+    showModal(modal.REMOVE_POST)(post);
 
 export const closeModal = () => ({
-    type: 'HIDE_MODAL'
+    type: actions.HIDE_MODAL
 });

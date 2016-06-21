@@ -53,10 +53,10 @@ class Modal extends Component<IModalProps, {}> {
 
         let contentComponent;
         switch (type) {
-            case 'UPDATE_POST':
+            case modal.UPDATE_POST:
                 contentComponent = <UpdateModal close={this.onClose} post={data} />;
                 break;
-            case 'REMOVE_POST':
+            case modal.REMOVE_POST:
                 contentComponent = <RemoveModal close={this.onClose} post={data} />;
                 break;
             default:
