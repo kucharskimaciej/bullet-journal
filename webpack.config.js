@@ -22,7 +22,7 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'ts-loader'
+                loaders: [ 'babel-loader', 'ts-loader',]
             },
             {
                 test: /\.styl$/,
