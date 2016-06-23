@@ -5,8 +5,7 @@ import Textarea from 'react-textarea-autosize';
 
 import * as _ from 'underscore';
 
-import {ValidationMessage} from './validation_message';
-import {ValidationMessages, IValidationErrors} from './validation_messages';
+import {IValidationErrors} from './validation_messages';
 
 export interface IValidator {
     (value: any): IValidationErrors|any;
