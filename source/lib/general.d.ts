@@ -10,3 +10,5 @@ interface IComponentProps {
     value?: any;
     disabled?: boolean;
 }
+
+declare var process: any;

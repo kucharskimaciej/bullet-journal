@@ -17,6 +17,7 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "concurrently": "^2.1.0",
     "babel-core": "^6.10.4",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-remove-console": "^6.8.0",
@@ -39,8 +40,12 @@
     "why-did-you-update": "0.0.8"
   },
   "scripts": {
-    "start": "(cd app && meteor --settings settings/settings-local.json)",
-    "postinstall": "typings i && webpack"
+    "start": "concurrently --kill-others 'npm run watch:dev' 'npm run server:dev'",
+    "server:dev": "(cd app && meteor --settings settings/settings-local.json)",
+    "build:dev": "node -r babel-register ./node_modules/.bin/webpack --config ./.webpack/development.js --progress --profile --colors",
+    "watch:dev": "node -r babel-register ./node_modules/.bin/webpack --config ./.webpack/development.js --profile --colors --watch",
+    "build:production": "node -r babel-register ./node_modules/.bin/webpack --config ./.webpack/production.js --progress --profile --colors",
+    "postinstall": "typings i && npm run build:dev"
   },
   "repository": {
     "type": "git",

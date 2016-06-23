@@ -6,7 +6,7 @@
 import {whyDidYouUpdate} from 'why-did-you-update';
 import * as React from 'react';
 
-if (Meteor.settings['public']['env'] === 'DEVELOPMENT') {
+if (process.env.NODE_ENV === 'development') {
     whyDidYouUpdate(React);
 }
 

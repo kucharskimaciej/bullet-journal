@@ -1,7 +1,7 @@
-var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+import webpack from 'webpack';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
-module.exports = {
+const config = {
     entry: {
         client: './source/bullet/client/index.tsx',
         server: './source/bullet/server/index.ts'
@@ -9,8 +9,7 @@ module.exports = {
     output: {
         filename: './app/[name]/bundle.main.js'
     },
-    // Turn on sourcemaps
-    devtool: 'inline-source-map',
+    
     resolve: {
         extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
     },
@@ -22,7 +21,7 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 exclude: /(node_modules|bower_components)/,
-                loaders: [ 'babel-loader', 'ts-loader',]
+                loaders: [ 'babel-loader', 'ts-loader']
             },
             {
                 test: /\.styl$/,
@@ -32,3 +31,5 @@ module.exports = {
         ]
     }
 };
+
+export default config;
