@@ -6,20 +6,25 @@ const styles = require('./notification.styl');
 
 export interface IRemovePostProps {
     close: any;
+    timeout?: number;
     post: IPost;
 }
 
 export class RemovePostNotification extends Component<IRemovePostProps, {}> {
-
-    onUndo = () => {
-        Meteor.call('removePost', this.props.post, () => {
-            this.props.close();
-        });
-    };
+    static defaultTimeout = 10;
 
     onConfirm = () => {
-        this.props.close();
+        Meteor.call('deletePost', this.props.post, this.props.close);
     };
+
+    onUndo = () => {
+        Meteor.call('undoRemovePost', this.props.post, this.props.close);
+    };
+
+    componentDidMount() {
+        const {timeout} = this.props;
+        setTimeout(this.onConfirm, (timeout || RemovePostNotification.defaultTimeout) * 1000);
+    }
 
     render() {
         return (

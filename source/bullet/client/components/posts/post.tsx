@@ -76,7 +76,10 @@ export class Post extends Component<IPostProps, IPostState> {
     };
 
     onDelete = () => {
-        store.dispatch(showPostRemoveNotification(this.props as IPost));
+        Meteor.call('removePost', this.props, () => {
+            store.dispatch(showPostRemoveNotification(this.props as IPost));
+        });
+        
     };
 
     render() {

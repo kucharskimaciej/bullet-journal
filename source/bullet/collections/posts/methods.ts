@@ -9,7 +9,7 @@ import getSlug = require("speakingurl");
 
 @registerMethods({
     collection: Posts,
-    methods: ['createPost', 'updatePost', 'removePost']
+    methods: ['createPost', 'updatePost', 'removePost', 'undoRemovePost', 'deletePost']
 })
 class PostMethods extends Methods<Mongo.Collection<IPost>> {
 
@@ -54,6 +54,21 @@ class PostMethods extends Methods<Mongo.Collection<IPost>> {
         return Posts.update(_id, {
             $set: {
                 removed: true
+            }
+        });
+    }
+    
+    @authenticate
+    @findById
+    undoRemovePost(post:IPost, { _id }: IPost) {
+        if (post.author !== this.userId) {
+            throw new Meteor.Error(401, 'Unauthorized');
+        }
+
+        console.log('undoRemove', _id);
+        return Posts.update(_id, {
+            $set: {
+                removed: false
             }
         });
     }
