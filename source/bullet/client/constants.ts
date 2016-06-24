@@ -5,3 +5,7 @@ export const modal = Object.freeze({
     UPDATE_POST: 'UPDATE_MODAL',
     REMOVE_POST: 'REMOVE_MODAL'
 });
+
+export const notification = Object.freeze({
+    ON_REMOVE_POST: 'ON_REMOVE_POST_NOTIFICATION' 
+});
