@@ -1,4 +1,4 @@
-import {Posts, IPost} from './posts';
+import {Posts, IServerPost, IPost} from './posts';
 import {
     Methods,
     registerMethods,
@@ -51,6 +51,24 @@ class PostMethods extends Methods<Mongo.Collection<IPost>> {
             throw new Meteor.Error(401, 'Unauthorized');
         }
 
-        return Posts.remove({_id});
+        return Posts.update(_id, {
+            $set: {
+                removed: true
+            }
+        });
+    }
+
+    @authenticate
+    @findById
+    deletePost(post: IServerPost, { _id, removed }: IServerPost) {
+        if (post.author !== this.userId) {
+            throw new Meteor.Error(401, 'Unauthorized');
+        }
+
+        if (!removed) {
+            return Meteor.call('removePost', post);
+        }
+
+        return Posts.remove({ _id });
     }
 }

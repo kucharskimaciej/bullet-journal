@@ -5,4 +5,8 @@ export interface IPost {
     _id: string;
 }
 
+export interface IServerPost extends IPost {
+    removed?: boolean;
+}
+
 export const Posts = new Mongo.Collection<IPost>('posts');
