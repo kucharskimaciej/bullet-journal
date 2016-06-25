@@ -12,18 +12,20 @@ export interface IRemovePostProps {
 
 export class RemovePostNotification extends Component<IRemovePostProps, {}> {
     static defaultTimeout = 10;
+    private dismissAction: number;
 
     onConfirm = () => {
         Meteor.call('deletePost', this.props.post, this.props.close);
     };
 
     onUndo = () => {
+        clearTimeout(this.dismissAction);
         Meteor.call('undoRemovePost', this.props.post, this.props.close);
     };
 
     componentDidMount() {
         const {timeout} = this.props;
-        setTimeout(this.onConfirm, (timeout || RemovePostNotification.defaultTimeout) * 1000);
+        this.dismissAction = setTimeout(this.onConfirm, (timeout || RemovePostNotification.defaultTimeout) * 1000);
     }
 
     render() {
