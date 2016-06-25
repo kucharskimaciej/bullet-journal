@@ -244,7 +244,7 @@ Meteor.methods({
             return;
         }
 
-        if (Posts.find({ author: userId }).count() === 0) {
+        if (Posts.find({ author: userId, removed: false }).count() === 0) {
             posts.forEach((post) => {
                 Meteor.call('createPost', post);
             });
