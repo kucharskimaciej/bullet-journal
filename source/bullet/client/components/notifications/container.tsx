@@ -48,7 +48,6 @@ class Modal extends Component<IModalProps, {}> {
         return (
             <aside className={styles.container}>
                 <section className={styles.notification}>
-                    <aside className={styles.close} onClick={this.onClose}>×</aside>
                     {contentComponent}
                 </section>
             </aside>

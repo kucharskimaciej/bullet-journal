@@ -1,8 +1,31 @@
+@require '../../config.styl'
+@require '../../styles/buttons.styl'
+@require '../../styles/containers.styl'
+
 .container
-  height 30vh
-  position absolute
+  position fixed
   bottom 0
   left 0
   right 0
 
   background-color #fff
+  border-top 1px solid rgba(color-primary, 0.05)
+
+.root
+  width 100%
+  max-width container-width
+
+  margin 0 auto
+  padding text-spacing
+
+  article
+    display flex
+    align-items center
+    justify-content center
+
+    & > *
+      margin 0 (text-spacing/2)
+
+.action
+  @extends $button-secondary
+  flex-shrink 0

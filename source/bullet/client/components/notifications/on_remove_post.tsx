@@ -32,9 +32,9 @@ export class RemovePostNotification extends Component<IRemovePostProps, {}> {
                 <article className={styles.body}>
                     <p>
                         It seems that you have removed a post. Was that what you wanted to do?
-                        <a onClick={this.onConfirm} class={styles.link}>Yeah, I meant to do that.</a>
-                        <a onClick={this.onUndo} class={styles.link}>Oh noe, this was a mistake!</a>
                     </p>
+                        <a onClick={this.onConfirm} className={styles.action}><span>Yeah, I meant to do that.</span></a>
+                        <a onClick={this.onUndo} className={styles.action}><span>Oh noe, this was a mistake!</span></a>
                 </article>
             </section>
         );
