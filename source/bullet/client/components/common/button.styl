@@ -37,6 +37,11 @@ $button
   &:focus
     outline 0
 
+$button-secondary
+  @extends $button
+  background-image none
+  background-color rgba(color-primary, 0.05)
+
 $button-small
   @extends $button
 
@@ -47,6 +52,9 @@ $button-small
 
 .buttonPrimary
   @extends $button
+
+.buttonSecondary
+  @extends $button-secondary
 
 .buttonSmall
   & .inner
