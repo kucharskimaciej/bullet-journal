@@ -6,6 +6,7 @@ import {ValidationMessage} from '../../forms/validation_message';
 import {ValidatedInput} from '../../forms/validated_input';
 import {isRequired, minLength, maxLength, emptyOrMinLength} from '../../forms/validators';
 import {Form} from "../../forms/form";
+import {PrimaryButton} from '../../ui/button/button';
 
 const styles = require('./post_form.styl');
 
@@ -43,9 +44,7 @@ export class PostForm extends Form {
 
 
                 <span className={styles.formActions}>
-                    <button className={styles.submitButton} type="submit">
-                        <span>Submit</span>
-                    </button>
+                    <PrimaryButton btnType='submit' btnSize='small'>Submit</PrimaryButton>
                 </span>
             </form>
         );
