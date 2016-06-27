@@ -42,6 +42,7 @@ export class Form extends Component<IFormProps, IFormState> {
     }
 
     private registeredFields = {};
+    private registeredComponents = {};
 
     componentDidMount() {
         this.update({
@@ -71,13 +72,20 @@ export class Form extends Component<IFormProps, IFormState> {
         this.setState(newState, cb);
     }
 
+    private getRegisteredComponent(name: string) {
+        return this.registeredComponents[name];
+    }
+
     protected fieldMethods(fieldName: string) {
         return {
             registerField: (inputComponent:ValidatedInput, initialState) => {
                 this.registeredFields[fieldName] = initialState;
+                this.registeredComponents[fieldName] = inputComponent;
             },
-            onChange: (e:SyntheticEvent, newValue, inputComponent) => {
-                const [valid, errors] = inputComponent.validate(newValue);
+            onChange: (e:SyntheticEvent) => {
+                const target = e.target as HTMLInputElement;
+                const inputComponent = this.getRegisteredComponent(target.name);
+                const [valid, errors] = inputComponent.validate(target.value);
 
                 this.update({
                     touched: true,
@@ -94,7 +102,7 @@ export class Form extends Component<IFormProps, IFormState> {
                 });
 
                 if (this.props.onChange) {
-                    this.props.onChange({ [fieldName]: newValue });
+                    this.props.onChange({ [fieldName]: target.value });
                 }
             }
         };

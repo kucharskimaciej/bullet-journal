@@ -5,7 +5,7 @@ interface ObjectConstructor {
 
 declare var require:(module:string) => any;
 
-interface IComponentProps {
+interface IComponentProps extends HTMLAttributes {
     className?: string;
     value?: any;
     disabled?: boolean;

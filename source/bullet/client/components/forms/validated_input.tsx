@@ -12,18 +12,8 @@ export interface IValidator {
 }
 
 export interface IValidatedInputProps extends IComponentProps {
-    type: string;
     registerField: (inputComponent: ValidatedInput, fieldState) => any;
     validators?: IValidator[];
-    onChange?: (e: SyntheticEvent, value: any, inputComponent: ValidatedInput) => any;
-    onFocus?: (e:SyntheticEvent) => any;
-
-    value?: any;
-    name?: string;
-    id?: string;
-    readonly?: string;
-    className?: string;
-
     minRows: number;
     maxRows: number;
 }
@@ -80,10 +70,8 @@ export class ValidatedInput extends Component<IValidatedInputProps, {}> {
     }
 
     onChange = (e: SyntheticEvent) => {
-        const target = e.target as HTMLInputElement;
-
         if (this.props.onChange) {
-            this.props.onChange(e, target.value, this);
+            this.props.onChange(e);
         }
     };
 
