@@ -1,13 +1,10 @@
 import * as React from 'react'; 
 import { Component } from 'react';
-import * as _ from 'underscore';
 
-interface IButtonProps {
+interface IButtonProps extends IComponentProps {
     btnStyle?: string;
     btnSize?: string;
     btnType?: string;
-
-    [other:string]: any;
 }
 const styles = require('./button.styl');
 
