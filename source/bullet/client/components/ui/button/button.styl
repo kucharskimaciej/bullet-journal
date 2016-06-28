@@ -42,6 +42,10 @@ $button-secondary
   background-image none
   background-color rgba(color-primary, 0.05)
 
+$button-success
+  @extends $button
+  background-image linear-gradient(to bottom right, $color-success-secondary 0%, $color-success-primary 100%)
+
 $button-small
   @extends $button
 
@@ -55,6 +59,9 @@ $button-small
 
 .buttonSecondary
   @extends $button-secondary
+
+.buttonSuccess
+  @extends $button-success
 
 .buttonSmall
   & .inner

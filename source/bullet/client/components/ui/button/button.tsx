@@ -12,7 +12,8 @@ const styles = require('./button.styl');
 export default class Button extends Component<IButtonProps,{}> {
     private static StyleClasses = {
         'primary': styles.buttonPrimary,
-        'secodary': styles.buttonSecondary
+        'secodary': styles.buttonSecondary,
+        'success': styles.buttonSuccess,
     };
 
     private static SizeClasses = {
@@ -42,7 +43,7 @@ export default class Button extends Component<IButtonProps,{}> {
 const createButtonPreset = (btnStyle?, btnSize?, BaseCls = Button) => {
     return class extends BaseCls {
         static defaultProps = Object.assign({}, BaseCls.defaultProps, {
-            btnStyle: 'primary'
+            btnStyle, btnSize
         });
     };
 };
@@ -50,3 +51,4 @@ const createButtonPreset = (btnStyle?, btnSize?, BaseCls = Button) => {
 
 export const PrimaryButton = createButtonPreset('primary');
 export const SecondaryButton = createButtonPreset('secondary');
+export const SuccessButton = createButtonPreset('success');
