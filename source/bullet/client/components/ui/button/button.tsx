@@ -12,7 +12,7 @@ const styles = require('./button.styl');
 export default class Button extends Component<IButtonProps,{}> {
     private static StyleClasses = {
         'primary': styles.buttonPrimary,
-        'secodary': styles.buttonSecondary,
+        'secondary': styles.buttonSecondary,
         'success': styles.buttonSuccess,
         'warning': styles.buttonWarning
     };
@@ -28,14 +28,14 @@ export default class Button extends Component<IButtonProps,{}> {
     };
 
     get buttonClass () {
-        return `${Button.StyleClasses[this.props.btnStyle]} ${Button.SizeClasses[this.props.btnSize]}`;
+        const btnCls = `${Button.StyleClasses[this.props.btnStyle]} ${Button.SizeClasses[this.props.btnSize]}`;
+        return btnCls + (this.props.className ? ` ${this.props.className}`: '');
     }
     
     render() {
-        const {btnType, children} = this.props;
         return (
-            <button type={btnType} className={this.buttonClass} {...this.props}>
-                <span className={styles.inner}>{ children }</span>
+            <button {...this.props} className={this.buttonClass}>
+                <span className={styles.inner}>{ this.props.children }</span>
             </button>
         );
     }

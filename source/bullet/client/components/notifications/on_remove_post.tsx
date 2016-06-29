@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Component, PropTypes} from 'react';
 import {IPost} from '../../../collections/posts/posts';
+import {SecondaryButton, WarningButton} from '../ui/button/button';
 
 const styles = require('./notification.styl');
 
@@ -35,8 +36,8 @@ export class RemovePostNotification extends Component<IRemovePostProps, {}> {
                     <p>
                         It seems that you have removed a post. Was that what you wanted to do?
                     </p>
-                        <a onClick={this.onConfirm} className={styles.action}><span>Yeah, I meant to do that.</span></a>
-                        <a onClick={this.onUndo} className={styles.action}><span>Oh noe, this was a mistake!</span></a>
+                        <SecondaryButton btnSize='small' onClick={this.onConfirm} className={styles.action}>Yeah, I meant to do that.</SecondaryButton>
+                        <WarningButton btnSize='small' onClick={this.onUndo} className={styles.action}>Oh noe, this was a mistake!</WarningButton>
                 </article>
             </section>
         );

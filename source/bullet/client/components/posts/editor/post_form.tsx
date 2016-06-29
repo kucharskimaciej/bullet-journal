@@ -44,7 +44,7 @@ export class PostForm extends Form {
 
 
                 <span className={styles.formActions}>
-                    <SuccessButton btnType='submit' btnSize='small'>Submit</SuccessButton>
+                    <SuccessButton type='submit' btnSize='small'>Submit</SuccessButton>
                 </span>
             </form>
         );
