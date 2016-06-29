@@ -55,6 +55,16 @@ $button-success
   &:hover
     color $color-success-primary
 
+$button-warning
+  @extends $button
+  background-image linear-gradient(to bottom right, $color-warning-secondary 0%, $color-warning-primary 100%)
+
+  color $color-warning-secondary
+
+  &:hover
+    color $color-warning-primary
+
+
 $button-small
   @extends $button
   font-size rem(12px)
@@ -71,6 +81,9 @@ $button-small
 
 .buttonSuccess
   @extends $button-success
+
+.buttonWarning
+  @extends $button-warning
 
 .buttonSmall
   & .inner

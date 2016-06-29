@@ -14,6 +14,7 @@ export default class Button extends Component<IButtonProps,{}> {
         'primary': styles.buttonPrimary,
         'secodary': styles.buttonSecondary,
         'success': styles.buttonSuccess,
+        'warning': styles.buttonWarning
     };
 
     private static SizeClasses = {
@@ -52,3 +53,4 @@ const createButtonPreset = (btnStyle?, btnSize?, BaseCls = Button) => {
 export const PrimaryButton = createButtonPreset('primary');
 export const SecondaryButton = createButtonPreset('secondary');
 export const SuccessButton = createButtonPreset('success');
+export const WarningButton = createButtonPreset('warning');
