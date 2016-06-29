@@ -15,22 +15,26 @@ $button
   background-image button-background
   box-shadow: 0 rem(2px) rem(1px) 0 makeblack(0.08)
 
+  color color-primary
+  font-size rem(14px)
+  cursor: pointer
+
+  transition: color .2s ease-out
+
   &:hover .inner
     box-shadow: 0 0 0 0 makewhite(1)
 
   & .inner
     display block
 
-    color color-primary
-    font-size rem(14px)
+    color inherit
+    font-size inherit
     background-color color-page-background
     line-height 1
 
     padding rem(.7 * base-unit) rem(base-unit)
-
     box-shadow: 0 0 0 rem(1px) makewhite(1)
     border-radius button-border-raduis
-    cursor: pointer
     background-clip padding-box
     transition: box-shadow 0.2s ease-out
 
@@ -46,11 +50,16 @@ $button-success
   @extends $button
   background-image linear-gradient(to bottom right, $color-success-secondary 0%, $color-success-primary 100%)
 
+  color $color-success-secondary
+
+  &:hover
+    color $color-success-primary
+
 $button-small
   @extends $button
+  font-size rem(12px)
 
   & > span
-    font-size rem(12px)
     padding rem(.45 * base-unit) rem(.6 * base-unit) rem(.35 * base-unit)
 
 
