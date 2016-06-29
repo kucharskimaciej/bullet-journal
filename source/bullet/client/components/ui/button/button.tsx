@@ -18,18 +18,18 @@ export default class Button extends Component<IButtonProps,{}> {
     };
 
     private static SizeClasses = {
-        'small': styles.buttonSmall
+        'small': styles.buttonSmall,
+        'normal': ''
     };
 
     static defaultProps = {
         btnStyle: 'primary',
-        btnSize: '',
+        btnSize: 'normal',
         btnType: 'button'
     };
 
     get buttonClass () {
-        const btnCls = `${Button.StyleClasses[this.props.btnStyle]} ${Button.SizeClasses[this.props.btnSize]}`;
-        return btnCls + (this.props.className ? ` ${this.props.className}`: '');
+        return `${Button.StyleClasses[this.props.btnStyle]} ${Button.SizeClasses[this.props.btnSize]} ${this.props.className || ''}`;
     }
     
     render() {
@@ -41,7 +41,7 @@ export default class Button extends Component<IButtonProps,{}> {
     }
 }
 
-const createButtonPreset = (btnStyle?, btnSize?, BaseCls = Button) => {
+const createButtonPreset = (btnStyle, btnSize = 'normal', BaseCls = Button) => {
     return class extends BaseCls {
         static defaultProps = Object.assign({}, BaseCls.defaultProps, {
             btnStyle, btnSize
