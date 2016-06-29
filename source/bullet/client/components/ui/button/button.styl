@@ -1,7 +1,7 @@
 @require '../../../config.styl'
 
 button-border-width = 2px
-button-border-raduis = 1.5 * rem(base-unit)
+button-border-raduis = border-radius-default
 button-background = linear-gradient(to bottom right, color-secondary 0%, color-secondary-dark 100%)
 
 $button
@@ -11,7 +11,7 @@ $button
 
   background-clip padding-box
   border: 0
-  border-radius button-border-raduis
+  border-radius button-border-raduis + 1px
   background-image button-background
   box-shadow: 0 rem(2px) rem(1px) 0 makeblack(0.08)
 
