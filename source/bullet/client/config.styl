@@ -37,8 +37,9 @@ font-weight-bold = 500
 // measurements
 header-height = rem(72px)
 header-spacing = rem(base-unit)
-sidebar-width = rem(400px)
-container-width = rem(1200px)
+-sidebar-width = 400px
+sidebar-width = rem(-sidebar-width)
+container-width = rem(1200px - -sidebar-width)
 
 font-size-base = 1rem
 font-size-small = (14/16)rem
@@ -52,7 +53,7 @@ rem(size, base = font-base)
   (size/base)rem
 
 em(size, base = font-base)
-  (size /base)em
+  (size/base)em
 
 negative(value)
   -1*value
