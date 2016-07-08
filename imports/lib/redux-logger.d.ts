@@ -4,5 +4,5 @@ interface ReduxLogger {
 
 declare var logger: ReduxLogger;
 declare module 'redux-logger' {
-    export default logger;
+    export = logger;
 }

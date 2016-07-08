@@ -3,10 +3,14 @@ node_modules
 *.log
 coverage.html
 typings
+imports/**/*.js
+imports/**/*.js.map
+server/**/*.js.map
+server/**/*.js
+client/index.js
+client/index.js.map
 settings/*.json
 public/bundle.css
 packages/**/*
-imports/**/*.js
-imports/**/*.js.map
 build
 .deploy/**/settings.json

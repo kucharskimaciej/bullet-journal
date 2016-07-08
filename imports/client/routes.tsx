@@ -1,17 +1,12 @@
+/// <reference path='../lib/react-mounter.d.ts' />
 import {Meteor} from 'meteor/meteor';
 import {Accounts} from 'meteor/accounts-base';
 import * as React from 'react';
-import {render} from 'react-dom';
-
 import {BulletLayout} from './components/layout/bullet';
 import {Bullet} from './components/bullet/component';
 import {LoginPage} from './components/auth/login_page';
 
-const APPLICATION_ROOT_ID = 'app';
-
-function renderRoot(jsx) {
-    return render(jsx, document.getElementById(APPLICATION_ROOT_ID));
-}
+import {mount} from 'react-mounter';
 
 const requireLogin = () => {
     if (!(Meteor.loggingIn() || Meteor.userId())) {
@@ -34,9 +29,10 @@ const publicRoutes = FlowRouter.group({});
 publicRoutes.route('/login', {
     name: 'login',
     action() {
-        renderRoot(<BulletLayout headerSize="large">
-            <LoginPage></LoginPage>
-        </BulletLayout>);
+        mount(BulletLayout, {
+            headerSize: 'large',
+            children: <LoginPage />
+        });
     }
 });
 
@@ -50,9 +46,10 @@ protectedRoutes.route('/', {
 protectedRoutes.route('/home', {
     name: 'home',
     action() {
-        renderRoot(<BulletLayout headerSize="small">
-            <Bullet></Bullet>
-        </BulletLayout>);
+        mount(BulletLayout, {
+            headerSize: 'small',
+            children: <Bullet />
+        });
     }
 });
 
@@ -64,13 +61,6 @@ protectedRoutes.route('/logout', {
         });
     }
 });
-
-FlowRouter.notFound = {
-    action() {
-        renderRoot(<h1>404</h1>);
-    }
-};
-
 
 Accounts.onLogin(() => {
     const redirect = Session.get('redirect');
