@@ -16,3 +16,4 @@ webpack:webpack
 webpack:typescript
 webpack:stylus
 webpack:react
+webpack:css

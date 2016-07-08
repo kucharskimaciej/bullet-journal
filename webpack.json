@@ -1,0 +1,8 @@
+{
+  "css": {
+    "modules": true
+  },
+  "hotMiddleware": {
+    "reload": true
+  }
+}
