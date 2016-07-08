@@ -3,18 +3,18 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 const config = {
     entry: {
-        client: './source/bullet/client/index.tsx',
-        server: './source/bullet/server/index.ts'
+        client: './imports/client/index.tsx',
+        server: './imports/server/index.ts'
     },
     output: {
-        filename: './app/[name]/bundle.main.js'
+        filename: './[name]/bundle.main.js'
     },
     
     resolve: {
         extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
     },
     plugins: [
-        new ExtractTextPlugin("app/public/bundle.css", { allChunks: true })
+        new ExtractTextPlugin("public/bundle.css", { allChunks: true })
     ],
     module: {
         loaders: [

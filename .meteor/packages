@@ -1,0 +1,18 @@
+meteor-base             # Packages every Meteor app needs to have
+mongo                   # The database Meteor supports right now
+session                 # Client-side reactive dictionary for your app
+tracker                 # Meteor's client-side reactive programming library
+maximum:computed-fields
+
+accounts-facebook
+accounts-github
+check
+service-configuration
+blaze-html-templates
+
+kadira:flow-router
+matb33:collection-hooks
+webpack:webpack
+webpack:typescript
+webpack:stylus
+webpack:react

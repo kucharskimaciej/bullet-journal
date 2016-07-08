@@ -4,11 +4,6 @@ Bullet journal is a short-and-sweet memo type of journal.
 
 ## TODO
 
-###  v. 1.3
-
-* post actions (delete, update, etc)
-* UI/UX improvements
-
 ###  v. 1.4
 
 * post statistics:
@@ -25,6 +20,11 @@ Bullet journal is a short-and-sweet memo type of journal.
 * post reminders
 
 ## Version history
+
+###  v. 1.3
+
+* post actions (delete, update, etc)
+* UI/UX improvements
 
 ###  v. 1.2
 

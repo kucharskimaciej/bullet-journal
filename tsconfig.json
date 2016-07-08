@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2015",
-    "module": "commonjs",
+    "module": "es2015",
     "noImplicitAny": false,
     "removeComments": true,
     "preserveConstEnums": true,
@@ -12,6 +12,7 @@
   },
   "exclude": [
     "node_modules",
+    ".meteor",
     "wwwroot",
     "packages",
     "typings"
