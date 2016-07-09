@@ -29,7 +29,6 @@ export default class Button extends Component<IButtonProps,{}> {
     };
 
     get buttonClass () {
-        console.log(Button, Button.StyleClasses)
         return `${Button.StyleClasses[this.props.btnStyle]} ${Button.SizeClasses[this.props.btnSize]} ${this.props.className || ''}`;
     }
     
