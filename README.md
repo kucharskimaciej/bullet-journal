@@ -25,6 +25,7 @@ Bullet journal is a short-and-sweet memo type of journal.
 
 * post actions (delete, update, etc)
 * UI/UX improvements
+* update to latest `meteor`
 
 ###  v. 1.2
 
