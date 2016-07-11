@@ -7,10 +7,10 @@ imports/**/*.js
 imports/**/*.js.map
 server/**/*.js.map
 server/**/*.js
-client/index.js
-client/index.js.map
+client/*.js
+client/*.js.map
+!client/meteor.startup.js
 settings/*.json
-public/bundle.css
 packages/**/*
 build
 .deploy/**/settings.json
