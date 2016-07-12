@@ -1,3 +1,5 @@
+import Meteor from 'meteor/meteor';
+
 export interface IUser {
     _id: string;
     verified_emails?: string[];
@@ -16,3 +18,5 @@ export interface IUser {
         }
     };
 }
+
+export const Users = Meteor.users;
