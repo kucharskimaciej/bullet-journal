@@ -1,4 +1,5 @@
 import {Statistics, IStatistic} from './statistics';
+import { KEYS } from '../gamification/constants';
 
 export const createStatEntry = (userId: string) => {
     Statistics.insert({
@@ -12,10 +13,10 @@ export const incrementTotalPostCount = (userId: string) => {
         user_id: userId
     });
 
-    if (userStats.statistics.find((s) => s.key === 'total-posts')) {
+    if (userStats.statistics.find((s) => s.key === KEYS.TOTAL_POSTS)) {
         Statistics.update({
             user_id: userId,
-            'statistics.key': 'total-posts'
+            'statistics.key': KEYS.TOTAL_POSTS
         }, {
             $inc: {
                 'statistics.$.value': 1
@@ -23,13 +24,13 @@ export const incrementTotalPostCount = (userId: string) => {
         });
     } else {
         const totalPostStat = {
-            key: 'total-posts', value: 1
+            key: KEYS.TOTAL_POSTS, value: 1
         };
 
         Statistics.update(userStats._id, {
             $push: {
                 statistics: totalPostStat
-            } 
+            }
         });
     }
 };
