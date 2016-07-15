@@ -10,6 +10,7 @@ import '../collections/users/publish';
 
 import '../collections/posts/methods';
 import '../collections/posts/publish';
+import '../collections/posts/hooks';
 
 import '../collections/statistics/hooks';
 

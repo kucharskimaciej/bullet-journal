@@ -20,8 +20,7 @@ class PostMethods extends Methods<Mongo.Collection<IPost>> {
 
         const document:any = {
             body,
-            author: this.userId,
-            created_at: Date.now()
+            author: this.userId
         };
 
         return Posts.insert(document);
@@ -66,7 +65,6 @@ class PostMethods extends Methods<Mongo.Collection<IPost>> {
             throw new Meteor.Error(401, 'Unauthorized');
         }
 
-        console.log('undoRemove', _id);
         return Posts.update(_id, {
             $set: {
                 removed: false
