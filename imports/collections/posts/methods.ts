@@ -66,8 +66,8 @@ class PostMethods extends Methods<Mongo.Collection<IPost>> {
         }
 
         return Posts.update(_id, {
-            $set: {
-                removed: false
+            $unset: {
+                removed: 1
             }
         });
     }
