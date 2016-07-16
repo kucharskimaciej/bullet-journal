@@ -12,7 +12,7 @@ import '../collections/posts/methods';
 import '../collections/posts/publish';
 import '../collections/posts/hooks';
 
-import '../collections/statistics/hooks';
-
 import './hooks/on_login';
 import './hooks/on_create_user';
+
+import './gamification';
