@@ -1,5 +1,5 @@
 import {IGamificationRecord, GamificationRecords} from '../../../collections/gamification/collection';
-import {KEYS} from '../constants';
+import {KEYS, SUBJECT} from '../constants';
 import {ISubject} from "../subjects";
 import {Posts} from "../../../collections/posts/posts";
 
@@ -7,6 +7,13 @@ export default class TotalPostsRecordProvider {
     private key = KEYS.TOTAL_POSTS;
     
     notify(subject: ISubject) {
+        switch (subject.subject) {
+            case SUBJECT.CREATE_POST:
+                return this.onCreatePost(subject);
+        }
+
+    }
+    onCreatePost(subject) {
         const {user_id} = subject.payload;
         const record = this.recordExists(user_id);
 
