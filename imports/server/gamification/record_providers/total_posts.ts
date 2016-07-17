@@ -7,36 +7,46 @@ export default class TotalPostsRecordProvider {
     private key = KEYS.TOTAL_POSTS;
     
     notify(subject: ISubject) {
+        console.log('NOTIFY', subject);
         switch (subject.subject) {
             case SUBJECT.CREATE_POST:
                 return this.onCreatePost(subject);
+            case SUBJECT.REMOVE_POST:
+                return this.onRemovePost(subject);
         }
 
     }
-    onCreatePost(subject) {
-        const {user_id} = subject.payload;
-        const record = this.recordExists(user_id);
 
-        if (record) {
-            GamificationRecords.update(record._id, {
-                $inc: { value: 1 }
-            });
-        } else {
-            const postsByUser: number = Posts.find({
-                author: user_id,
-                removed: {
-                    $exists: false
-                }
-            }).count();
+    onCreatePost = this.updateRecord(1);
+    onRemovePost = this.updateRecord(-1);
 
-            GamificationRecords.insert({
-                user_id,
-                key: this.key,
-                value: postsByUser
-            });
-        }
+    updateRecord(val) {
+        return (subject) => {
+            console.log(subject, val);
+            const {user_id} = subject.payload;
+            const record = this.recordExists(user_id);
+
+            if (record) {
+                GamificationRecords.update(record._id, {
+                    $inc: { value: val }
+                });
+            } else {
+                const postsByUser: number = Posts.find({
+                    author: user_id,
+                    removed: {
+                        $exists: false
+                    }
+                }).count();
+
+                GamificationRecords.insert({
+                    user_id,
+                    key: this.key,
+                    value: postsByUser
+                });
+            }
+        };
     }
-    
+
     recordExists(user_id: string):IGamificationRecord {
         return GamificationRecords.findOne({
             key: this.key,
