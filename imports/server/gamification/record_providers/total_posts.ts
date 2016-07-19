@@ -1,12 +1,13 @@
 import {IGamificationRecord, GamificationRecords} from '../../../collections/gamification/collection';
 import {KEYS, SUBJECT} from '../constants';
-import {ISubject} from "../subjects";
+import {getRecord} from '../record_helpers';
+import {ISubject, IPostSubjectPayload} from "../subjects";
 import {Posts} from "../../../collections/posts/posts";
 
 export default class TotalPostsRecordProvider {
     private key = KEYS.TOTAL_POSTS;
     
-    notify(subject: ISubject) {
+    notify(subject: ISubject<IPostSubjectPayload>) {
         switch (subject.type) {
             case SUBJECT.CREATE_POST:
                 return this.onCreatePost(subject);
@@ -22,7 +23,7 @@ export default class TotalPostsRecordProvider {
     updateRecord(val) {
         return (subject) => {
             const {user_id} = subject.payload;
-            const record = this.recordExists(user_id);
+            const record = getRecord(this.key, user_id);
 
             if (record) {
                 GamificationRecords.update(record._id, {
@@ -43,13 +44,6 @@ export default class TotalPostsRecordProvider {
                 });
             }
         };
-    }
-
-    recordExists(user_id: string):IGamificationRecord {
-        return GamificationRecords.findOne({
-            key: this.key,
-            user_id
-        });
     }
 }
 
