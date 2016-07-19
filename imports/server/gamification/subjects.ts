@@ -1,19 +1,24 @@
 import { SUBJECT } from './constants';
-import {IPost} from "../../collections/posts/posts";
+import {IPost, IServerPost} from "../../collections/posts/posts";
 
-export interface ISubject {
+export interface ISubject<PayloadType> {
     type: string;
-    payload: any;
+    payload: PayloadType;
 }
 
-export const createPost = (user_id:string, post): ISubject => ({
+export interface IPostSubjectPayload {
+    user_id: string;
+    post: IServerPost|IPost;
+}
+
+export const createPost = (user_id:string, post): ISubject<IPostSubjectPayload> => ({
     type: SUBJECT.CREATE_POST,
     payload: {
         user_id, post
     }
 });
 
-export const removePost = (post: IPost): ISubject => ({
+export const removePost = (post: IPost): ISubject<IPostSubjectPayload> => ({
     type: SUBJECT.REMOVE_POST,
     payload: {
         user_id: post.author, post
