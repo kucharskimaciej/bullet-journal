@@ -4,5 +4,6 @@ export const SUBJECT = Object.freeze({
 });
 
 export const KEYS = Object.freeze({
-    TOTAL_POSTS: 'total-posts'
+    TOTAL_POSTS: 'total-posts',
+    BUSIEST_DAY: 'busiest-day'
 });
