@@ -7,7 +7,7 @@ export default class TotalPostsRecordProvider {
     private key = KEYS.TOTAL_POSTS;
     
     notify(subject: ISubject) {
-        switch (subject.subject) {
+        switch (subject.type) {
             case SUBJECT.CREATE_POST:
                 return this.onCreatePost(subject);
             case SUBJECT.REMOVE_POST:

@@ -2,19 +2,19 @@ import { SUBJECT } from './constants';
 import {IPost} from "../../collections/posts/posts";
 
 export interface ISubject {
-    subject: string;
+    type: string;
     payload: any;
 }
 
 export const createPost = (user_id:string, post): ISubject => ({
-    subject: SUBJECT.CREATE_POST,
+    type: SUBJECT.CREATE_POST,
     payload: {
         user_id, post
     }
 });
 
 export const removePost = (post: IPost): ISubject => ({
-    subject: SUBJECT.REMOVE_POST,
+    type: SUBJECT.REMOVE_POST,
     payload: {
         user_id: post.author, post
     }
