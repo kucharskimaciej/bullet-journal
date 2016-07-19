@@ -74,12 +74,12 @@ class PostMethods extends Methods<Mongo.Collection<IPost>> {
 
     @authenticate
     @findById
-    deletePost(post: IServerPost, { _id, removed }: IServerPost) {
+    deletePost(post: IServerPost, { _id }: IServerPost) {
         if (post.author !== this.userId) {
             throw new Meteor.Error(401, 'Unauthorized');
         }
 
-        if (!removed) {
+        if (!post.removed) {
             return Meteor.call('removePost', post);
         }
 

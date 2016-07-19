@@ -17,6 +17,7 @@ export class RemovePostNotification extends Component<IRemovePostProps, {}> {
     private dismissAction: number;
 
     onConfirm = () => {
+        clearTimeout(this.dismissAction);
         Meteor.call('deletePost', this.props.post, this.props.close);
     };
 
