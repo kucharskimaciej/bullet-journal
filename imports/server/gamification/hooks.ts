@@ -6,8 +6,6 @@ Posts.after.insert((userId, post) =>
     notify(createPost(post.author, post))
 );
 
-Posts.after.update((userId, post: IServerPost) => {
-    if (post.removed) {
-        notify(removePost(post));
-    }
+Posts.after.remove((userId, post: IServerPost) => {
+    notify(removePost(post));
 });

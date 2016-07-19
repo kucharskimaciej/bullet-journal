@@ -7,7 +7,6 @@ export default class TotalPostsRecordProvider {
     private key = KEYS.TOTAL_POSTS;
     
     notify(subject: ISubject) {
-        console.log('NOTIFY', subject);
         switch (subject.subject) {
             case SUBJECT.CREATE_POST:
                 return this.onCreatePost(subject);
@@ -22,7 +21,6 @@ export default class TotalPostsRecordProvider {
 
     updateRecord(val) {
         return (subject) => {
-            console.log(subject, val);
             const {user_id} = subject.payload;
             const record = this.recordExists(user_id);
 
