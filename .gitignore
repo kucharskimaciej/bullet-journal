@@ -10,6 +10,7 @@ server/**/*.js
 client/*.js
 client/*.js.map
 !client/meteor.startup.js
+!imports/packages/**/*.js
 settings/*.json
 packages/**/*
 build
