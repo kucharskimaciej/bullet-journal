@@ -25,6 +25,16 @@ function onCreateMigration(migrationName, moreMigrations) {
     var migrationPath = path.join(MIGRATIONS_DIR, filename);
 
     console.log('Create migration %s', path.join(process.cwd(), migrationPath));
+    
+    try {
+        fs.mkdirSync(MIGRATIONS_DIR);
+    } catch (e) {
+        // ignore existing directory error
+        if (e.code !== 'EEXIST') {
+            throw e;
+        }
+    }
+
     fs.writeFileSync(migrationPath, getMigrationTemplate(migrationName, timestamp));
 
     if (moreMigrations && moreMigrations.length) {
