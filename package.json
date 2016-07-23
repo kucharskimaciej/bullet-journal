@@ -7,6 +7,7 @@
   "description": "Bullet journal is a short-and-sweet memo type of journal.",
   "dependencies": {
     "babel-plugin-transform-class-properties": "^6.10.2",
+    "commander": "^2.9.0",
     "immutable": "^3.8.0",
     "marked": "^0.3.5",
     "moment": "^2.14.1",

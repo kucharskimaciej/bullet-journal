@@ -1,0 +1,55 @@
+#!/usr/bin/env node
+
+var path = require('path');
+var fs = require('fs');
+var program = require('commander');
+
+var MIGRATIONS_DIR = './imports/migrations';
+var MIGRATIONS_EXT = 'ts';
+
+function main() {
+    parseArgs();
+    program.parse(process.argv);
+}
+
+function parseArgs() {
+    program
+        .command('create <migrationName> [moreMigrations...]')
+        .action(onCreateMigration)
+}
+
+function onCreateMigration(migrationName, moreMigrations) {
+    var timestamp = Date.now();
+    var filename = timestamp + "_" + migrationName + "." + MIGRATIONS_EXT;
+    var migrationPath = path.join(MIGRATIONS_DIR, filename);
+
+    console.log('Create migration %s', path.join(process.cwd(), migrationPath));
+    fs.writeFileSync(migrationPath, getMigrationTemplate(migrationName, timestamp));
+
+    if (moreMigrations && moreMigrations.length) {
+        moreMigrations.forEach(onCreateMigration);
+    }
+}
+
+function getMigrationTemplate(name, version) {
+    return [
+        "import { Migration } from '../packages/meteor-seed-migrate';",
+        "",
+        "export default class " + captalize(name) + " extends Migration {",
+        "   version = " + version + ";",
+        "   up() {",
+        "       ",
+        "   }",
+        "   down() {",
+        "       ",
+        "   }",
+        "}"
+    ].join('\n');
+}
+
+
+function captalize(name) {
+    return name.charAt(0).toUpperCase() + name.slice(1);
+}
+
+main();
