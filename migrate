@@ -14,7 +14,8 @@ function main() {
 
 function parseArgs() {
     program
-        .command('create <migrationName> [moreMigrations...]')
+        .command('generate <migrationName> [moreMigrations...]')
+        .alias('g')
         .action(onCreateMigration)
 }
 
