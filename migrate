@@ -44,7 +44,7 @@ function onCreateMigration(migrationName, moreMigrations) {
 
 function getMigrationTemplate(name, version) {
     return [
-        "import { Migration } from '../packages/meteor-seed-migrate';",
+        "import { Migration } from '../packages/meteor-seed-migrate/index.js';",
         "",
         "export default class " + captalize(name) + " extends Migration {",
         "   version = " + version + ";",
