@@ -3,7 +3,7 @@ export const DIRECTION = {
     DOWN: 'down'
 };
 
-export default class Migration {
+export class Migration {
     constructor() {
 
     }
