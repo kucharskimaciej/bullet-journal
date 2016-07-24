@@ -6,6 +6,10 @@ import {Posts} from "../../../collections/posts/posts";
 
 import * as moment from 'moment';
 
+const getDay = (date = Date.now()):number => {
+    return moment(date).utc().startOf('day').valueOf();
+};
+
 export class BusiestDayRecordProvider {
     private key = KEYS.BUSIEST_DAY;
 
@@ -26,7 +30,7 @@ export class BusiestDayRecordProvider {
             return this.createRecordFromScratch(user_id);
         }
 
-        const today = this._getDay();
+        const today = getDay();
 
         if (record.value.date === today) {
             GamificationRecords.update(record._id, {
@@ -59,7 +63,7 @@ export class BusiestDayRecordProvider {
                 $exists: false
             }
         }).forEach((post) => {
-            const day = this._getDay(post.created_at);
+            const day = getDay(post.created_at);
             postsByDayCount[day] = postsByDayCount[day] ?
                 postsByDayCount[day] + 1 : 1;
         });
@@ -92,10 +96,6 @@ export class BusiestDayRecordProvider {
         });
 
         this.createRecordFromScratch(user_id);
-    }
-
-    private _getDay(date = Date.now()): number {
-        return moment(date).utc().startOf('day').valueOf();
     }
 }
 
