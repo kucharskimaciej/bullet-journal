@@ -87,7 +87,7 @@ export class BusiestDayRecordProvider {
         });
     }
 
-    onRemovePost(subject):any {
+    private onRemovePost(subject):any {
         const {user_id} = subject.payload;
 
         GamificationRecords.remove({

@@ -17,10 +17,10 @@ export class TotalPostsRecordProvider {
 
     }
 
-    onCreatePost = this.updateRecord(1);
-    onRemovePost = this.updateRecord(-1);
+    private onCreatePost = this.updateRecord(1);
+    private onRemovePost = this.updateRecord(-1);
 
-    updateRecord(val) {
+    private updateRecord(val) {
         return (subject) => {
             const {user_id} = subject.payload;
             const record = getRecord(this.key, user_id);
