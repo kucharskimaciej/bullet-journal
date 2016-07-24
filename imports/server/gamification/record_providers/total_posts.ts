@@ -4,7 +4,7 @@ import {getRecord} from '../record_helpers';
 import {ISubject, IPostSubjectPayload} from "../subjects";
 import {Posts} from "../../../collections/posts/posts";
 
-export default class TotalPostsRecordProvider {
+export class TotalPostsRecordProvider {
     private key = KEYS.TOTAL_POSTS;
     
     notify(subject: ISubject<IPostSubjectPayload>) {

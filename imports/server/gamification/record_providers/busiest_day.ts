@@ -6,7 +6,7 @@ import {Posts} from "../../../collections/posts/posts";
 
 import * as moment from 'moment';
 
-export default class BusiestDayRecordProvider {
+export class BusiestDayRecordProvider {
     private key = KEYS.BUSIEST_DAY;
 
     notify(subject: ISubject<IPostSubjectPayload>) {
@@ -19,68 +19,83 @@ export default class BusiestDayRecordProvider {
 
     }
 
-    private onCreatePost(subject) {
+    private onCreatePost(subject): any {
         const {user_id} = subject.payload;
         const record = getRecord(this.key, user_id);
+        if (!record) {
+            return this.createRecordFromScratch(user_id);
+        }
 
-        if (record) {
-            const today = moment().startOf('day').valueOf();
+        const today = this._getDay();
 
-            if (record.value.date === today) {
-                return GamificationRecords.update(record._id, {
-                    $inc: { 'value.count': 1 }
-                });
-            } else {
-                const todaysPostsCount = Posts.find({
-                    created_at: {
-                        $gte: today
+        if (record.value.date === today) {
+            GamificationRecords.update(record._id, {
+                $inc: { 'value.count': 1 }
+            });
+        } else {
+            const todaysPostsCount = Posts.find({
+                created_at: {
+                    $gte: today
+                }
+            }).count();
+
+            GamificationRecords.update(record._id, {
+                $set: {
+                    value: {
+                        count: todaysPostsCount,
+                        date: today
                     }
-                }).count();
-
-                return GamificationRecords.update(record._id, {
-                    $set: {
-                        value: {
-                            count: todaysPostsCount,
-                            date: today
-                        }
-                    }
-                });
-            }
+                }
+            });
         }
     }
 
     private createRecordFromScratch(user_id:string) {
-        
-    }
+        const postsByDayCount = {};
 
-    onRemovePost(subject) {
-        const {user_id, post} = subject.payload;
-    }
-
-    private updateRecord(val) {
-        return (subject) => {
-            const {user_id} = subject.payload;
-            const record = getRecord(this.key, user_id);
-
-            if (record) {
-                GamificationRecords.update(record._id, {
-                    $inc: { value: val }
-                });
-            } else {
-                const postsByUser: number = Posts.find({
-                    author: user_id,
-                    removed: {
-                        $exists: false
-                    }
-                }).count();
-
-                GamificationRecords.insert({
-                    user_id,
-                    key: this.key,
-                    value: postsByUser
-                });
+        Posts.find({
+            author: user_id,
+            removed: {
+                $exists: false
             }
-        };
+        }).forEach((post) => {
+            const day = this._getDay(post.created_at);
+            postsByDayCount[day] = postsByDayCount[day] ?
+                postsByDayCount[day] + 1 : 1;
+        });
+        
+        let mostPosts = -Infinity, mostPostsDate = null;
+        Object.keys(postsByDayCount)
+            .forEach((timestamp) => {
+                if (postsByDayCount[timestamp] > mostPosts) {
+                    mostPosts = postsByDayCount[timestamp];
+                    mostPostsDate = timestamp;
+                } 
+            });
+
+        GamificationRecords.insert({
+            user_id,
+            key: this.key,
+            value: {
+                count: mostPosts,
+                date: mostPostsDate
+            }
+        });
+    }
+
+    onRemovePost(subject):any {
+        const {user_id} = subject.payload;
+
+        GamificationRecords.remove({
+            key: this.key,
+            user_id
+        });
+
+        this.createRecordFromScratch(user_id);
+    }
+
+    private _getDay(date = Date.now()): number {
+        return moment(date).utc().startOf('day').valueOf();
     }
 }
 
