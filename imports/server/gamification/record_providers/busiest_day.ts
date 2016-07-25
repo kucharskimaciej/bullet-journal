@@ -1,14 +1,8 @@
 import {GamificationRecords} from '../../../collections/gamification/collection';
 import {KEYS, SUBJECT} from '../constants';
-import {getRecord} from '../record_helpers';
+import {getRecord, getDayStart} from '../record_helpers';
 import {ISubject, IPostSubjectPayload} from "../subjects";
 import {Posts} from "../../../collections/posts/posts";
-
-import * as moment from 'moment';
-
-const getDay = (date = Date.now()):number => {
-    return moment(date).utc().startOf('day').valueOf();
-};
 
 export class BusiestDayRecordProvider {
     private key = KEYS.BUSIEST_DAY;
@@ -30,7 +24,7 @@ export class BusiestDayRecordProvider {
             return this.createRecordFromScratch(user_id);
         }
 
-        const today = getDay();
+        const today = getDayStart();
 
         if (record.value.date === today) {
             GamificationRecords.update(record._id, {
@@ -63,7 +57,7 @@ export class BusiestDayRecordProvider {
                 $exists: false
             }
         }).forEach((post) => {
-            const day = getDay(post.created_at);
+            const day = getDayStart(post.created_at);
             postsByDayCount[day] = postsByDayCount[day] ?
                 postsByDayCount[day] + 1 : 1;
         });
