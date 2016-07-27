@@ -1,6 +1,6 @@
 import {Meteor} from 'meteor/meteor';
 import {Store, createStore, applyMiddleware} from 'redux';
-import * as createLogger from 'redux-logger';
+import createLogger from 'redux-logger';
 
 import reducers, {IAppState} from './reducers/index';
 

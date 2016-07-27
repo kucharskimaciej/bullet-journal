@@ -1,4 +1,4 @@
-import * as _marked from 'marked';
+import _marked from 'marked';
 
 _marked.setOptions({
     renderer: new _marked.Renderer(),
