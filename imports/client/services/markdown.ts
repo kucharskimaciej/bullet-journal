@@ -1,4 +1,4 @@
-import _marked from 'marked';
+import * as _marked from 'marked';
 
 _marked.setOptions({
     renderer: new _marked.Renderer(),
@@ -14,3 +14,4 @@ _marked.setOptions({
 export function marked (content) {
     return _marked(content);
 }
+ 

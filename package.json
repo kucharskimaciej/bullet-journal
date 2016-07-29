@@ -61,7 +61,8 @@
   "scripts": {
     "start": "concurrently --kill-others 'npm run server:dev'",
     "server:dev": "meteor --settings settings/settings-local.json",
-    "postinstall": "typings i"
+    "postinstall": "typings i",
+    "reinstall:all": "rm -rf ./node_modules && npm i"
   },
   "repository": {
     "type": "git",
