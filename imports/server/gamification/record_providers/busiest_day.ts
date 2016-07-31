@@ -2,9 +2,10 @@ import {GamificationRecords} from '../../../collections/gamification/collection'
 import {KEYS, SUBJECT} from '../constants';
 import {getRecord, getDayStart} from '../record_helpers';
 import {ISubject, IPostSubjectPayload} from "../subjects";
+import {AbstractRecordProvider} from './record_provider_base';
 import {Posts} from "../../../collections/posts/posts";
 
-export class BusiestDayRecordProvider {
+export class BusiestDayRecordProvider extends AbstractRecordProvider {
     private key = KEYS.BUSIEST_DAY;
 
     notify(subject: ISubject<IPostSubjectPayload>) {
@@ -17,11 +18,11 @@ export class BusiestDayRecordProvider {
 
     }
 
-    private onCreatePost(subject): any {
+    protected onCreatePost(subject): any {
         const {user_id} = subject.payload;
         const record = getRecord(this.key, user_id);
         if (!record) {
-            return this.createRecordFromScratch(user_id);
+            return this.createFromScratch(user_id);
         }
 
         const today = getDayStart();
@@ -48,7 +49,7 @@ export class BusiestDayRecordProvider {
         }
     }
 
-    private createRecordFromScratch(user_id:string) {
+    protected createFromScratch(user_id:string) {
         const postsByDayCount = {};
 
         Posts.find({
@@ -81,7 +82,7 @@ export class BusiestDayRecordProvider {
         });
     }
 
-    private onRemovePost(subject):any {
+    protected onRemovePost(subject):any {
         const {user_id} = subject.payload;
 
         GamificationRecords.remove({
@@ -89,7 +90,7 @@ export class BusiestDayRecordProvider {
             user_id
         });
 
-        this.createRecordFromScratch(user_id);
+        this.createFromScratch(user_id);
     }
 }
 
