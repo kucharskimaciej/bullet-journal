@@ -1,10 +1,11 @@
-import {IGamificationRecord, GamificationRecords} from '../../../collections/gamification/collection';
+import {GamificationRecords} from '../../../collections/gamification/collection';
 import {KEYS, SUBJECT} from '../constants';
 import {getRecord} from '../record_helpers';
 import {ISubject, IPostSubjectPayload} from "../subjects";
+import {AbstractRecordProvider} from './record_provider_base';
 import {Posts} from "../../../collections/posts/posts";
 
-export class TotalPostsRecordProvider {
+export class TotalPostsRecordProvider extends AbstractRecordProvider {
     private key = KEYS.TOTAL_POSTS;
     
     notify(subject: ISubject<IPostSubjectPayload>) {
@@ -17,11 +18,11 @@ export class TotalPostsRecordProvider {
 
     }
 
-    private onCreatePost = this.updateRecord(1);
-    private onRemovePost = this.updateRecord(-1);
+    protected onCreatePost = this.updateRecord(1);
+    protected onRemovePost = this.updateRecord(-1);
 
     private updateRecord(val) {
-        return (subject) => {
+        return (subject: ISubject<IPostSubjectPayload>) => {
             const {user_id} = subject.payload;
             const record = getRecord(this.key, user_id);
 
@@ -30,20 +31,24 @@ export class TotalPostsRecordProvider {
                     $inc: { value: val }
                 });
             } else {
-                const postsByUser: number = Posts.find({
-                    author: user_id,
-                    removed: {
-                        $exists: false
-                    }
-                }).count();
-
-                GamificationRecords.insert({
-                    user_id,
-                    key: this.key,
-                    value: postsByUser
-                });
+                this.createFromScratch(user_id);
             }
         };
+    }
+
+    protected createFromScratch(user_id: string): void {
+        const postsByUser: number = Posts.find({
+            author: user_id,
+            removed: {
+                $exists: false
+            }
+        }).count();
+
+        GamificationRecords.insert({
+            user_id,
+            key: this.key,
+            value: postsByUser
+        });
     }
 }
 

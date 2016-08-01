@@ -2,11 +2,12 @@ import {GamificationRecords} from '../../../collections/gamification/collection'
 import {KEYS, SUBJECT} from '../constants';
 import {getRecordOfType, getDayStart, getNextDayStart, isPreviousDay} from '../record_helpers';
 import {ISubject, IPostSubjectPayload} from "../subjects";
+import {AbstractRecordProvider} from './record_provider_base';
 import {Posts} from "../../../collections/posts/posts";
 
 const getRecord = getRecordOfType(KEYS.HOT_STREAK);
 
-export class HotStreakRecordProvider {
+export class HotStreakRecordProvider extends AbstractRecordProvider {
     private key = KEYS.HOT_STREAK;
 
     notify(subject:ISubject<IPostSubjectPayload>):any {
@@ -19,7 +20,7 @@ export class HotStreakRecordProvider {
 
     }
 
-    private onCreatePost(subject: ISubject<IPostSubjectPayload>) {
+    protected onCreatePost(subject: ISubject<IPostSubjectPayload>) {
         const {user_id} = subject.payload;
         const record = getRecord(user_id);
 
@@ -48,11 +49,11 @@ export class HotStreakRecordProvider {
                 }
             });
         } else {
-            this.getCurrentStreak(user_id);
+            this.createFromScratch(user_id);
         }
     }
 
-    private onRemovePost(subject: ISubject<IPostSubjectPayload>) {
+    protected onRemovePost(subject: ISubject<IPostSubjectPayload>) {
         const {user_id, post} = subject.payload;
         const record = getRecord(user_id);
 
@@ -81,11 +82,11 @@ export class HotStreakRecordProvider {
                 }
             });
         } else {
-            this.getCurrentStreak(user_id);
+            this.createFromScratch(user_id);
         }
     }
 
-    private getCurrentStreak(user_id: string) {
+    protected createFromScratch(user_id: string) {
         const postsByUser = Posts.find({
             author: user_id
         }, {
