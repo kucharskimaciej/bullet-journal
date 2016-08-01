@@ -1,7 +1,12 @@
 import {GamificationRecords} from '../../collections/gamification/collection';
 import * as moment from 'moment';
+import {ISubject} from "./subjects";
 
 export const DAY_IN_MS = 24 * 60 * 60 * 1000;
+
+export interface ISubjectHandler<PayloadType> {
+    (subject: ISubject<PayloadType>): void;
+}
 
 export const getRecord = (key, user_id) => GamificationRecords.findOne({
     key, user_id

@@ -1,6 +1,6 @@
 import {GamificationRecords} from '../../../collections/gamification/collection';
 import {KEYS, SUBJECT} from '../constants';
-import {getRecord} from '../record_helpers';
+import {getRecord, ISubjectHandler} from '../record_helpers';
 import {ISubject, IPostSubjectPayload} from "../subjects";
 import {AbstractRecordProvider} from './record_provider_base';
 import {Posts} from "../../../collections/posts/posts";
@@ -8,8 +8,8 @@ import {Posts} from "../../../collections/posts/posts";
 export class TotalPostsRecordProvider extends AbstractRecordProvider {
     private key = KEYS.TOTAL_POSTS;
     
-    private incrementPostCount: (subject: ISubject<IPostSubjectPayload>) => void;
-    private decrementPostCount: (subject: ISubject<IPostSubjectPayload>) => void;
+    private incrementPostCount: ISubjectHandler<IPostSubjectPayload>;
+    private decrementPostCount: ISubjectHandler<IPostSubjectPayload>;
     
     constructor() {
         this.incrementPostCount = this.updateRecord(1);
