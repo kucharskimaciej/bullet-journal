@@ -8,6 +8,14 @@ import {Posts} from "../../../collections/posts/posts";
 export class TotalPostsRecordProvider extends AbstractRecordProvider {
     private key = KEYS.TOTAL_POSTS;
     
+    private incrementPostCount: (subject: ISubject<IPostSubjectPayload>) => void;
+    private decrementPostCount: (subject: ISubject<IPostSubjectPayload>) => void;
+    
+    constructor() {
+        this.incrementPostCount = this.updateRecord(1);
+        this.decrementPostCount = this.updateRecord(1);
+    }
+    
     notify(subject: ISubject<IPostSubjectPayload>) {
         switch (subject.type) {
             case SUBJECT.CREATE_POST:
@@ -18,8 +26,13 @@ export class TotalPostsRecordProvider extends AbstractRecordProvider {
 
     }
 
-    protected onCreatePost = this.updateRecord(1);
-    protected onRemovePost = this.updateRecord(-1);
+    protected onCreatePost(subject: ISubject<IPostSubjectPayload>) {
+        return this.incrementPostCount(subject);
+    }
+
+    protected onRemovePost(subject: ISubject<IPostSubjectPayload>) {
+        return this.decrementPostCount(subject);
+    }
 
     private updateRecord(val) {
         return (subject: ISubject<IPostSubjectPayload>) => {
