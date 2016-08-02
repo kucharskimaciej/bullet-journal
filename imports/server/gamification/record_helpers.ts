@@ -18,6 +18,10 @@ export const getDayStart = (date = Date.now()):number => {
     return moment(date).utc().startOf('day').valueOf();
 };
 
+export const getLast30DaysStart = () => getDayStart(
+    moment().subtract(30, 'days').valueOf()
+);
+
 export const getNextDayStart = (date = Date.now()):number => {
     return getDayStart(date) + DAY_IN_MS;
 };

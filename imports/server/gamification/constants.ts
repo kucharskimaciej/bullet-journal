@@ -6,5 +6,6 @@ export const SUBJECT = Object.freeze({
 export const KEYS = Object.freeze({
     TOTAL_POSTS: 'total-posts',
     BUSIEST_DAY: 'busiest-day',
-    HOT_STREAK: 'hot-streak'
+    HOT_STREAK: 'hot-streak',
+    POST_GRID: 'post-grid'
 });
