@@ -18,3 +18,4 @@ webpack:stylus
 webpack:react
 webpack:css
 msavin:mongol
+meteorhacks:aggregate

@@ -45,6 +45,8 @@ matb33:collection-hooks@0.8.3
 maximum:computed-fields@0.2.1
 meteor@1.2.16
 meteor-base@1.0.4
+meteorhacks:aggregate@1.3.0
+meteorhacks:collection-utils@1.2.0
 meteortoys:toykit@3.0.4
 minifier-js@1.1.13
 minimongo@1.0.17
@@ -52,6 +54,7 @@ modules@0.7.5
 modules-runtime@0.7.5
 mongo@1.1.10
 mongo-id@1.0.5
+mongo-livedata@1.0.12
 msavin:mongol@2.0.1
 npm-mongo@1.5.45
 oauth@1.1.11
