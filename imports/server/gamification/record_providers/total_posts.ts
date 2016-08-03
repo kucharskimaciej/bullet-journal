@@ -12,6 +12,7 @@ export class TotalPostsRecordProvider extends AbstractRecordProvider {
     private decrementPostCount: ISubjectHandler<IPostSubjectPayload>;
     
     constructor() {
+        super();
         this.incrementPostCount = this.updateRecord(1);
         this.decrementPostCount = this.updateRecord(1);
     }
