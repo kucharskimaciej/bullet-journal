@@ -2,7 +2,7 @@ import {Mongo} from 'meteor/mongo';
 
 export interface IPost {
     body: string;
-    created_at: number;
+    created_at: Date;
     author: string;
     _id: string;
 }
