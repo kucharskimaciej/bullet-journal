@@ -10,7 +10,7 @@ export class PostPreview extends Post {
     get data() {
         return { body: {
             __html: this.state.body
-        }, created_at: Date.now() }
+        }, created_at: new Date }
     }
 
     rootClass() {

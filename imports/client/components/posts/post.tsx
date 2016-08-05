@@ -15,7 +15,7 @@ const styles = require('./post.styl');
 
 export interface IPostProps {
     body: string;
-    created_at?: number;
+    created_at?: Date;
     author?: string;
     _id?: string;
 }
@@ -29,7 +29,7 @@ export class Post extends Component<IPostProps, IPostState> {
         _id: PropTypes.string,
         body: PropTypes.string.isRequired,
         author: PropTypes.string,
-        created_at: PropTypes.number,
+        created_at: PropTypes.instanceOf(Date),
         slug: PropTypes.string
     };
 

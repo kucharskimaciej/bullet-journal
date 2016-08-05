@@ -12,10 +12,10 @@ import {Tooltip} from '../ui/tooltip/tooltip';
 
 const styles = require('./post_date.styl');
 
-export class PostDate extends Component<{ createdAt: number }, {}> {
+export class PostDate extends Component<{ createdAt: Date }, {}> {
     render() {
-        const date = new Date(this.props.createdAt);
-
+        const date = this.props.createdAt;
+        
         return (
             <Tooltip text={`Posted at ${time(date)}`} className={styles.root}>
                 <span className={styles.day}>{dayInMonth(date)}</span>
