@@ -68,7 +68,7 @@ export class Post extends Component<IPostProps, IPostState> {
         }, created_at };
     }
 
-    rootClass() {
+    rootClass(): string {
         return styles.root;
     }
 
