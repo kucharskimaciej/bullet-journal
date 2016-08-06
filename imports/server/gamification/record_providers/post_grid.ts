@@ -1,7 +1,7 @@
 import {KEYS, SUBJECT} from '../constants';
 import {ISubject, IPostSubjectPayload} from "../subjects";
 import {AbstractRecordProvider} from './record_provider_base';
-import {getDayStart, getLast30DaysStart, ISubjectHandler} from '../record_helpers';
+import {getDayStart, ISubjectHandler} from '../record_helpers';
 import {Posts} from "../../../collections/posts/posts";
 import {GamificationGrid} from '../../../collections/gamification/collection';
 import {Meteor} from 'meteor/meteor';
