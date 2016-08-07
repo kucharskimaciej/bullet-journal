@@ -4,6 +4,7 @@ import {Component, PropTypes} from 'react';
 import {IUser} from '../../../collections/users/users';
 
 import {Account} from '../user/account';
+import {GamificationContainer} from '../gamification/container/component';
 
 const styles = require('./sidebar.styl');
 
@@ -23,6 +24,7 @@ export class Sidebar extends Component<ISidebarProps, {}> {
         return (
             <aside className={styles.root} role="sidebar">
                 <Account profile={profile}/>
+                <GamificationContainer />
             </aside>
         );
     }

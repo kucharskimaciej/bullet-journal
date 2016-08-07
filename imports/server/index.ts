@@ -15,4 +15,5 @@ import '../collections/posts/hooks';
 import './hooks/on_login';
 import './hooks/on_create_user';
 
+import '../collections/gamification';
 import './gamification';
