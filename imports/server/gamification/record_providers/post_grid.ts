@@ -112,10 +112,3 @@ export class PostGridProvider extends AbstractRecordProvider {
         execute();
     }
 }
-
-import moment = require("moment/moment");
-Meteor.startup(() => {
-    const p = new PostGridProvider() as any;
-
-    p.createFromScratch('LX5h2Jcs3Ff6Ax4tT')
-});
