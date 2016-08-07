@@ -68,11 +68,6 @@ export class PostGridProvider extends AbstractRecordProvider {
                     }
                 }
             },
-            {
-                $sort: {
-                    created_at: -1
-                }
-            },
             { $project:  {
                     _id: 0,
                     date: { $dateToString: { format: "%Y-%m-%d", date: "$created_at" } },
