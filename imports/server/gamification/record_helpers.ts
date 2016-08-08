@@ -16,6 +16,9 @@ export const getRecord = (key, user_id) => GamificationRecords.findOne({
 
 export const getRecordOfType = key => user_id => getRecord(key, user_id);
 
+export const parseString = (date: string):Date => 
+    moment.utc(date).toDate();
+
 export const getDayStart = (date:momentOrDate = moment()):Date => {
     return moment(date).utc().startOf('day').toDate();
 };

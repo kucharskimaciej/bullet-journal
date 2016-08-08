@@ -1,6 +1,6 @@
 import {GamificationRecords} from '../../../collections/gamification/collection';
 import {KEYS, SUBJECT} from '../constants';
-import {getRecordOfType, getDayStart, getNextDayStart, isPreviousDay} from '../record_helpers';
+import {getRecordOfType, getDayStart, getNextDayStart, isPreviousDay, parseString} from '../record_helpers';
 import {ISubject, IPostSubjectPayload} from "../subjects";
 import {AbstractRecordProvider} from './record_provider_base';
 import {Posts} from "../../../collections/posts/posts";
@@ -58,7 +58,6 @@ export class HotStreakRecordProvider extends AbstractRecordProvider {
         const record = getRecord(user_id);
 
         if (record) {
-
             // post was in previous streak
             if (getDayStart(post.created_at) < record.value.start) {
                 return;
@@ -87,32 +86,34 @@ export class HotStreakRecordProvider extends AbstractRecordProvider {
     }
 
     protected createFromScratch(user_id: string) {
-        const postsByUser = Posts.find({
-            author: user_id
-        }, {
-            sort: [['created_at', 'desc']]
-        }).fetch();
+        GamificationRecords.remove({
+            user_id, key: this.key
+        });
 
-        const streakEnd = getDayStart();
-        let streakStart = getDayStart();
+        const postsByUser = Posts.getPostCountByDate(user_id, {
+                $sort: {
+                    date: -1
+                }
+            });
+
+        let start = getDayStart();
+        const end = getDayStart();
 
         for (let post of postsByUser) {
-            const postDate = getDayStart(post.created_at);
+            const postDate = parseString(post.date);
 
-            // streak is broken
-            if (postDate !== streakStart && !isPreviousDay(postDate, streakStart)) {
+            if (postDate.valueOf() !== start.valueOf() && !isPreviousDay(postDate, start)) {
                 break;
             }
 
-            streakStart = postDate;
+            start = postDate;
         }
 
-        return GamificationRecords.insert({
-            key: this.key,
+        GamificationRecords.insert({
             user_id,
+            key: this.key,
             value: {
-                start: streakStart,
-                end: streakEnd
+                start, end
             }
         });
     }
