@@ -60,10 +60,11 @@ export class BusiestDayRecordProvider extends AbstractRecordProvider {
         );
 
         if (result && result.length) {
+            const {date, count} = result[0];
             GamificationRecords.insert({
                 user_id,
                 key: this.key,
-                value: result[0]
+                value: { date, count }
             });
         }
     }

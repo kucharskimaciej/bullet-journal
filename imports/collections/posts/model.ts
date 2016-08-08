@@ -40,6 +40,13 @@ export class PostsCollection extends Mongo.Collection<IPost> {
                     }
                 }
             },
+            {
+                $project: {
+                    _id: 0,
+                    count: '$count',
+                    date: '$_id'
+                }
+            },
             ...agregationPipes
         ]);
     }
