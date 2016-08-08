@@ -2,7 +2,7 @@ import {GamificationRecords} from '../../collections/gamification/collection';
 import * as moment from 'moment';
 import {ISubject} from "./subjects";
 
-export type timestampOrDate = number|Date;
+export type momentOrDate = Date|moment.Moment;
 
 export const DAY_IN_MS = 24 * 60 * 60 * 1000;
 
@@ -16,14 +16,14 @@ export const getRecord = (key, user_id) => GamificationRecords.findOne({
 
 export const getRecordOfType = key => user_id => getRecord(key, user_id);
 
-export const getDayStart = (date: timestampOrDate = Date.now()):number => {
-    return moment(date).utc().startOf('day').valueOf();
+export const getDayStart = (date:momentOrDate = moment()):Date => {
+    return moment(date).utc().startOf('day').toDate();
 };
 
-export const getNextDayStart = (date: timestampOrDate = Date.now()):number => {
-    return getDayStart(date) + DAY_IN_MS;
+export const getNextDayStart = (date:momentOrDate = moment()):Date => {
+    return moment(getDayStart(date).valueOf() + DAY_IN_MS).toDate();
 };
 
-export const isPreviousDay = (dayAStart:number, dayBStart:number):boolean => {
-    return Math.abs(dayAStart - dayBStart) === DAY_IN_MS;
+export const isPreviousDay = (dayAStart: momentOrDate, dayBStart: momentOrDate):boolean => {
+    return Math.abs(dayAStart.valueOf() - dayBStart.valueOf()) === DAY_IN_MS;
 };

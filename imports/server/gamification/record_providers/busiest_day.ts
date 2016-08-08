@@ -58,7 +58,7 @@ export class BusiestDayRecordProvider extends AbstractRecordProvider {
                 $exists: false
             }
         }).forEach((post) => {
-            const day = getDayStart(post.created_at);
+            const day = getDayStart(post.created_at).valueOf();
             postsByDayCount[day] = postsByDayCount[day] ?
                 postsByDayCount[day] + 1 : 1;
         });
@@ -68,7 +68,7 @@ export class BusiestDayRecordProvider extends AbstractRecordProvider {
             .forEach((timestamp) => {
                 if (postsByDayCount[timestamp] > mostPosts) {
                     mostPosts = postsByDayCount[timestamp];
-                    mostPostsDate = timestamp;
+                    mostPostsDate = new Date(timestamp);
                 } 
             });
 

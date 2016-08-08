@@ -60,7 +60,7 @@ export class HotStreakRecordProvider extends AbstractRecordProvider {
         if (record) {
 
             // post was in previous streak
-            if (post.created_at < record.value.start) {
+            if (getDayStart(post.created_at) < record.value.start) {
                 return;
             }
 
