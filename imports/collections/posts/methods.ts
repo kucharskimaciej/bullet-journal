@@ -1,5 +1,4 @@
 import {Meteor} from 'meteor/meteor';
-import {Mongo} from 'meteor/mongo';
 import {Posts, IServerPost, IPost} from './posts';
 import {
     Methods,
@@ -7,12 +6,13 @@ import {
     findById,
     authenticate
 } from '../../lib/method_utils';
+import {PostsCollection} from "./model";
 
 @registerMethods({
     collection: Posts,
     methods: ['createPost', 'updatePost', 'removePost', 'undoRemovePost', 'deletePost']
 })
-class PostMethods extends Methods<Mongo.Collection<IPost>> {
+class PostMethods extends Methods<PostsCollection> {
 
     @authenticate
     createPost({ body }: IPost) {
