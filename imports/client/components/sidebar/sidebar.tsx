@@ -4,7 +4,7 @@ import {Component, PropTypes} from 'react';
 import {IUser} from '../../../collections/users/users';
 
 import {Account} from '../user/account';
-import {GamificationContainer} from '../gamification/container/component';
+import {GamificationContainer} from '../gamification/container';
 
 const styles = require('./sidebar.styl');
 

@@ -1,7 +1,10 @@
 import {Meteor} from 'meteor/meteor';
 import {Component} from 'react';
+import * as React from 'react';
 import {composeWithTracker} from 'react-komposer';
-import {IGamificationRecord, GamificationRecords} from "../../../../collections/gamification/collection";
+import {IGamificationRecord, GamificationRecords} from "../../../collections/gamification/collection";
+
+import {Tile} from './tile';
 
 export interface IGamificationContainerProps {
     records: IGamificationRecord[];
@@ -9,8 +12,11 @@ export interface IGamificationContainerProps {
 
 class GamificationContainerComponent extends Component<IGamificationContainerProps, {}> {
     render() {
-        console.log('hello', this.props);
-        return null;
+        return (<div>
+            { this.props.records.map(record =>
+                <Tile key={record._id} recordKey={record.key} value={record.value} />
+            )}
+        </div>);
     }
 }
 const composeFn = (_, onData) => {
