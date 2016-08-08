@@ -1,14 +1,4 @@
-import {Mongo} from 'meteor/mongo';
+import {PostsCollection} from "./model";
+export {IPost, IServerPost} from './model';
 
-export interface IPost {
-    body: string;
-    created_at: Date;
-    author: string;
-    _id: string;
-}
-
-export interface IServerPost extends IPost {
-    removed?: boolean;
-}
-
-export const Posts = new Mongo.Collection<IPost>('posts');
+export const Posts = new PostsCollection('posts');
