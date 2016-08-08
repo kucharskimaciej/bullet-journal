@@ -50,36 +50,22 @@ export class BusiestDayRecordProvider extends AbstractRecordProvider {
     }
 
     protected createFromScratch(user_id:string) {
-        const postsByDayCount = {};
+        const result = Posts.getPostCountByDate(user_id,
+            {
+                $sort: {
+                    count: -1
+                }
+            },
+            { $limit: 1 }
+        );
 
-        Posts.find({
-            author: user_id,
-            removed: {
-                $exists: false
-            }
-        }).forEach((post) => {
-            const day = getDayStart(post.created_at).valueOf();
-            postsByDayCount[day] = postsByDayCount[day] ?
-                postsByDayCount[day] + 1 : 1;
-        });
-        
-        let mostPosts = -Infinity, mostPostsDate = null;
-        Object.keys(postsByDayCount)
-            .forEach((timestamp) => {
-                if (postsByDayCount[timestamp] > mostPosts) {
-                    mostPosts = postsByDayCount[timestamp];
-                    mostPostsDate = new Date(timestamp);
-                } 
+        if (result && result.length) {
+            GamificationRecords.insert({
+                user_id,
+                key: this.key,
+                value: result[0]
             });
-
-        GamificationRecords.insert({
-            user_id,
-            key: this.key,
-            value: {
-                count: mostPosts,
-                date: mostPostsDate
-            }
-        });
+        }
     }
 
     protected onRemovePost(subject):any {

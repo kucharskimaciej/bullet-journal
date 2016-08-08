@@ -17,10 +17,6 @@ export interface IServerPost extends IPost {
 }
 
 export class PostsCollection extends Mongo.Collection<IPost> {
-    constructor(name) {
-        super(name);
-    }
-    
     getPostCountByDate(user_id, ...agregationPipes: any[]): IAggregatedPost[] {
         return (this as any).aggregate([
             {
