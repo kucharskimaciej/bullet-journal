@@ -38,6 +38,10 @@ export class BusiestDayRecordProvider extends AbstractRecordProvider {
                 }
             }).count();
 
+            if (record.value.count > todaysPostsCount) {
+                return;
+            }
+
             GamificationRecords.update(record._id, {
                 $set: {
                     value: {
