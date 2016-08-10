@@ -22,10 +22,15 @@ export const tileContentTemplate = {
     [KEYS.HOT_STREAK](value) {
         let content;
         const end = moment(value.end).utc();
-        if (moment().diff(end, 'days') > 1) {
-            content = 0;
-        } else {
+        const endsToday = moment().diff(end, 'days') === 0;
+        const endedYesterday = moment().diff(end, 'days') === 1;
+
+        if (endsToday) {
+            content = moment(value.end).diff(moment(value.start)) + 1;
+        } else if (endedYesterday) {
             content = moment(value.end).diff(moment(value.start), 'days');
+        } else {
+           content = 0;
         }
 
         return (
@@ -52,7 +57,6 @@ export const tileName = {
 export class Tile extends Component<ITileProps, {}> {
     render() {
         const {recordKey: key, value} = this.props;
-        console.log(this.props);
 
         return (
             <section className={styles.root}>
