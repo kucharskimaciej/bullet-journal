@@ -10,12 +10,12 @@ export interface ITileProps {
     value: any;
 }
 
+const styles = require('./tile.styl');
 export const tileContentTemplate = {
     [KEYS.BUSIEST_DAY](value) {
         return (
-            <section>
-                <span>{value.count}</span>
-                <span>{value.date}</span>
+            <section className={styles.value}>
+                <span className={styles.front}>{value.count}</span>
             </section>
         );
     },
@@ -29,15 +29,15 @@ export const tileContentTemplate = {
         }
 
         return (
-            <section>
-                <span>{content}</span>
+            <section className={styles.value}>
+                <span className={styles.front}>{content}</span>
             </section>
         );
     },
     [KEYS.TOTAL_POSTS](value) {
         return (
-            <section>
-                <span>{value}</span>
+            <section className={styles.value}>
+                <span className={styles.front}>{value}</span>
             </section>
         );
     }
@@ -52,13 +52,16 @@ export const tileName = {
 export class Tile extends Component<ITileProps, {}> {
     render() {
         const {recordKey: key, value} = this.props;
+        console.log(this.props);
 
         return (
-            <section>
-                <header>
-                    <h4>{ tileName[key] }</h4>
-                </header>
-                { tileContentTemplate[key](value) }
+            <section className={styles.root}>
+                <div className={styles.content}>
+                    <header className={styles.header}>
+                        <h4 className={styles.name}>{ tileName[key] }</h4>
+                    </header>
+                    { tileContentTemplate[key](value) }
+                </div>
             </section>
         );
     }

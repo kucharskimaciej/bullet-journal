@@ -5,6 +5,7 @@ import {composeWithTracker} from 'react-komposer';
 import {IGamificationRecord, GamificationRecords} from "../../../collections/gamification/collection";
 
 import {Tile} from './tile';
+const styles = require('./container.styl');
 
 export interface IGamificationContainerProps {
     records: IGamificationRecord[];
@@ -12,9 +13,11 @@ export interface IGamificationContainerProps {
 
 class GamificationContainerComponent extends Component<IGamificationContainerProps, {}> {
     render() {
-        return (<div>
+        return (<div className={styles.root}>
             { this.props.records.map(record =>
-                <Tile key={record._id} recordKey={record.key} value={record.value} />
+                <span className={styles.item} key={record._id}>
+                    <Tile recordKey={record.key} value={record.value} />
+                </span>
             )}
         </div>);
     }
