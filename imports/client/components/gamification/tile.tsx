@@ -22,15 +22,17 @@ export const tileContentTemplate = {
     [KEYS.HOT_STREAK](value) {
         let content;
         const end = moment(value.end).utc();
+        const start = moment(value.start).utc();
         const endsToday = moment().diff(end, 'days') === 0;
         const endedYesterday = moment().diff(end, 'days') === 1;
 
-        if (endsToday) {
-            content = moment(value.end).diff(moment(value.start)) + 1;
-        } else if (endedYesterday) {
-            content = moment(value.end).diff(moment(value.start), 'days');
+        if (!endsToday && !endedYesterday) {
+            content = 0;
         } else {
-           content = 0;
+            content = end.diff(start, 'days');
+            if (!content) {
+                content = 1;
+            }
         }
 
         return (
