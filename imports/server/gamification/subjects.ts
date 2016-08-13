@@ -24,3 +24,13 @@ export const removePost = (post: IPost): ISubject<IPostSubjectPayload> => ({
         user_id: post.author, post
     }
 });
+
+export interface ICreateRecordPayload {
+    user_id: string;
+    key: string;
+}
+
+export const createRecord = (user_id: string, key: string): ISubject<ICreateRecordPayload> => ({
+    type: SUBJECT.CREATE_RECORD,
+    payload: { user_id, key }
+});

@@ -7,7 +7,7 @@ import {
     isPreviousDay,
     isSameDay,
     parseString} from '../record_helpers';
-import {ISubject, IPostSubjectPayload} from "../subjects";
+import {ISubject, IPostSubjectPayload, ICreateRecordPayload} from "../subjects";
 import {AbstractRecordProvider} from './record_provider_base';
 import {Posts} from "../../../collections/posts/posts";
 
@@ -16,12 +16,18 @@ const getRecord = getRecordOfType(KEYS.HOT_STREAK);
 export class HotStreakRecordProvider extends AbstractRecordProvider {
     private key = KEYS.HOT_STREAK;
 
-    notify(subject:ISubject<IPostSubjectPayload>):any {
+    notify(subject:ISubject<any>):any {
         switch (subject.type) {
             case SUBJECT.CREATE_POST:
                 return this.onCreatePost(subject);
             case SUBJECT.REMOVE_POST:
                 return this.onRemovePost(subject);
+            case SUBJECT.CREATE_RECORD:
+                if ((<ISubject<ICreateRecordPayload>>subject).payload.key === this.key) {
+                    return this.createFromScratch(
+                        (<ISubject<ICreateRecordPayload>>subject).payload.user_id
+                    );
+                }
         }
 
     }

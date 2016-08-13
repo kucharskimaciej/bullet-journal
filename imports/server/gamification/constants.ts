@@ -1,6 +1,7 @@
 export const SUBJECT = Object.freeze({
     CREATE_POST: 'create-post',
-    REMOVE_POST: 'remove-post'
+    REMOVE_POST: 'remove-post',
+    CREATE_RECORD: 'create-record'
 });
 
 export const KEYS = Object.freeze({
