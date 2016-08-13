@@ -1,6 +1,12 @@
 import {GamificationRecords} from '../../../collections/gamification/collection';
 import {KEYS, SUBJECT} from '../constants';
-import {getRecordOfType, getDayStart, getNextDayStart, isPreviousDay, parseString} from '../record_helpers';
+import {
+    getRecordOfType,
+    getDayStart,
+    getNextDayStart,
+    isPreviousDay,
+    isSameDay,
+    parseString} from '../record_helpers';
 import {ISubject, IPostSubjectPayload} from "../subjects";
 import {AbstractRecordProvider} from './record_provider_base';
 import {Posts} from "../../../collections/posts/posts";
@@ -28,7 +34,7 @@ export class HotStreakRecordProvider extends AbstractRecordProvider {
 
         if (record) {
             // nth post today
-            if (record.value.end === today) {
+            if (isSameDay(record.value.end, today)) {
                 return;
             }
 
@@ -102,7 +108,7 @@ export class HotStreakRecordProvider extends AbstractRecordProvider {
         for (let post of postsByUser) {
             const postDate = parseString(post.date);
 
-            if (postDate.valueOf() !== start.valueOf() && !isPreviousDay(postDate, start)) {
+            if (!isSameDay(postDate, start) && !isPreviousDay(postDate, start)) {
                 break;
             }
 

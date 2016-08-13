@@ -30,3 +30,7 @@ export const getNextDayStart = (date:momentOrDate = moment()):Date => {
 export const isPreviousDay = (dayAStart: momentOrDate, dayBStart: momentOrDate):boolean => {
     return Math.abs(dayAStart.valueOf() - dayBStart.valueOf()) === DAY_IN_MS;
 };
+
+export const isSameDay = (dayAStart: momentOrDate, dayBStart: momentOrDate):boolean => {
+    return dayAStart.valueOf() === dayBStart.valueOf();
+};
